@@ -25,7 +25,8 @@ Route::get('/airline_display', 'AirlineController@display');
 Route::post('/addairline','AirlineController@save1');
 Route::post('/editairline','AirlineController@edit_row');
 Route::get('department', 'DepartmentController@index');
-
+Route::get('/department/insert', 'DepartmentController@insert');
+Route::get('/department/saved', 'DepartmentController@saved');
 Route::get('/dashboard',function(){
 
     return view('dashboard');

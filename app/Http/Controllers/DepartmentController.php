@@ -34,6 +34,35 @@ class DepartmentController extends Controller
             return view('department',$data);
         }
     }
+    public function insert(){
+
+        return view('add-department');
+
+    }
     
+    public function saved(Request $request)
+    {
+
+        $request->validate([
+            "name"=>"required",
+            "created_at"=>"required",
+            ]); 
+     $active;
+     if($request->input('is_active')==1)
+     {
+          $active=1;
+     }
+     else
+     $active=0;
+      $dept=new Department;
+      $dept->name=$request->name;
+      $dept->created_at=$request->created_at;
+      $dept->is_active=$active;
+     
+      echo $dept->save();
+      //return $dept->getall();
+      return redirect('department')->with('seccess','Seccess Data Insert');
+    
+    }
 
 }
