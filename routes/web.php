@@ -12,7 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**************
+ * suad routs
+ ************* */
 
+Route::get('/airline_add', 'AirlineController@add');
+Route::get('/airline_display', 'AirlineController@display');
+Route::post('/addairline','AirlineController@save1');
+Route::get('/dashboard',function(){
+
+    return view('dashboard');
+    });
+
+/**************
+ * end suad routs
+ ************* */
 Route::get('/', function () {
     return view('welcome');
 });

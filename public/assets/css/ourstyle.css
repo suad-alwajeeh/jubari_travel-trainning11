@@ -1,0 +1,17 @@
+.main-sidebar {
+   background-color:#080231 !important;
+}
+ .brand-link {
+    border-bottom: 1px solid #17a2b8 !important;
+}
+.user-panel {
+    border-bottom: 1px solid #17a2b8 !important;
+}
+.badge-danger {
+    color: #FFF;
+    background-color: #e5ad06;
+}
+.badge-warning {
+    color: #FFF;
+    background-color: #17A2B8;
+}
