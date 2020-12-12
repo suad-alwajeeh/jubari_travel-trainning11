@@ -15,10 +15,15 @@ class AirlineController extends Controller
     {
         //
     }
+    public function display_row($id)
+    { 
+        $affected = Airline::where('id',$id)->get();
+        return view('airline_edit',['data'=>$affected]);
+                    }
     public function display()
     {
-        $emp =new Airline;
-        return $emp->getall();
+        $affected = Airline::where('is_active',1)->get();
+        return view('airline_display',['data'=>$affected]);
         }
     public function add()
     {
@@ -37,9 +42,27 @@ class AirlineController extends Controller
       $airline->remark=$req->remark;
       $airline->is_active=$req->is_active;
       echo $airline->save();
-      return $airline->getall();
-
+      $affected = Airline::get();
+      return view('airline_display',['data'=>$affected]);
     }
+    public function edit_row(Request $req){
+        $airline=new Airline;
+        $airline::where('id',$req->id)
+        ->update(['airline_code'=>$req->airline_code,'airline_name'=>$req->airline,
+        'country'=>$req->country,'carrier_code'=>$req->carrier_code,'code'=>$req->code,
+        'IATA'=>$req->IATA	,'remark'=>$req->remark,'is_active'=>$req->is_active,
+        ]);
+        $affected = Airline::get();
+        return view('airline_display',['data'=>$affected]);
+        
+    }
+    public function hide_row($id){
+        $affected1= Airline::where('id',$id)
+        ->update(['is_active'=>'0']);
+        $affected = Airline::get();
+        return view('airline_display',['data'=>$affected]);
+
+        }
     /**
      * Show the form for creating a new resource.
      *

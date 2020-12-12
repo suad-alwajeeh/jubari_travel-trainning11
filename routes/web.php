@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
  ************* */
 
 Route::get('/airline_add', 'AirlineController@add');
+Route::get('/airline_edit/{id}', 'AirlineController@display_row');
+Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
 Route::get('/airline_display', 'AirlineController@display');
 Route::post('/addairline','AirlineController@save1');
+Route::post('/editairline','AirlineController@edit_row');
 Route::get('/dashboard',function(){
 
     return view('dashboard');

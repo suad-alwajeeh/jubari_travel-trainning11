@@ -5,39 +5,39 @@
   <div class="content-wrapper">
   <div class="container p-4">
   
-<h2>add airline Form</h2>
+<h2>add airline page</h2>
 <!--form action="airline_display1" method="post"-->
 <form id="airline_display" method="post" action="/addairline" >
     <div class="form-group">
       <label for="email">code</label>
-      <input type="text" class="form-control" id="email" placeholder="Enter email" name="airline_code">
+      <input type="text" class="form-control" id="email" placeholder=" airline_code" name="airline_code">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">airline</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="airline">
+      <input type="text" class="form-control" id="" placeholder="airline_name" name="airline">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">country</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="country">
+      <input type="text" class="form-control" id="country" placeholder="country " name="country">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">carrier_code</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="carrier_code">
+      <input type="text" class="form-control" id="carrier_code" placeholder=" carrier_code" name="carrier_code">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">code</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="code">
+      <input type="text" class="form-control" id="code" placeholder="code " name="code">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">IATA</label>
-      <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="IATA">
+      <input type="text" class="form-control" id="IATA" placeholder="IATA" name="IATA">
     </div>
     <div class="form-group mb-3">
       <label for="pwd">	remark</label>
-      <textarea name="remark" id="" cols="30" rows="10"></textarea>
+      <textarea class="form-control" name="remark" id="remark"></textarea>
     </div>
     <div class="form-group mb-3">
-      <label for="pwd">is active</label>
+      <label for="is_active">is_active</label>
      <select name="is_active" id="">
      <option value=1>1</option>
      <option value=0>2</option>
