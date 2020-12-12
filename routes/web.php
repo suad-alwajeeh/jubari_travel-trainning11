@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 /**************
  * suad routs
  ************* */
+Route::get('employees', 'EmployeeController@index');
 
 
 Route::get('/airline_add', 'AirlineController@add');
@@ -36,12 +37,6 @@ Route::get('/dashboard',function(){
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/addEmployee',function(){
-
-return view('add_emp');
-});
-Route::resource('employees', 'EmployeesController');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
