@@ -7,7 +7,14 @@
   
 <h2>add airline page</h2>
 <!--form action="airline_display1" method="post"-->
+@foreach($errors->all() as $er)
+<div class="alert alert-warning alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+{{$er}}
+</div>
+@endforeach
 <form id="airline_display" method="post" action="/addairline" >
+@csrf
     <div class="form-group">
       <label for="email">code</label>
       <input type="text" class="form-control" id="email" placeholder=" airline_code" name="airline_code">

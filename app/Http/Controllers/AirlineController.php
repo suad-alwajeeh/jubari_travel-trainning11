@@ -33,6 +33,10 @@ class AirlineController extends Controller
     public function save1(Request $req)
     {
      // print_r($req->input());
+     $req->validate([
+        "airline_code"=>"min:3",
+        "airline"=>"required",
+        ]);
       $airline=new Airline;
       $airline->airline_code=$req->airline_code;
       $airline->airline_name=$req->airline;
@@ -43,7 +47,7 @@ class AirlineController extends Controller
       $airline->remark=$req->remark;
       $airline->is_active=$req->is_active;
       echo $airline->save();
-      $affected = Airline::where('is_active',1)->get();
+      $affected = Airline::where('is_active',1)->paginate(7);
       return view('airline_display',['data'=>$affected]);
     }
     public function edit_row(Request $req){
@@ -53,14 +57,14 @@ class AirlineController extends Controller
         'country'=>$req->country,'carrier_code'=>$req->carrier_code,'code'=>$req->code,
         'IATA'=>$req->IATA	,'remark'=>$req->remark,'is_active'=>$req->is_active,
         ]);
-        $affected = Airline::where('is_active',1)->get();
+        $affected = Airline::where('is_active',1)->paginate(7);
         return view('airline_display',['data'=>$affected]);
         
     }
     public function hide_row($id){
         $affected1= Airline::where('id',$id)
         ->update(['is_active'=>'0']);
-        $affected = Airline::where('is_active',1)->get();
+        $affected = Airline::where('is_active',1)->paginate(7);
         return view('airline_display',['data'=>$affected]);
 
         }
