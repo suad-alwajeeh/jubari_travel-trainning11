@@ -27,6 +27,12 @@ Route::post('/editairline','AirlineController@edit_row');
 Route::get('department', 'DepartmentController@index');
 Route::get('/department/insert', 'DepartmentController@insert');
 Route::get('/department/saved', 'DepartmentController@saved');
+Route::get('department/department-edit/{id}','DepartmentController@department_edit');
+Route::get('/department/department-delete/{id}', 'DepartmentController@hide_row');
+Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
+Route::get('department/editdepartment','DepartmentController@edit_row');
+
+
 Route::get('/dashboard',function(){
 
     return view('dashboard');

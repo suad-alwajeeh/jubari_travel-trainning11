@@ -18,6 +18,7 @@ class DepartmentTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('delete');
             $table->boolean('is_active');
             $table->string('created_at');
             $table->rememberToken();

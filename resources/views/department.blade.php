@@ -79,6 +79,7 @@
                   </tr>
                   </thead>
                   <tbody class="row2">
+                  
                  @foreach($dept as $department)
                   <tr >
                     <td>{{$department->id}}</td>
@@ -88,6 +89,7 @@
                     <input type="hidden" id="test">
                     <div class="btn-group btn-group-sm">
   <a type="button" class="btn btn-success" href="{{ url('department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
+
   <a type="button" class="btn btn-danger" href="{{ url('department-delete/'.$department->id) }}"><i class="fas fa-trash "></i></a>
 </div></td>
                   </tr>
