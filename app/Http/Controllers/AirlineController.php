@@ -23,7 +23,7 @@ class AirlineController extends Controller
                     }
     public function display()
     {
-        $affected = Airline::where('is_active',1)->paginate(7);
+        $affected = Airline::where('is_delete',0)->paginate(7);
         return view('airline_display',['data'=>$affected]);
         }
     public function add()
@@ -46,9 +46,9 @@ class AirlineController extends Controller
       $airline->IATA=$req->IATA;
       $airline->remark=$req->remark;
       $airline->is_active=$req->is_active;
-      echo $airline->save();
-      $affected = Airline::where('is_active',1)->paginate(7);
-      return view('airline_display',['data'=>$affected]);
+       $airline->save();
+      $affected = Airline::where('is_delete',0)->paginate(7);
+      return redirect('airline_display');
     }
     public function edit_row(Request $req){
         $airline=new Airline;
@@ -57,15 +57,15 @@ class AirlineController extends Controller
         'country'=>$req->country,'carrier_code'=>$req->carrier_code,'code'=>$req->code,
         'IATA'=>$req->IATA	,'remark'=>$req->remark,'is_active'=>$req->is_active,
         ]);
-        $affected = Airline::where('is_active',1)->paginate(7);
-        return view('airline_display',['data'=>$affected]);
+        $affected = Airline::where('is_delete',0)->paginate(7);
+        return redirect('airline_display');
         
     }
     public function hide_row($id){
         $affected1= Airline::where('id',$id)
-        ->update(['is_active'=>'0']);
-        $affected = Airline::where('is_active',1)->paginate(7);
-        return view('airline_display',['data'=>$affected]);
+        ->update(['is_delete'=>'1']);
+        $affected = Airline::where('is_delete',0)->paginate(7);
+        return redirect('airline_display');
 
         }
     /**

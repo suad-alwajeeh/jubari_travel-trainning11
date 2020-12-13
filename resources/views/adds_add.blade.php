@@ -5,7 +5,7 @@
   <div class="content-wrapper">
   <div class="container p-4">
   
-<h2>add airline page</h2>
+<h2>add advertisement page</h2>
 <!--form action="airline_display1" method="post"-->
 @foreach($errors->all() as $er)
 <div class="alert alert-warning alert-dismissible">
@@ -13,47 +13,40 @@
 {{$er}}
 </div>
 @endforeach
-<form id="airline_display" method="post" action="/addairline" >
+<form id="" method="post" action="/addadds" >
 @csrf
-    <div class="form-group">
-      <label for="email">code</label>
-      <input type="text" class="form-control" id="email" placeholder=" airline_code" name="airline_code">
+
+    <div class="form-group mb-3">
+      <label for="pwd">advertisements_title</label>
+      <input type="text" class="form-control" id="" placeholder="adds_name" name="adds_name">
     </div>
     <div class="form-group mb-3">
-      <label for="pwd">airline</label>
-      <input type="text" class="form-control" id="" placeholder="airline_name" name="airline">
+      <input type="text" hidden="hidden" value="1" class="form-control" id="how_create_it" placeholder="how_create_it" name="how_create_it">
     </div>
     <div class="form-group mb-3">
-      <label for="pwd">country</label>
-      <input type="text" class="form-control" id="country" placeholder="country " name="country">
+      <label for="adds_text">advertisements_content</label>
+      <textarea class="form-control" name="adds_text" id="adds_text"></textarea>
     </div>
     <div class="form-group mb-3">
-      <label for="pwd">carrier_code</label>
-      <input type="text" class="form-control" id="carrier_code" placeholder=" carrier_code" name="carrier_code">
-    </div>
-    <div class="form-group mb-3">
-      <label for="pwd">code</label>
-      <input type="text" class="form-control" id="code" placeholder="code " name="code">
-    </div>
-    <div class="form-group mb-3">
-      <label for="pwd">IATA</label>
-      <input type="text" class="form-control" id="IATA" placeholder="IATA" name="IATA">
-    </div>
-    <div class="form-group mb-3">
-      <label for="pwd">	remark</label>
-      <textarea class="form-control" name="remark" id="remark"></textarea>
+      <label for="adds_type">advertisements_type</label>
+     <select class="form-control" name="adds_type" id="">
+     <option value=1>for all</option>
+     <option value=2>special users</option>
+     </select>
     </div>
     <div class="form-group mb-3">
       <label for="is_active">is_active</label>
      <select class="form-control" name="is_active" id="">
-     <option value=1>1</option>
-     <option value=0>2</option>
+     <option value=1>yes</option>
+     <option value=0>no</option>
      </select>
     </div>
    
     <button type="submit" class="btn btn-primary">send</button>
    
   </form>  
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
   <script>
     $('#airline_display1').on('submit',function(e){
          e.preventDefault();
@@ -71,7 +64,6 @@
 
     });
   </script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
   </div>
   </div>

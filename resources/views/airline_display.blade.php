@@ -25,23 +25,57 @@
     </thead>
     <tbody>
     @foreach($data as $item)
-      <tr>
+      <tr id="tr{{$item->id}}" >
       <td>{{$item->airline_code}}</td>
       <td>{{$item->airline_name}}</td>
       <td>{{$item->country}}</td>
         <td>
         <div class="btn-group btn-group-sm">
   <a type="button" class="btn btn-success" href="{{ url('airline_edit/'.$item->id) }}"><i class="fas fa-pencil-alt "></i></a>
-  <a type="button" class="btn btn-danger" href="{{ url('airline_delete/'.$item->id) }}"><i class="fas fa-trash "></i></a>
+  <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ><i class="fas fa-trash "></i></a>
+</div>
+     <!-- The Modal -->
+     <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <h4 class="modal-title">are you sure ,you want delete row?</h4>
+
+      <a onclick="delete{{$item->id}}()" type="button" class="btn btn-danger" data-dismiss="modal">yes</a>
+      </div>
+   </div>
+  </div>
 </div>
         </td>
       </tr>
+      <script>
+      
+function delete{{$item->id}}() {
+ 
+ $.ajax({
+       type:'get',
+       url:'/airline_delete/'+{{$item->id}},
+       data:{id:{{$item->id}}},
+       success:function(response){console.log(response);
+        document.getElementById('tr{{$item->id}}').style.display ='none';
+       },
+       error:function(error){console.log(error);
+       } 
+   });
+} 
+
+</script>
      @endforeach
     </tbody>
   </table>
   {{$data->links()}}
-
-  
 </div>
   </div>
   </div>
