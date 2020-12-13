@@ -84,7 +84,7 @@
                   <tbody class="row2">
                  @foreach($emps as $emp)
                   <tr>
-                    <td>{{$emp->id}}</td>
+                    <td>{{$emp->emp_id}}</td>
                     <td>{{$emp->emp_first_name}}  {{$emp->emp_midel_name}}  {{$emp->emp_thired_name}}  {{$emp->emp_last_name}}</td>
                     <td>{{$emp->emp_mobile}}</td>
                     <td>{{$emp->name}}</td>
@@ -93,7 +93,7 @@
                     
                     <td>
                     <input type="hidden" id="test">
-                    <a href="{{url('department/edit/'.$emp->id) }}">  <i class="fa fa-plus" aria-hidden="true"></i></a>
+                    <a href="{{url('department/edit/'.$emp->emp_id) }}">  <i class="fa fa-plus" aria-hidden="true"></i></a>
                    
                     <i class="fa fa-trash" aria-hidden="true"><a href="{{url('$emp/update')}}"> </a></i>
 </td>
@@ -155,7 +155,7 @@ $("#dropselect").change(function () {
               console.log('value[i]');
               console.log(value[i]);
 myJSON = JSON.parse(data);
-td +='<tr><td>'+value[i].id+'</td><td>'+value[i].emp_first_name+' ' +value[i].emp_midel_name +'  ' +value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td>'+value[i].emp_mobile+'</td> <td>'+value[i].name+'</td> <td>'+value[i].emp_salary+'</td> <td>'+value[i].emp_hirdate+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
+td +='<tr><td>'+value[i].emp_id+'</td><td>'+value[i].emp_first_name+' ' +value[i].emp_midel_name +'  ' +value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td>'+value[i].emp_mobile+'</td> <td>'+value[i].name+'</td> <td>'+value[i].emp_salary+'</td> <td>'+value[i].emp_hirdate+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.emp_id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
 $('.row2').html(td);
             }
             td='';
