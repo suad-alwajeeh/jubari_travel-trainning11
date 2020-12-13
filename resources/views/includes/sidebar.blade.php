@@ -51,23 +51,29 @@
          
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
-                SUPPLIER
+                ROLES
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>ADD</p>
+                <a href="role_add" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>ADD NEW</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DISPLAY</p>
+                <a href="role_display" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>DISPLAY ALL</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="role_display" class="nav-link">
+                  <i class="far fa-eye nav-icon"></i>
+                  <p>DISPLAY users roles</p>
                 </a>
               </li>
              
@@ -76,23 +82,29 @@
             
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-ad"></i>
               <p>
-                SERVICES
+              advertisements
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="adds_add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ADD</p>
+                  <p>Add new</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="adds_display" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DISPLAY</p>
+                  <p>Display advertisements</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adds_user_display" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>users advertisements</p>
                 </a>
               </li>
              
