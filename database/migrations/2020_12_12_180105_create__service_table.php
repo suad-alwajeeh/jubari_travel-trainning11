@@ -1,13 +1,12 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DepartmentTable extends Migration
+class CreateServiceTable extends Migration
 {
-
-    
     /**
      * Run the migrations.
      *
@@ -15,13 +14,16 @@ class DepartmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('_service', function (Blueprint $table) {
+            $table->id('ser_id');
+            $table->string('ser_name');
+            $table->string('discrption');
+            $table->date('create_at');
             $table->boolean('is_active');
             $table->boolean('deleted');
-            $table->string('created_at');
-            $table->rememberToken();
+            $table->integer('emp_id_how_create');
+             
+
         });
     }
 
@@ -32,7 +34,6 @@ class DepartmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
-
+        Schema::dropIfExists('service');
     }
 }

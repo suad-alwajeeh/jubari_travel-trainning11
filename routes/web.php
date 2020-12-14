@@ -15,20 +15,13 @@ use Illuminate\Support\Facades\Route;
 /**************
  * suad routs
  ************* */
-<<<<<<< HEAD
 /*****************AIRLINE************** */
-=======
-Route::get('employees', 'EmployeeController@index');
-
-
->>>>>>> c92bfd59ebfb6f9e33a86a951b93206d6ba7f89e
 Route::get('/airline_add', 'AirlineController@add');
 Route::get('/airline_edit/{id}', 'AirlineController@display_row');
 Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
 Route::get('/airline_display', 'AirlineController@display');
 Route::post('/addairline','AirlineController@save1');
 Route::post('/editairline','AirlineController@edit_row');
-<<<<<<< HEAD
 /*****************Adds************** */
 Route::get('/adds_add', 'AddsController@add');
 Route::get('/adds_edit/{id}', 'AddsController@display_row');
@@ -47,16 +40,6 @@ Route::get('/no_active/{id}', 'RoleController@is_not_active');
 Route::get('/role_display', 'RoleController@display');
 Route::post('/addrole','RoleController@save1');
 Route::post('/editrole','RoleController@edit_row');
-=======
-Route::get('department', 'DepartmentController@index');
-Route::get('/department/insert', 'DepartmentController@insert');
-Route::get('/department/saved', 'DepartmentController@saved');
-Route::get('department/department-edit/{id}','DepartmentController@department_edit');
-Route::get('/department/department-delete/{id}', 'DepartmentController@hide_row');
-Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
-Route::get('department/editdepartment','DepartmentController@edit_row');
-
->>>>>>> c92bfd59ebfb6f9e33a86a951b93206d6ba7f89e
 
 Route::get('/dashboard',function(){
 
@@ -72,3 +55,24 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+//employees
+Route::get('employees', 'EmployeeController@index');
+Route::get('/employees/insert', 'EmployeeController@insert');
+Route::post('/employees/saved', 'EmployeeController@saved');
+Route::get('/employees/employee_delete/{id}', 'EmployeeController@hide_row');
+Route::get('employees/employee-edit/{id}', 'EmployeeController@display_row');
+Route::get('employees/editemployee','EmployeeController@edit_row');
+//department
+Route::get('department', 'DepartmentController@index');
+Route::get('/department/insert', 'DepartmentController@saved');
+Route::get('department/department-edit/{id}','DepartmentController@department_edit');
+Route::get('/department/department_delete/{id}', 'DepartmentController@hide_row');
+Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
+Route::get('department/editdepartment','DepartmentController@edit_row');
+//service
+Route::get('service', 'ServiceController@index');
+Route::get('/service/insert', 'ServiceController@insert');
+Route::get('/service/saved', 'ServiceController@saved');
+Route::get('/service/service_delete/{id}','ServiceController@hide_row');
+Route::get('/service/service-edit/{id}','ServiceController@display_row');
+Route::get('/service/editservice/','ServiceController@edit_row');
