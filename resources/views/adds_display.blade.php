@@ -5,17 +5,19 @@
   <div class="content-wrapper">
   <div class="container p-4">
   <div class="row">
-  <div class="col-9">
+  <div class="col-10">
   <h1 class="text-center">display advertisements	</h1>
   </div>
-  <div class="col-3">
-  <div class="form-group">
-                  <select onchange="filterr()" id="so_fill" class="form-control " style="width: 100%;">
-                    <option value="0">all</option>
-                    <option value="1">active</option>
-                    <option value="2">no_active</option>
-                  </select>
-  </div>
+  <div class="col-2">
+  <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+      status 
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/adds_display">all</a>
+      <a class="dropdown-item " href="/adds_display/1"> Active</a>
+      <a class="dropdown-item " href="/adds_display/0">No Active</a>
+    </div>
   </div>
 </div>
   
@@ -31,9 +33,9 @@
         <th>opration</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="pp">
     @foreach($data as $item)
-      <tr id="tr{{$item->id}}" >
+      <tr id="tr{{$item->id}}" class="status{{$item->is_active}}" >
       <td>{{$item->id}}</td>
       <td>{{$item->adds_name}}</td>
       <td>
@@ -52,7 +54,6 @@
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                       <input onclick="myFunction{{$item->id}}()" type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
                       <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                      
                     </div>
                   </div>
                   @elseif($item->is_active == 1)
@@ -95,12 +96,33 @@
       <div class="modal-body">
       <div class="form-group">
   <label for="sel1">department filter:</label>
-  <select class="form-control" id="sel1">
+  <select class="form-control" onchange="dep_select()" id="selectdep">
     <option>all</option>
     @foreach($data1 as $item2) 
-    <option>4</option>
+    <option value="{{$item2->id}}">{{$item2->name}}</option>
     @endforeach
     </select>
+    <div class="">
+    <div class="form-group border-1">
+                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
+                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
+                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                    </div>
+                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
+                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
+                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                    </div>
+                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep2">
+                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
+                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                    </div>
+                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
+                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
+                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                    </div>
+                  </div>
+
+    </div>
     
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 
@@ -110,22 +132,12 @@
 </div>
 
       <script>
-      function filterr(){
-       var selectvalue = document.getElementById("so_fill").value ;
-          $.ajax({
-             type:'get',
-             url:'/adds_display/'+selectvalue,
-             data:{id:selectvalue},
-             context: document.body,
-             success:function(data){
-              $("#table").html(data);
-                },
-             error:function(error){
-               alert(selectvalue); 
-                         } 
-         });
-     
-      }
+     function dep_select(){
+     var m= $("#selectdep").val();
+     if(m==1){
+      $('.dep4').css('display','none');
+        }
+     }
 function myFunction{{$item->id}}() {
   var checkBox{{$item->id}} = document.getElementById("customSwitch{{$item->id}}");
   

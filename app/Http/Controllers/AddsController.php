@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\adds;
-use App\airline;
+use App\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class AddsController extends Controller
     public function display()
     {
         $affected = adds::where('is_delete',0)->paginate(7);
-        $affected1 = airline::where('is_active',0)->get();
+        $affected1 = Department::where('is_active',1)->get();
         return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
         }
     public function add()
@@ -87,9 +87,13 @@ class AddsController extends Controller
                 }
                 public function filter($id){
                     if($id==1){
+                        $affected1 = Department::where('is_active',1)->get();
                         $affected = adds::where([['is_delete',0],['is_active',1]])->paginate(7);
-                    return redirect('adds_display');
+                        return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
+                    }elseif($id==0){
+                        $affected1 = Department::where('is_active',1)->get();
+                        $affected = adds::where([['is_delete',0],['is_active',0]])->paginate(7);
+                        return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
                     }
-
-                    }
+                }
 }
