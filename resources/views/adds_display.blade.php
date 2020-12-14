@@ -1,15 +1,26 @@
 @extends('app_layouts.master')
 @section('main_content')
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
   <div class="container p-4">
   <div class="row">
-  <div class="col-12">
+  <div class="col-9">
   <h1 class="text-center">display advertisements	</h1>
   </div>
+  <div class="col-3">
+  <div class="form-group">
+                  <select onchange="filterr()" id="so_fill" class="form-control " style="width: 100%;">
+                    <option value="0">all</option>
+                    <option value="1">active</option>
+                    <option value="2">no_active</option>
+                  </select>
+  </div>
+  </div>
+</div>
   
 <div class="container">            
-  <table class="table table-striped">
+  <table class="table table-striped" id="table">
     <thead>
       <tr>
         <th>#</th>
@@ -82,16 +93,39 @@
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-      @foreach($data1 as $item2) 
-              <i>yyy6</i>
-        @endforeach
+      <div class="form-group">
+  <label for="sel1">department filter:</label>
+  <select class="form-control" id="sel1">
+    <option>all</option>
+    @foreach($data1 as $item2) 
+    <option>4</option>
+    @endforeach
+    </select>
+    
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 
       </div>
    </div>
   </div>
 </div>
+
       <script>
+      function filterr(){
+       var selectvalue = document.getElementById("so_fill").value ;
+          $.ajax({
+             type:'get',
+             url:'/adds_display/'+selectvalue,
+             data:{id:selectvalue},
+             context: document.body,
+             success:function(data){
+              $("#table").html(data);
+                },
+             error:function(error){
+               alert(selectvalue); 
+                         } 
+         });
+     
+      }
 function myFunction{{$item->id}}() {
   var checkBox{{$item->id}} = document.getElementById("customSwitch{{$item->id}}");
   
@@ -122,6 +156,7 @@ function myFunction{{$item->id}}() {
 }
 }
 
+
 function delete{{$item->id}}() {
  
        $.ajax({
@@ -136,6 +171,10 @@ function delete{{$item->id}}() {
          });
   } 
 
+
+
+
+
 </script>
      @endforeach
     </tbody>
@@ -147,5 +186,7 @@ function delete{{$item->id}}() {
   </div>
   </div>
   </div>
+  
+
   <!-- /.content-wrapper -->
 @endsection

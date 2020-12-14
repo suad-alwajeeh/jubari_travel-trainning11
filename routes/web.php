@@ -15,13 +15,7 @@ use Illuminate\Support\Facades\Route;
 /**************
  * suad routs
  ************* */
-<<<<<<< HEAD
 /*****************AIRLINE************** */
-=======
-Route::get('employees', 'EmployeeController@index');
-
-
->>>>>>> c92bfd59ebfb6f9e33a86a951b93206d6ba7f89e
 Route::get('/airline_add', 'AirlineController@add');
 Route::get('/airline_edit/{id}', 'AirlineController@display_row');
 Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
@@ -34,6 +28,7 @@ Route::get('/adds_edit/{id}', 'AddsController@display_row');
 Route::get('/adds_delete/{id}', 'AddsController@hide_row');
 Route::get('/is_active_adds/{id}', 'AddsController@is_active');
 Route::get('/no_active_adds/{id}', 'AddsController@is_not_active');
+Route::get('/adds_display/{id}', 'AddsController@filter');
 Route::get('/adds_display', 'AddsController@display');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
@@ -46,6 +41,16 @@ Route::get('/no_active/{id}', 'RoleController@is_not_active');
 Route::get('/role_display', 'RoleController@display');
 Route::post('/addrole','RoleController@save1');
 Route::post('/editrole','RoleController@edit_row');
+
+/**************
+ * end suad routs
+ ************* */
+
+/**************
+ * eradah routs
+ ************* */
+/*****************department************** */
+
 Route::get('department', 'DepartmentController@index');
 Route::get('/department/insert', 'DepartmentController@insert');
 Route::get('/department/saved', 'DepartmentController@saved');
@@ -61,7 +66,7 @@ Route::get('/dashboard',function(){
     });
 
 /**************
- * end suad routs
+ * end eradah routs
  ************* */
 Route::get('/', function () {
     return view('welcome');

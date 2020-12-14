@@ -10,6 +10,10 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset("assets/plugins/fontawesome-free/css/all.min.css")}}">
   <!-- Theme style -->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset("assets/plugins/select2/css/select2.min.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css")}}">
+
   <link rel="stylesheet" href="{{asset("assets/css/adminlte.min.css")}}">
   <link rel="stylesheet" href="{{asset("assets/css/ourstyle.css")}}">
 </head>
@@ -29,10 +33,16 @@
   @yield('main_content')
 
   @include('includes.footer')
-
+ 
 
 
   <!-- Control Sidebar -->
+  <script>
+  //$(function () {
+    //Initialize Select2 Elements
+    //$('.select2').select2()
+    //  })
+      </script>
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
@@ -44,6 +54,8 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset("assets/plugins/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+<script src="{{asset("assets/plugins/select2/js/select2.full.min.js")}}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{asset("assets/js/adminlte.min.js")}}"></script>
 <!-- AdminLTE for demo purposes -->

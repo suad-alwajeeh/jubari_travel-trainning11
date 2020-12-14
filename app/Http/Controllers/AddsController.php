@@ -85,5 +85,11 @@ class AddsController extends Controller
                 $affected = adds::where('is_delete',0)->paginate(7);
                 return redirect('adds_display');
                 }
-   
+                public function filter($id){
+                    if($id==1){
+                        $affected = adds::where([['is_delete',0],['is_active',1]])->paginate(7);
+                    return redirect('adds_display');
+                    }
+
+                    }
 }
