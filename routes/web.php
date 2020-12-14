@@ -28,7 +28,6 @@ Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
 Route::get('/airline_display', 'AirlineController@display');
 Route::post('/addairline','AirlineController@save1');
 Route::post('/editairline','AirlineController@edit_row');
-<<<<<<< HEAD
 /*****************Adds************** */
 Route::get('/adds_add', 'AddsController@add');
 Route::get('/adds_edit/{id}', 'AddsController@display_row');
@@ -47,7 +46,6 @@ Route::get('/no_active/{id}', 'RoleController@is_not_active');
 Route::get('/role_display', 'RoleController@display');
 Route::post('/addrole','RoleController@save1');
 Route::post('/editrole','RoleController@edit_row');
-=======
 Route::get('department', 'DepartmentController@index');
 Route::get('/department/insert', 'DepartmentController@insert');
 Route::get('/department/saved', 'DepartmentController@saved');
@@ -56,7 +54,6 @@ Route::get('/department/department-delete/{id}', 'DepartmentController@hide_row'
 Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
 Route::get('department/editdepartment','DepartmentController@edit_row');
 
->>>>>>> c92bfd59ebfb6f9e33a86a951b93206d6ba7f89e
 
 Route::get('/dashboard',function(){
 
