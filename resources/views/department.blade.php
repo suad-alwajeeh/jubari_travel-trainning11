@@ -35,7 +35,48 @@
     </section>
 
     <!-- Main content -->
-   
+     <!--  start add Modal -->
+ <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="form-horizontal" >
+            @csrf
+            <div class="card-body">
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Department Name :</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="name"  name="name" required placeholder="Department Name ">
+                    </div>
+                </div>
+               
+                <div class="form-group row">
+                    <div class="offset-sm-4 col-sm-8">
+                        <div class="form-check">
+                            <input type="checkbox" value=1  id="is_active" class="form-check-input" name="is_acive" id="active">
+                            <label class="form-check-label" for="exampleCheck2">Active</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+           
+            <!-- /.card-footer -->
+        </form>     </div>
+      <div class="modal-footer">
+      <a  href="{{url('department')}}"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+      <a id="add2"> <button type="button" class="btn btn-primary">Save changes</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add model-->
     <!-- /.content -->
  
     <!-- Content Header (Page header) -->
@@ -65,7 +106,7 @@
 <option  class="form-control  d-inline-block" value="1">Active</option>
 <option  class="form-control  d-inline-block" value="0">Deactive</option>
 </select>
-            <a class="btn btn-primary col-2 p-2  float-right d-inline-block" href="{{url('department/insert')}}">  <i class="fa fa-plus" aria-hidden="true"></i>Add New Department</a>
+            <a class="btn btn-primary col-2 p-2  float-right d-inline-block"data-toggle="modal" data-target="#add">  <i class="fa fa-plus" aria-hidden="true"></i>Add New Department</a>
       </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -79,9 +120,11 @@
                   </tr>
                   </thead>
                   <tbody class="row2">
-                  
+                 
                  @foreach($dept as $department)
                   <tr >
+                  <input type="hidden" class="delete_id" value="{{$department->id}}">
+
                     <td>{{$department->id}}</td>
                     <td>{{$department->name}}</td>
                     <td>{{$department->created_at}}</td>
@@ -89,8 +132,7 @@
                     <input type="hidden" id="test">
                     <div class="btn-group btn-group-sm">
   <a type="button" class="btn btn-success" href="{{ url('department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
-
-  <a type="button" class="btn btn-danger" href="{{ url('department-delete/'.$department->id) }}"><i class="fas fa-trash "></i></a>
+  <a type="button" class="btn btn-danger deletebtn" ><i class="fas fa-trash "></i></a>
 </div></td>
                   </tr>
                   @endforeach
@@ -116,12 +158,63 @@
       </div>
   
 
-
-
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-                console.log('inseode scripy');
+  console.log('inseode scripy');
 
-$(document).ready(function(){
+  $(document).ready(function () {
+                $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('.deletebtn').click(function (e) {
+      e.preventDefault();
+      var id = $(this).closest("tr").find('.delete_id').val();
+      console.log(id);
+
+      //alert(id);
+      swal({
+        title: "Are you sure?",
+        text: "Are You  Sure to delete this filed!",
+        icon: "error",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            var data = {
+              '_token': $('input[name=_token]').val(),
+              'id': id,
+            };
+
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: "GET",
+              url: 'department_delete/' + id,
+              data: data,
+              success: function (response) {
+                swal("Delete Successfully", {
+                 icon: "success",
+                }).then((willDelete) => {
+                  location.reload();
+                });
+              }
+            });
+          }
+          
+          
+        });
+    });
   let  td='';
   console.log('insede redar');
 
@@ -159,12 +252,38 @@ $('.row2').html(td);
         },
         error:function(){
           console.log('err');
-
-
-        }
-          
-            }); 
+   }    }); 
             });
+            
+            $("#add2").click(function () {
+
+console.log('add');
+
+              //var id=$('#add').val();
+              //var id=$('#id').val();
+              var name=$('#name').val();
+              //var discrption=$('#discrption').val();
+              var is_active=$('#is_active').val();
+              console.log(name);
+              //console.log(id);
+              $.ajax({
+      url:"{{url('department/insert')}}",
+      data: {is_active:is_active,name:name},
+      success: function (data) {
+        console.log('sec');
+        $('#add').remove();
+        swal("Data Insert", {
+      icon: "success",
+    }).then((willDelete) => {
+                  location.reload();
+                });
+     },
+      error:function(){
+        console.log('err');
+      }
+        
+          }); });
+   
    
 });
 </script>

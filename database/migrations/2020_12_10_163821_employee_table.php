@@ -13,8 +13,8 @@ class EmployeeTable extends Migration
      */
     public function up()
     {
-        Schema::create('_employee', function (Blueprint $table) {
-            $table->id();
+        Schema::create('employee', function (Blueprint $table) {
+            $table->id('emp_id');
             $table->string('emp_first_name');
             $table->string('emp_middel_name');
             $table->string('emp_thired_name');
@@ -22,12 +22,12 @@ class EmployeeTable extends Migration
             $table->date('emp_hirdate');
             $table->decimal('emp_salary');
             $table->integer('emp_ssn');
-            $table->integer('emp_telphone');
             $table->integer('emp_mobile');
+            $table->integer('dept_id');
             $table->string('emp_email');
             $table->string('emp_photo');
             $table->boolean('is_active');
-            $table->boolean('delete');
+            $table->boolean('deleted');
             $table->string('attchment');
         });
     }

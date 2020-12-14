@@ -9,27 +9,31 @@
     <div class="row  card  w-50  justify-content-center mx-auto  m-5">
         <!-- left column -->
         <div class="card-header">
-            <h3 class="card-title text-center">ADD DEPARTMENT</h3>
+            <h3 class="card-title text-center">Update Service</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form class="form-horizontal" action="/department/editdepartment">
+        <form class="form-horizontal" action="/service/editservice">
+        @foreach($service as $item)
             @csrf
-            @foreach($dept as $depts)
+
             <div class="card-body">
                 <div class="form-group row">
-                    <label  class="col-sm-4 col-form-label">Department Name :</label>
+                    <label  class="col-sm-4 col-form-label">Service Name :</label>
                     <div class="col-sm-8">
-      <input type="text" hidden=hidden  value="{{$depts->id}}" class="form-control" id="email" placeholder="Enter email" name="id">
-
-                        <input type="text" class="form-control" name="name" required value="{{$depts->name}}">
+                        <input type="text" class="form-control" name="ser_name" id="ser_name" required value="{{$item->ser_name}} ">
                     </div>
                 </div>
-              
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Discrption :</label>
+                    <div class="col-sm-8">
+                        <textarea type="text" class="form-control" name="discrption" id="discrption" required  placeholder=" "> {{$item->discrption}}</textarea>
+                    </div>
+                </div>
+                 
+               
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-8">
                         <div class="form-check">
-                        @if($depts->is_active==1)
+                        @if($item->is_active==1)
                             <input type="checkbox" checked  class="form-check-input" name="is_acive" id="is_active">
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                         @else
@@ -40,15 +44,17 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info">Update</button>
-                <a href="{{url('department')}}" class="btn btn-default float-right">Cancel</a>
-            </div>
+            
             <!-- /.card-footer -->
-        </form>
+            <input type="hidden" name="id" value="{{$item->ser_id}}" id="id">
+         @endforeach
+         <div class="card-footer">
+                <button type="submit" class="btn btn-info">Update</button>
+                <a href="{{url('service')}}" class="btn btn-default float-right">Cancel</a>
+            </div>
+        </form> 
     </div>
 </div>
 
