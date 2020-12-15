@@ -28,6 +28,7 @@ Route::get('/adds_edit/{id}', 'AddsController@display_row');
 Route::get('/adds_delete/{id}', 'AddsController@hide_row');
 Route::get('/is_active_adds/{id}', 'AddsController@is_active');
 Route::get('/no_active_adds/{id}', 'AddsController@is_not_active');
+Route::get('/adds_display/{id}', 'AddsController@filter');
 Route::get('/adds_display', 'AddsController@display');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
@@ -41,13 +42,31 @@ Route::get('/role_display', 'RoleController@display');
 Route::post('/addrole','RoleController@save1');
 Route::post('/editrole','RoleController@edit_row');
 
+/**************
+ * end suad routs
+ ************* */
+
+/**************
+ * eradah routs
+ ************* */
+/*****************department************** */
+
+Route::get('department', 'DepartmentController@index');
+Route::get('/department/insert', 'DepartmentController@insert');
+Route::get('/department/saved', 'DepartmentController@saved');
+Route::get('department/department-edit/{id}','DepartmentController@department_edit');
+Route::get('/department/department-delete/{id}', 'DepartmentController@hide_row');
+Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
+Route::get('department/editdepartment','DepartmentController@edit_row');
+
+
 Route::get('/dashboard',function(){
 
     return view('dashboard');
     });
 
 /**************
- * end suad routs
+ * end eradah routs
  ************* */
 Route::get('/', function () {
     return view('welcome');
