@@ -55,7 +55,6 @@ class EmployeeController extends Controller
     }
     public function insert(){
         $where=['is_active'=>1];
-        $where +=['deleted'=>0];
         $data['emps']=Department::where($where)->get();
         return view('add-employee',$data);
 
@@ -64,7 +63,8 @@ class EmployeeController extends Controller
     public function saved(Request $request)
     {
 print_r($_FILES);
-        
+$emp=new Employee;
+  
      $active='';
      $emp_photo='';
      $attchment='';
@@ -74,17 +74,22 @@ print_r($_FILES);
      }
      else
      $active=0;
-     $targetDirImg ="assets/img/user/" ;
-$imgName =time().basename($_FILES["emp_photo3"]["name"]);
-$targetImagePath = $targetDirImg . $imgName;
-$emp_photo=move_uploaded_file($targetImagePath,$_FILES["emp_photo3"]["tmp_name"]);
+     if($request->hasfile('emp_photo'))
+     {
+        $imgFile =$request->file('emp_photo') ;
+        $imgName =time().basename($_FILES["emp_photo"]["name"]);
+        $emp_photo=$imgFile->move('img/users/',$imgName);
+        $emp->emp_photo=$imgName;
+     }
+     if($request->hasfile('attchment'))
+     {
+        $attchmentFile =$request->file('attchment') ;
+        $attchmentName =time().basename($_FILES["attchment"]["name"]);
+        $attchment=$attchmentFile->move('img/attchment/',$attchmentName);
+        $emp->attchment=$attchmentName;
+     }
+   
 
-$targetDir ="assets/img/attchment/" ;
-$fileName =time().basename($_FILES["attachment"]["name"]);
-$targetFilePath = $targetDir . $fileName;
-$attchment=move_uploaded_file($targetFilePath,$_FILES["attachment"]["tmp_name"]);
-
-      $emp=new Employee;
       $emp->emp_first_name=$request->emp_first_name;
       $emp->emp_middel_name=$request->emp_medil_name;
       $emp->emp_thired_name=$request->emp_thired_name;
@@ -92,8 +97,7 @@ $attchment=move_uploaded_file($targetFilePath,$_FILES["attachment"]["tmp_name"])
       $emp->emp_ssn=$request->emp_ssn;
       $emp->emp_email=$request->emp_email;
       $emp->emp_mobile=$request->emp_mobile;
-      $emp->emp_photo=$targetImagePath;
-      $emp->attchment=$targetFilePath;
+      
       $emp->emp_salary=$request->emp_salary;
       $emp->emp_hirdate=$request->emp_hirdate;
       $emp->dept_id=$request->dept_id;
@@ -116,23 +120,54 @@ $attchment=move_uploaded_file($targetFilePath,$_FILES["attachment"]["tmp_name"])
                     }
 
 public function edit_row(Request $req){
-                        $dept=new Employee;
-                        $active;
-                        if($req->is_active==1)
-                        {
-                             $active=1;
-                        }
-                        else
-                        $active=0;
-                        
-                        $dept::where('emp_id',$req->id)
-                        ->update(['emp_first_name'=>$req->emp_first_name,'emp_middel_name'=>$req->emp_medil_name,'created_at'=>$req->create_at,
+    $emp=new Employee;
+  print_r($req);
+    $active='';
+    $emp_photo='';
+    $attchment='';
+   if($req->input('is_active')==1)
+    {
+         $active=1;
+    }
+    else
+    $active=0;
+    $emp_photo='';
+    if(isset($_FILES["emp_photo"]["name"]))
+    {
+        if($req->hasfile('emp_photo'))
+    {
+       $imgFile =$req->file('emp_photo') ;
+       $imgName =time().basename($_FILES["emp_photo"]["name"]);
+       $emp_photo=$imgFile->move('img/users/',$imgName);
+       $emp_photo=$imgName;
+    }
+    else
+    $emp_photo=$req->emp_photo1;
+}
+   if(isset($_FILES["attchment"]["name"]))
+{
+    if($req->hasfile('attchment'))
+    {
+       $attchmentFile =$req->file('attchment') ;
+       $attchmentName =time().basename($_FILES["attchment"]["name"]);
+       $attchment=$attchmentFile->move('img/attchment/',$attchmentName);
+       $attchment=$attchmentName;
+    }
+    else
+    $attchment=$req->attchment1;
+}
+
+   
+     
+                        $emp::where('emp_id',$req->id)
+                        ->update(['emp_first_name'=>$req->emp_first_name,'emp_middel_name'=>$req->emp_medil_name,
                         'is_active'=>$active,'emp_thired_name'=>$req->emp_thired_name,'emp_last_name'=>$req->emp_last_name,
                         'emp_ssn'=>$req->emp_ssn,'emp_email'=>$req->emp_email,'emp_mobile'=>$req->emp_mobile,
-                        'emp_salary'=>$req->emp_salary,'emp_hirdate'=>$req->emp_hirdate,'dept_id'=>$req->dept_id
+                        'emp_salary'=>$req->emp_salary,'emp_hirdate'=>$req->emp_hirdate,'dept_id'=>$req->dept_id,
+                        'emp_photo'=> $emp_photo,'attchment'=>$attchment,
                         ]);
                         $data['emps'] = Employee::where('deleted',0)->paginate(7);
-                        return redirect('employees')->with($data);
+                       //return $emp;
 
                         
                     }

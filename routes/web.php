@@ -63,7 +63,7 @@ Route::post('/editrole','RoleController@edit_row');
 /**************
  * eradah routs
  ************* */
-
+/*****************department************** */
 
 Route::get('/dashboard',function(){
 
@@ -80,12 +80,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 //employees
+//employees
 Route::get('employees', 'EmployeeController@index');
 Route::get('/employees/insert', 'EmployeeController@insert');
 Route::post('/employees/saved', 'EmployeeController@saved');
 Route::get('/employees/employee_delete/{id}', 'EmployeeController@hide_row');
 Route::get('employees/employee-edit/{id}', 'EmployeeController@display_row');
-Route::get('employees/editemployee','EmployeeController@edit_row');
+Route::post('employees/editemployee','EmployeeController@edit_row');
 //department
 Route::get('department', 'DepartmentController@index');
 Route::get('/department/insert', 'DepartmentController@saved');

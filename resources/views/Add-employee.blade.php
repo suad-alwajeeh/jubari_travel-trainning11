@@ -74,7 +74,7 @@ input[type=number] {
 
          <div class="input-group ">
              <label for="upload" class=" p-2 mt-3 mx-auto  bg-primary"  >Chose Image:</label>
-             <input id="upload"  type="file" name="emp_photo3" onchange="onFilePicked(event)"  accept="image/*"  style="display: none;">
+             <input id="upload"  type="file" name="emp_photo" onchange="onFilePicked(event)"  accept="image/*"  style="display: none;">
              
          </div>
      </div>
@@ -99,7 +99,7 @@ input[type=number] {
                     <label  class="col-sm-4 col-form-label">Mobile :</label>
                     <div class="col-sm-8">
                     <input type="text" id="emp_mobile"  name="emp_mobile"class="form-control"  placeholder="123456789"  required>
-                    <small id="helpId6" class="text-muted"></small> 
+                    <small id="helpId6" class="text-muted">Mobile Number</small> 
               
                 </div>
                 </div>
@@ -107,7 +107,7 @@ input[type=number] {
                     <label  class="col-sm-4 col-form-label">Salary :</label>
                     <div class="col-sm-8">
                         <input type="number" class="form-control"   name="emp_salary" required placeholder=" Salary ">
-                        <small id="helpId7" class="text-muted"></small> 
+                        <small id="helpId7" class="text-muted">accept only number</small> 
                    
                     </div>
                 </div>
@@ -121,7 +121,7 @@ input[type=number] {
                 <div class="form-group row">
                     <label  class="col-sm-4 col-form-label">CV :</label>
                     <div class="col-sm-8">
-                        <input type="file" class="form-control" accept="pdf" name="attchment" required placeholder="  ">
+                        <input type="file" class="form-control" accept=".pdf" name="attchment" required placeholder="  ">
                    <small> Only Accept Pdf File</small>
                       </div>
                 </div>

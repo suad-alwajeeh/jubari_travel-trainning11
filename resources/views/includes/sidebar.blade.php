@@ -23,7 +23,39 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          
+               <li class="nav-item">
+                <a href="department" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>Department</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="department" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>Employee</p>
+                </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/employees/insert" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>Add Employee </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="employees" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>Display  Employee</p>
+                </a>
+              </li>
+             
+            </ul>
+              </li>
+              <li class="nav-item">
+                <a href="service" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>Service</p>
+                </a>
+              </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plane"></i>

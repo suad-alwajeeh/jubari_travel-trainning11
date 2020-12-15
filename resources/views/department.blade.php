@@ -106,7 +106,7 @@
 <option  class="form-control  d-inline-block" value="1">Active</option>
 <option  class="form-control  d-inline-block" value="0">Deactive</option>
 </select>
-            <a class="btn btn-primary col-2 p-2  float-right d-inline-block"data-toggle="modal" data-target="#add">  <i class="fa fa-plus" aria-hidden="true"></i>Add New Department</a>
+            <a class="btn btn-primary col-3 p-2  float-right d-inline-block"data-toggle="modal" data-target="#add">  <i class="fa fa-plus" aria-hidden="true"></i>Add New Department</a>
       </div>
               <!-- /.card-header -->
               <div class="card-body">
