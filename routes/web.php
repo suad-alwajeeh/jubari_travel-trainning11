@@ -32,6 +32,20 @@ Route::get('/adds_display/{id}', 'AddsController@filter');
 Route::get('/adds_display', 'AddsController@display');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
+/*****************users************** */
+Route::get('/user_add', 'UserController@add');
+Route::get('/user_edit/{id}', 'UserController@display_row');
+Route::get('/user_delete/{id}', 'UserController@hide_row');
+Route::get('/is_active_user/{id}', 'UserController@is_active');
+Route::get('/no_active_user/{id}', 'UserController@is_not_active');
+Route::get('/user_display/{id}', 'UserController@filter');
+Route::get('/user_display', 'UserController@display');
+Route::post('/adduser','UserController@save1');
+Route::post('/edituser','UserController@edit_row');
+/*****************users************** */
+Route::get('/sign_in', 'UserController@login');
+Route::post('/login_check', 'UserController@login_data');
+
 /*****************ROLE************** */
 Route::get('/role_add', 'RoleController@add');
 Route::get('/role_edit/{id}', 'RoleController@display_row');
@@ -49,15 +63,6 @@ Route::post('/editrole','RoleController@edit_row');
 /**************
  * eradah routs
  ************* */
-/*****************department************** */
-
-Route::get('department', 'DepartmentController@index');
-Route::get('/department/insert', 'DepartmentController@insert');
-Route::get('/department/saved', 'DepartmentController@saved');
-Route::get('department/department-edit/{id}','DepartmentController@department_edit');
-Route::get('/department/department-delete/{id}', 'DepartmentController@hide_row');
-Route::get('department/department-edit/{id}', 'DepartmentController@display_row');
-Route::get('department/editdepartment','DepartmentController@edit_row');
 
 
 Route::get('/dashboard',function(){

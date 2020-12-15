@@ -14,7 +14,7 @@
           <img src="{{ asset('assets/img/user8-128x128.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">ADMIN NAME</a>
+          <a href="#" class="d-block">admin</a>
         </div>
       </div>
 
@@ -108,6 +108,29 @@
                 </a>
               </li>
              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-ad"></i>
+              <p>
+              Users
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="user_add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add new</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="user_display" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Display users</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
