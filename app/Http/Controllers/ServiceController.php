@@ -17,7 +17,7 @@ class ServiceController extends Controller
         $where +=['services.deleted'=>0];
         $where +=['employees.is_active'=>1];
        
-        $data['service']=Service::join('employees', 'employees.emp_id', '=', 'services.emp_id_how_create')
+        $data['service']=Service::join('employees','employees.emp_id','=','services.emp_id_how_create')
         ->where($where)->get();
         return json_encode($data);}
     
@@ -26,7 +26,7 @@ class ServiceController extends Controller
        
         //$where=['departments.is_active'=>1];
        
-        $data['service']=Service::join('employees', 'employees.emp_id', '=', 'services.emp_id_how_create')
+        $data['service']=Service::join('employees','employees.emp_id','=','services.emp_id_how_create')
         ->where('employees.is_active',1)->get();
         return json_encode($data);}
     
