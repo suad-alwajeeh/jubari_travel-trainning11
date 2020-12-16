@@ -25,14 +25,17 @@ class UserController extends Controller
     }
     public function login_data(Request $req)
     {
-        
         $user_email=$req->email;
         $user_password=$req->password;
-      $u= users::where([['email',$user_email]])->get();
+      $u= users::where([['email',$user_email],['is_active',1],['is_delete',0]])->get();
       $check=Hash::check($user_password, $u[0]->password);
         if($check==true){
-            return redirect('user_display');
-        } else{    
+            $emp_img = DB::table('employee')->where('emp_id',$u[0]->emp_id)->get();
+            $req->session()->put('id',$u[0]->id);
+            $req->session()->put('name',$u[0]->name);
+            $req->session()->put('img',$emp_img[0]->emp_photo);
+            return redirect('/');
+        }else{    
               return redirect('sign_in');
         }
         }
@@ -45,12 +48,12 @@ class UserController extends Controller
                     }
     public function display()
     {
-        $affected = users::where('is_delete',0)->join('_employee','users.emp_id','_employee.id')->join('departments','_employee.dept_id','departments.id')->select('users.id as u_id','users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
+        $affected = users::where('is_delete',0)->join('employee','users.emp_id','employee.emp_id')->join('departments','employee.dept_id','departments.id')->select('users.id as u_id','users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
         return view('user_display',['data'=>$affected]);
         }
     public function add()
     {
-        $affected = DB::table('_employee')->where('delete','0')->get();
+        $affected = DB::table('employee')->where('delete','0')->get();
         $affected1 = Department::where('is_active',1)->get();
        
         return view('user_add',['data'=>$affected,'data1'=>$affected1]);
