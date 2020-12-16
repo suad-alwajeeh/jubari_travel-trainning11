@@ -17,9 +17,10 @@ class customAuth
     {
            $path=$request->path();
            $session=Session::get('id');
+           
            if($path == 'sign_in' && Session::get('id')){
                return redirect('/');
-           }else if($path != 'sign_in' && !Session::get('id')){
+           }else if($path !='sign_in' && !Session::get('id')){
             return redirect('sign_in');
         }
         return $next($request);
