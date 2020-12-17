@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\service;
+use App\airline;
+use App\Suplier;
+use App\Employee;
+use App\TicketService;
+
 class ServiceController extends Controller
 {
     //
@@ -17,7 +22,7 @@ class ServiceController extends Controller
         $where +=['services.deleted'=>0];
         $where +=['employees.is_active'=>1];
        
-        $data['service']=Service::join('employees','employees.emp_id','=','services.emp_id_how_create')
+        $data['service']=Service::join('employees', 'employees.emp_id', '=', 'services.emp_id_how_create')
         ->where($where)->get();
         return json_encode($data);}
     
@@ -26,7 +31,7 @@ class ServiceController extends Controller
        
         //$where=['departments.is_active'=>1];
        
-        $data['service']=Service::join('employees','employees.emp_id','=','services.emp_id_how_create')
+        $data['service']=Service::join('employees', 'employees.emp_id', '=', 'services.emp_id_how_create')
         ->where('employees.is_active',1)->get();
         return json_encode($data);}
     
@@ -36,7 +41,7 @@ class ServiceController extends Controller
 
               $where +=['services.deleted'=>0];
            
-            $data['service']=Service::join('employees', 'employees.emp_id', '=', 'services.emp_id_how_create')
+            $data['service']=Service::join('employees','employees.emp_id', '=', 'services.emp_id_how_create')
             ->where($where)->get();
             return view('service',$data);
         }
@@ -100,4 +105,71 @@ public function display_row($id)
       return redirect('service')->with('seccess','Seccess Data Delete');
 
         }
+        
+public function show()
+{ 
+ $data['airline']=Airline::where('is_active',1)->get();
+ $data['suplier']=Suplier::where('is_active',1)->get();
+ $data['emp']=Employee::where('is_active',1)->get();
+
+    return view('sales-service',$data);
+                }
+
+
+
+public function add_ticket( Request $req)
+{ 
+    $ticket=new TicketService;
+
+    if(isset($req->Dep_city2))
+    {
+        $ticket->Dep_city2 =$req->Dep_city1;
+
+    }
+    else{
+        $ticket->Dep_city2='';
+    }
+    if(isset($req->arr_city2))
+    {
+        $ticket->arr_city2 =$req->arr_city1;
+
+    }
+    else{
+        $ticket->arr_city2='';
+    }
+
+    
+
+    if(isset($req->dep_date2))
+    {
+        $ticket->dep_date2 =$req->dep_date2;
+        $ticket->bursher_time =$req->bursher_time;
+
+    }
+    else{
+        $ticket->dep_date2='';
+    }
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->airline_id =$req->airline;
+    $ticket->ticket=$req->ticket;
+    $ticket->ticket_number =$req->ticket_number;
+    $ticket->ticket_status =$req->ticket_status;
+    $ticket->Dep_city =$req->Dep_city1;
+    $ticket->arr_city =$req->arr_city;
+    $ticket->dep_date =$req->dep_date;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=1;
+    $ticket->passnger_currency=$req->passnger_currency;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
 }

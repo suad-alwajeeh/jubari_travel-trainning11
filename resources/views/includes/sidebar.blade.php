@@ -1,8 +1,4 @@
-@if(Session::get('id'))
-{{Session::get('id')}}
-{{Session::get('name')}}
-{{Session::get('img')}}
-@endif
+
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
