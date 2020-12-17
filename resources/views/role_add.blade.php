@@ -34,30 +34,26 @@
      <option value=0>no</option>
      </select>
     </div>
-   
+    <div class="form-group">
+                  <label>Minimal</label>
+                  <select class="form-control select2" style="width: 100%;">
+                    <option selected="selected">Alabama</option>
+                      <option>Alaska <button>ggggg</button></option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+                
     <button type="submit" class="btn btn-primary">send</button>
    
   </form>  
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
   <script>
-    $('#airline_display1').on('submit',function(e){
-         e.preventDefault();
-         $.ajax({
-             type:'post',
-             url:'/addairline',
-             data:$('#airline_display1').serialize(),
-             success:function(response){console.log(response);
-             alert("data saved");
-             },
-             error:function(error){console.log(error);
-             alert("data dont saved");
-             } 
-         });
-
-    });
-  </script>
-
+$('.select2').select2();
+</script>
   </div>
   </div>
   @endsection

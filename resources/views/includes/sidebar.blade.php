@@ -15,7 +15,7 @@
           <img src="{{ asset('assets/img')}}/{{Session::get('img')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{Session::get('name')}}</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 

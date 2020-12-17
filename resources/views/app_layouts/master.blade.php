@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="{{asset("assets/css/adminlte.min.css")}}">
   <link rel="stylesheet" href="{{asset("assets/css/ourstyle.css")}}">
+<script src="{{asset("assets/plugins/select2/js/select2.full.min.js")}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -36,13 +37,7 @@
  
 
 
-  <!-- Control Sidebar -->
-  <script>
-  //$(function () {
-    //Initialize Select2 Elements
-    //$('.select2').select2()
-    //  })
-      </script>
+
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
@@ -54,7 +49,6 @@
 <!-- Bootstrap 4 -->
 <script src="{{asset("assets/plugins/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-<script src="{{asset("assets/plugins/select2/js/select2.full.min.js")}}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{asset("assets/js/adminlte.min.js")}}"></script>
