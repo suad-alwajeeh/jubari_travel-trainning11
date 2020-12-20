@@ -26,15 +26,18 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item">
                 <a href="department" class="nav-link">
-                  <i class="fas fa-eye nav-icon"></i>
+                  <i class="fa fa-building-o"></i>
                   <p>Department</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="department" class="nav-link">
-                  <i class="fas fa-eye nav-icon"></i>
-                  <p>Employee</p>
-                </a>
+              <a href="#" class="nav-link">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <p>
+                Employee
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
                 <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/employees/insert" class="nav-link">
@@ -43,7 +46,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="employees" class="nav-link">
+                <a href="/employees" class="nav-link">
                   <i class="fas fa-eye nav-icon"></i>
                   <p>Display  Employee</p>
                 </a>
@@ -53,8 +56,7 @@
               </li>
               <li class="nav-item">
                 <a href="service" class="nav-link">
-                  <i class="fas fa-eye nav-icon"></i>
-                  <p>Service</p>
+                <img src="https://img.icons8.com/ios/25/FFFFFF/waiter.png" />                  <p>Service</p>
                 </a>
               </li>
           <li class="nav-item">
@@ -166,6 +168,23 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <p>
+                Sales Executive
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/service/sales/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>Add Service </p>
+                </a>
+              </li>
+              </ul>
+              </li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>

@@ -172,4 +172,32 @@ public function add_ticket( Request $req)
     $ticket->save();
     return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
 }
+
+
+
+
+public function add_bus( Request $req)
+{ 
+    $ticket=new BusService;
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->bus_number =$req->bus_number;
+    $ticket->bus_name =$req->bus_name;
+    $ticket->bus_status =$req->bus_status;
+    $ticket->Dep_city =$req->Dep_city;
+    $ticket->arr_city =$req->arr_city;
+    $ticket->dep_date =$req->dep_date;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=2;
+    $ticket->passnger_currency=$req->passnger_currency;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
 }

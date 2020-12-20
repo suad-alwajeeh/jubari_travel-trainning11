@@ -200,7 +200,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
               type: "GET",
-              url: 'department_delete/' + id,
+              url: 'department/department_delete/' + id,
               data: data,
               success: function (response) {
                 swal("Delete Successfully", {
@@ -231,25 +231,20 @@ $("#dropselect").change(function () {
         data: {id:id},
         success: function (data) {
           console.log('sec');
-          console.log(data);
-          if(JSON.parse(data)===null)
-          $('.row2').html('null');
-
-          else
-         { $.each(JSON.parse(data), function (key, value) {
+          //console.log(data);
+           $.each(JSON.parse(data), function (key, value) {
             for (var i = 0; i < value.length; i++){
-              console.log(value[i].id);
-myJSON = JSON.parse(data);
+              console.log(value.length);
+              console.log(value.length);
+              if(value.length>0)
+{myJSON = JSON.parse(data);
 td +='<tr><td>'+value[i].id+'</td><td>'+value[i].name+'</td> <td>'+value[i].created_at+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
-$('.row2').html(td);
+$('.row2').html(td);}
             }
             td='';
 
 
-});}
-
-
-        },
+});  },
         error:function(){
           console.log('err');
    }    }); 

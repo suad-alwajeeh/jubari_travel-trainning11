@@ -86,6 +86,9 @@ Route::get('/service/saved', 'ServiceController@saved');
 Route::get('/service/service_delete/{id}','ServiceController@hide_row');
 Route::get('/service/service-edit/{id}','ServiceController@display_row');
 Route::get('/service/editservice/','ServiceController@edit_row'); 
+Route::get('/service/sales/','ServiceController@show');
+Route::post('/service/add_ticket/','ServiceController@add_ticket');
+Route::post('/service/add_bus/','ServiceController@add_bus');
 
 
 

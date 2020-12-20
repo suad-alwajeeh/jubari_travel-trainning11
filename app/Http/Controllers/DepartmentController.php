@@ -13,9 +13,10 @@ class DepartmentController extends Controller
        { 
        
         $where=['is_active'=>$_GET['id']];
+        $where +=['deleted'=>0];
         //$where +=['deleted'===0];
 
-        $data['dept']=Department::where(['deleted'=>0,'is_active'=>$_GET['id']])->get();
+        $data['dept']=Department::where($where)->get();
         return json_encode($data);}
     
         else if(isset($_GET['id']) && $_GET['id']==2 )
@@ -80,7 +81,7 @@ public function edit_row(Request $req){
                         $dept::where('id',$req->id)
                         ->update(['name'=>$req->name,
                         'is_active'=>$active,
-                        ]);
+                        ]); 
                         $data['dept'] = Department::where('deleted',0)->paginate(7);
                         return view('department',$data);
                         
