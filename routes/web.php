@@ -122,7 +122,20 @@ Route::get('/service/ticket_hotel/{id}','ServiceController@send_hotel');
 Route::get('/service/ticket_gen/{id}','ServiceController@send_gen');
 Route::get('/service/ticket_med/{id}','ServiceController@send_med');
 
+//Supplier
 
+
+Route::get('/addSupplier', 'SupplierController@add');
+Route::get('/displaySupplier', 'SupplierController@display');
+Route::get('/editSupplier/{id}', 'SupplierController@display_row');
+Route::get('/deleteSupplier/{id}', 'SupplierController@hide_row');
+Route::post('/add_supplier','SupplierController@save1');
+Route::post('/edit_supplier','SupplierController@edit_row');
+Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
+Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
+Route::get('/displaySupplier/{id}', 'SupplierController@filter');
+
+//
 
 Route::get('/form',function(){
 
