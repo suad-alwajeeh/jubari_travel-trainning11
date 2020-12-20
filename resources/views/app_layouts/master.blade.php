@@ -13,10 +13,9 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset("assets/plugins/select2/css/select2.min.css")}}">
   <link rel="stylesheet" href="{{asset("assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css")}}">
-
+ 
   <link rel="stylesheet" href="{{asset("assets/css/adminlte.min.css")}}">
   <link rel="stylesheet" href="{{asset("assets/css/ourstyle.css")}}">
-<script src="{{asset("assets/plugins/select2/js/select2.full.min.js")}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -48,11 +47,25 @@
 <!-- jQuery -->
 <!-- Bootstrap 4 -->
 <script src="{{asset("assets/plugins/jquery/jquery.min.js")}}"></script>
+
+<script src="{{asset("assets/js/pages/dashboard2.js")}}"></script>
+<script src="{{asset("assets/plugins/select2/js/select2.full.min.js")}}"></script>
 <script src="{{asset("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{asset("assets/js/adminlte.min.js")}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/js/demo.js")}}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  });
+    </script>
 </body>
 </html>

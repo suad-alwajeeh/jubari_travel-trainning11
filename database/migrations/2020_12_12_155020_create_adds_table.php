@@ -18,9 +18,9 @@ class CreateAddsTable extends Migration
             $table->string('adds_name');
             $table->string('adds_type');
             $table->string('adds_text');
-            $table->string('is_active');
-            $table->string('is_delete');
-            $table->string('how_create_it');
+            $table->integer('how_add_it')->default();
+            $table->integer('is_delete')->default(0);
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }

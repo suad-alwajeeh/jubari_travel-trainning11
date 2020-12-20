@@ -6,7 +6,36 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ .login{
+  background-image: url('../img/theme/pexels-emiliano-arano-1295138.jpg');
+  background-size: cover;
+  margin-top: 15px;
+  BOX-SHADOW: -2PX 6PX 19PX 0PX #adb5bd;
+}
+.login .logo{
+        border-radius: 0px;
+width: 100%;
+  background-color:rgb(40 55 71 / 85%);
+}
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0 !important;
+}
+.login .form {
+  padding-top: 5%;
+  background-color: white;
 
+}
+.iicon{
+  font-size: 35px;
+  position: relative;
+  top: -15px;
+  color: #3f3a73;
+}
+#login_btn{
+  color: #fff;
+background-color:#3f3a73 ;
+width: 100%;
+}
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;

@@ -18,12 +18,9 @@ use Illuminate\Support\Facades\Route;
 
  /*****************AIRLINE************** */
  Auth::routes();
+ Route::get('/logout','Auth\LoginController@logout');
  Route::get('/home', 'HomeController@index')->name('home');
-
- Route::get('/',function(){
-
-  return view('dashboard');
-  });
+ Route::get('/','dashboard@index');
 Route::get('/airline_add', 'AirlineController@add');
 Route::get('/airline_edit/{id}', 'AirlineController@display_row');
 Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
@@ -41,18 +38,17 @@ Route::get('/adds_display', 'AddsController@display');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
 /*****************users************** */
-Route::get('/user_add', 'UserController@add');
-Route::get('/user_edit/{id}', 'UserController@display_row');
-Route::get('/user_delete/{id}', 'UserController@hide_row');
-Route::get('/is_active_user/{id}', 'UserController@is_active');
-Route::get('/no_active_user/{id}', 'UserController@is_not_active');
-Route::get('/user_display/{id}', 'UserController@filter');
-Route::get('/user_display', 'UserController@display');
-Route::post('/adduser','UserController@save1');
-Route::post('/edituser','UserController@edit_row');
+Route::post('/logout', 'LoginController@logout');
+Route::get('/user_add', 'uuserController@add');
+Route::get('/user_edit/{id}', 'uuserController@display_row');
+Route::get('/user_delete/{id}', 'uuserController@hide_row');
+Route::get('/is_active_user/{id}', 'uuserController@is_active');
+Route::get('/no_active_user/{id}', 'uuserController@is_not_active');
+Route::get('/user_display/{id}', 'uuserController@filter');
+Route::get('/user_display', 'uuserController@display');
+Route::post('/adduser','uuserController@save1');
+Route::post('/edituser','uuserController@edit_row');
 /*****************users************** */
-Route::get('/sign_in', 'UserController@login');
-Route::post('/login_check', 'UserController@login_data');
 
 
 /*****************ROLE************** */
@@ -88,13 +84,10 @@ Route::get('/service/service-edit/{id}','ServiceController@display_row');
 Route::get('/service/editservice/','ServiceController@edit_row'); 
 
 
+Route::get('/form',function(){
 
-
-
-
-
-
-
+  return view('form');
+  });
 
 
 
@@ -168,3 +161,5 @@ Route::get('/service/editservice/','ServiceController@edit_row');
     Route::get('/service/service-edit/{id}','ServiceController@display_row');
     Route::get('/service/editservice/','ServiceController@edit_row');    
  });*/
+
+

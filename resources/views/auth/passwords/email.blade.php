@@ -2,10 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+</br>
+<div class="row login">
+     <div class="col-md-6 col-sm-12 logo animated fadeLeft" style="animation-delay:0s;">
+           <div class="card-body text-center">
+                  <img src="{{ asset('img/theme/logo.png') }}" class="img-fluid">     
+
+           </div>
+     </div>
+  <div class="col-md-6 col-sm-12 form animated fadeLeft" style="animation-delay:1s;">
+  </br>
+  <h2 class="text-center" style="color: #3f3a73;font-size: 35px;font-weight: 600;">{{ __('Reset Password') }}</h2>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -33,7 +40,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button  id="login_btn" type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
