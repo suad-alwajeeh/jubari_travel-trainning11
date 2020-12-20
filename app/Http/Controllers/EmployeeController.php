@@ -52,7 +52,7 @@ class EmployeeController extends Controller
         $where +=['departments.is_active'=>1];
             $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
             ->where($where)->get();
-            return view('employee',$data);
+            return view('employees',$data);
         }
 
     
@@ -122,6 +122,13 @@ $emp=new Employee;
         $data['dept'] = Department::all();
         return view('update-employee',$data);
                     }
+
+                    public function show_row($id)
+                    { 
+                        $data['emps'] = Employee::where('emp_id',$id)->get();
+                        $data['dept'] = Department::all();
+                        return view('show_employee',$data);
+                                    }
 
 public function edit_row(Request $req){
     $emp=new Employee;

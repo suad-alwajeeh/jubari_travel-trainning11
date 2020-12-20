@@ -84,6 +84,8 @@
                   <tbody class="row2">
                  @foreach($emps as $emp)
                   <tr>
+                  <input type="hidden" class="delete_id" value="{{$emp->emp_id}}">
+
                     <td>{{$emp->emp_id}}</td>
                     <td>{{$emp->emp_first_name}}  {{$emp->emp_midel_name}}  {{$emp->emp_thired_name}}  {{$emp->emp_last_name}}</td>
                     <td>{{$emp->emp_mobile}}</td>
@@ -92,10 +94,10 @@
                     <td>{{$emp->emp_hirdate}}</td>
                     
                     <td>
-                    <input type="hidden" id="test">
-                    <a href="{{url('department/edit/'.$emp->emp_id) }}">  <i class="fa fa-plus" aria-hidden="true"></i></a>
+                    <a type="button" class="btn btn-success" href="{{ url('employees/employee-edit/'.$emp->id) }}"><i class="fas fa-pencil-alt "></i></a>
                    
-                    <i class="fa fa-trash" aria-hidden="true"><a href="{{url('$emp/update')}}"> </a></i>
+                    <button type="button" class="btn btn-danger deletebtn"><i class="fas fa-trash "></i></button>
+
 </td>
                   </tr>
                   @endforeach
@@ -124,6 +126,13 @@
       </div>
       <!-- /.container-fluid -->
 
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
       <script>
                 console.log('inseode scripy');
@@ -155,7 +164,7 @@ $("#dropselect").change(function () {
               console.log('value[i]');
               console.log(value[i]);
 myJSON = JSON.parse(data);
-td +='<tr><td>'+value[i].emp_id+'</td><td>'+value[i].emp_first_name+' ' +value[i].emp_midel_name +'  ' +value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td>'+value[i].emp_mobile+'</td> <td>'+value[i].name+'</td> <td>'+value[i].emp_salary+'</td> <td>'+value[i].emp_hirdate+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.emp_id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
+td +='<tr><td>'+value[i].emp_id+'</td><td>'+value[i].emp_first_name+' ' +value[i].emp_midel_name +'  ' +value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td>'+value[i].emp_mobile+'</td> <td>'+value[i].name+'</td> <td>'+value[i].emp_salary+'</td> <td>'+value[i].emp_hirdate+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href=""><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger deletebtn" href=""><i class="fas fa-trash "></i></a></div></td></tr>';
 $('.row2').html(td);
             }
             td='';
@@ -173,6 +182,46 @@ $('.row2').html(td);
           
             }); 
             });
+            $('.deletebtn').click(function (e) {
+      e.preventDefault();
+      var id = $(this).closest("tr").find('.delete_id').val();
+      console.log(id);
+
+      //alert(id);
+      swal({
+        title: "Are you sure?",
+        text: "Are You  Sure to delete this filed!",
+        icon: "error",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            var data = {
+              '_token': $('input[name=_token]').val(),
+              'id': id,
+            };
+
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: "GET",
+              url:'employees/employee_delete/' + id,
+              data: data,
+              success: function (response) {
+                swal("Delete Successfully", {
+                 icon: "success",
+                }).then((willDelete) => {
+                  location.reload();
+                });
+              }
+            });
+          }
+          
+          
+        });
+    });
    
 });
 </script>
