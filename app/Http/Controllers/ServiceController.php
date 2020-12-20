@@ -8,7 +8,13 @@ use App\airline;
 use App\Suplier;
 use App\Employee;
 use App\TicketService;
-
+use App\BusService;
+use App\CarService;
+use App\ServiceService;
+use App\visaService;
+use App\HotelService;
+use App\MedicalService;
+use App\GeneralService;
 class ServiceController extends Controller
 {
     //
