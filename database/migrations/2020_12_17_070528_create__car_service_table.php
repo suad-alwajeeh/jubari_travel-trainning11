@@ -35,6 +35,7 @@ class CreateCarServiceTable extends Migration
             $table->text('remark');
             $table->integer('deleted');
             $table->integer('service_status');
+            $table->text('attachment');
 
             $table->timestamps();
         });

@@ -17,7 +17,6 @@ class ServiceController extends Controller
         
  if(isset($_GET['id']) && ($_GET['id']==0 || $_GET['id']==1) )
        { 
-        $del=0;
         $where=['services.is_active'=>$_GET['id']];
         $where +=['services.deleted'=>0];
         $where +=['employees.is_active'=>1];
@@ -105,6 +104,7 @@ public function display_row($id)
       return redirect('service')->with('seccess','Seccess Data Delete');
 
         }
+  
         
 public function show()
 { 
@@ -114,9 +114,343 @@ public function show()
 
     return view('sales-service',$data);
                 }
+public function show_ticket($id)
+{
+ $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','ticket_services.cur_id')
+ ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
+return view('sales',$data);
 
 
+} 
+public function show_bus($id)
+{
+ $data['buses']=BusService::join('supliers','supliers.sup_id','=','bus_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','bus_services.cur_id')
+ ->where(['bus_services.service_status'=>$id,'bus_services.deleted'=>0])->get();
+return view('bus',$data);
+} 
+public function show_hotel($id)
+{
+ $data['hotels']=HotelService::join('supliers','supliers.sup_id','=','hotel_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','hotel_services.cur_id')
+ ->where(['hotel_services.service_status'=>$id,'hotel_services.deleted'=>0])->get();
+return view('hotel',$data);
+}
 
+public function show_visa($id)
+{
+ $data['visas']=VisaService::join('supliers','supliers.sup_id','=','visa_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','visa_services.cur_id')
+ ->where(['visa_services.service_status'=>$id,'visa_services.deleted'=>0])->get();
+return view('visa',$data);
+} 
+
+public function show_car($id)
+{
+ $data['car']=CarService::join('supliers','supliers.sup_id','=','car_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','car_services.cur_id')
+ ->where(['car_services.service_status'=>$id,'car_services.deleted'=>0])->get();
+return view('car',$data);
+} 
+
+public function show_med($id)
+{
+ $data['meds']=MedicalService::join('supliers','supliers.sup_id','=','medical_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','medical_services.cur_id')
+ ->where(['medical_services.service_status'=>$id,'medical_services.deleted'=>0])->get();
+return view('medical',$data);
+} 
+
+public function show_gen($id)
+{
+ $data['gens']=GeneralService::join('supliers','supliers.sup_id','=','general_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','general_services.cur_id')
+ ->where(['general_services.service_status'=>$id,'general_services.deleted'=>0])->get();
+return view('general',$data);
+} 
+
+public function hide_ticket($id){
+    echo $id;
+    $affected1= TicketService::where('id',$id)
+    ->update(['deleted'=>1]);
+   /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
+ ->join('currency','currency.cur_id','=','ticket_services.cur_id')
+ ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
+ */
+ return redirect('service')->with('seccess','Seccess Data Delete');
+
+    }
+
+    public function send_ticket($id){
+        echo $id;
+        $where=['id'=>$id];
+
+        $where +=['attachment'=>'null'];
+        $affected1=TicketService::where($where)->count();
+        if($affected1 >0)
+       { 
+       
+     //return redirect('service')->with('Erroe','Seccess Data Delete');
+     json_encode('noorder');
+    // print_r(json_encode($x));
+     }
+      else{
+        $affected= TicketService::where(['id'=>$id])
+        ->update(['service_status'=>2]);
+     return redirect('service')->with('Status','Seccess Data Delete');
+       
+     }
+        }
+
+    public function hide_bus($id){
+        echo $id;
+        $affected1= BusService::where('bus_id',$id)
+        ->update(['deleted'=>1]);
+       /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
+     ->join('currency','currency.cur_id','=','ticket_services.cur_id')
+     ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
+     */
+     return redirect('service')->with('seccess','Seccess Data Delete');
+    
+        }
+        public function send_bus($id){
+            echo $id;
+            $where=['id'=>$id];
+    
+            $where +=['attachment'=>'null'];
+            $affected1=BusService::where($where)->count();
+            if($affected1 >0)
+           { 
+           
+         //return redirect('service')->with('Erroe','Seccess Data Delete');
+         json_encode('noorder');
+        // print_r(json_encode($x));
+         }
+          else{
+            $affected= BusService::where(['id'=>$id])
+            ->update(['service_status'=>2]);
+         return redirect('service')->with('Status','Seccess Data Delete');
+           
+         }
+            }
+        public function hide_hotel($id){
+            echo $id;
+            $affected1=HotelService::where('hotel_id',$id)
+            ->update(['deleted'=>1]);
+           /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
+         ->join('currency','currency.cur_id','=','ticket_services.cur_id')
+         ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
+         */
+         return redirect('service')->with('seccess','Seccess Data Delete');
+        
+            }
+            public function send_hotel($id){
+                echo $id;
+                $where=['id'=>$id];
+        
+                $where +=['attachment'=>'null'];
+                $affected1=HotelService::where($where)->count();
+                if($affected1 >0)
+               { 
+                json_encode('noorder');
+             }
+              else{
+                $affected= HotelService::where(['id'=>$id])
+                ->update(['service_status'=>2]);
+             return redirect('service')->with('Status','Seccess Data Delete');  
+             }
+                }
+            public function hide_car($id){
+                echo $id;
+                $affected1=CarService::where('car_id',$id)
+                ->update(['deleted'=>1]);
+             return redirect('service')->with('seccess','Seccess Data Delete');
+             }
+             public function send_car($id){
+                echo $id;
+                $where=['id'=>$id];
+        
+                $where +=['attachment'=>'null'];
+                $affected1=CarService::where($where)->count();
+                if($affected1 >0)
+               { 
+                           json_encode('noorder');
+             }
+              else{
+                $affected= CarService::where(['id'=>$id])
+                ->update(['service_status'=>2]);
+             return redirect('service')->with('Status','Seccess Data Delete');
+               
+             }
+                }
+                public function hide_visa($id){
+                    echo $id;
+                    $affected1=VisaService::where('visa_id',$id)
+                    ->update(['deleted'=>1]);
+                 return redirect('service')->with('seccess','Seccess Data Delete');       
+                    }
+                    public function hide_med($id){
+                        echo $id;
+                        $affected1=MedicalService::where('med_id',$id)
+                        ->update(['deleted'=>1]);
+                     return redirect('service')->with('seccess','Seccess Data Delete');                  
+                        }
+                        public function send_med($id){
+                            echo $id;
+                            $where=['id'=>$id];
+                    
+                            $where +=['attachment'=>'null'];
+                            $affected1=MedicalService::where($where)->count();
+                            if($affected1 >0)
+                           { 
+                              json_encode('noorder');
+                         }
+                          else{
+                            $affected= MedicalService::where(['id'=>$id])
+                            ->update(['service_status'=>2]);
+                         return redirect('service')->with('Status','Seccess Data Delete');
+                           
+                         }
+                            }
+                        public function hide_gen($id){
+                            echo $id;
+                            $affected1=GeneralService::where('gen_id',$id)
+                            ->update(['deleted'=>1]);
+                          return redirect('service')->with('seccess','Seccess Data Delete');
+                        
+                            }
+                            public function send_gen($id){
+                                echo $id;
+                                $where=['id'=>$id];
+                        
+                                $where +=['attachment'=>'null'];
+                                $affected1=GeneralService::where($where)->count();
+                                if($affected1 >0)
+                               { 
+                               
+                             json_encode('noorder');
+                             }
+                              else{
+                                $affected= GeneralService::where(['id'=>$id])
+                                ->update(['service_status'=>2]);
+                             return redirect('service')->with('Status','Seccess Data Delete');
+                               
+                             }
+                                }
+ public function show_repo()
+                { 
+                    $_SESSION['id']=1;
+                    //get data of ticket service
+                 $data['save_ticket']=TicketService::join('employees','employees.emp_id', '=','ticket_services.due_to_customer')
+                ->where(['ticket_services.service_status'=>1,'ticket_services.due_to_customer'=> $_SESSION['id'],'ticket_services.deleted'=>0])->count();;
+                $data['sent_ticket']=TicketService::join('employees','employees.emp_id', '=','ticket_services.due_to_customer')
+                ->where(['ticket_services.service_status'=>2,'ticket_services.due_to_customer'=> $_SESSION['id'],'ticket_services.deleted'=>0])->count();;
+                $data['archev_ticket']=TicketService::join('employees','employees.emp_id', '=','ticket_services.due_to_customer')
+                ->where(['ticket_services.service_status'=>4,'ticket_services.due_to_customer'=> $_SESSION['id'],'ticket_services.deleted'=>0])->count();;
+                 
+                //get data of bus service
+                $data['save_bus']=BusService::join('employees','employees.emp_id', '=','bus_services.due_to_customer')
+                ->where(['bus_services.service_status'=>1,'bus_services.due_to_customer'=> $_SESSION['id'],'bus_services.deleted'=>0])->count();;
+                $data['sent_bus']=BusService::join('employees','employees.emp_id', '=','bus_services.due_to_customer')
+                ->where(['bus_services.service_status'=>2,'bus_services.due_to_customer'=> $_SESSION['id'],'bus_services.deleted'=>0])->count();;
+                $data['archev_bus']=BusService::join('employees','employees.emp_id', '=','bus_services.due_to_customer')
+                ->where(['bus_services.service_status'=>4,'bus_services.due_to_customer'=> $_SESSION['id'],'bus_services.deleted'=>0])->count();;
+                 
+                 //get data of hotelservice
+                 $data['save_hotel']=HotelService::join('employees','employees.emp_id', '=','hotel_services.due_to_customer')
+                 ->where(['hotel_services.service_status'=>1,'hotel_services.due_to_customer'=> $_SESSION['id'],'hotel_services.deleted'=>0])->count();;
+                 $data['sent_hotel']=HotelService::join('employees','employees.emp_id', '=','hotel_services.due_to_customer')
+                 ->where(['hotel_services.service_status'=>2,'hotel_services.due_to_customer'=> $_SESSION['id'],'hotel_services.deleted'=>0])->count();;
+                 $data['archev_hotel']=HotelService::join('employees','employees.emp_id', '=','hotel_services.due_to_customer')
+                 ->where(['hotel_services.service_status'=>4,'hotel_services.due_to_customer'=> $_SESSION['id'],'hotel_services.deleted'=>0])->count();;
+                  
+                 //get data of visa service
+                 $data['save_visa']=VisaService::join('employees','employees.emp_id', '=','visa_services.due_to_customer')
+                 ->where(['visa_services.service_status'=>1,'visa_services.due_to_customer'=> $_SESSION['id'],'visa_services.deleted'=>0])->count();;
+                 $data['sent_visa']=VisaService::join('employees','employees.emp_id', '=','visa_services.due_to_customer')
+                 ->where(['visa_services.service_status'=>2,'visa_services.due_to_customer'=> $_SESSION['id'],'visa_services.deleted'=>0])->count();;
+                 $data['archev_visa']=VisaService::join('employees','employees.emp_id', '=','visa_services.due_to_customer')
+                 ->where(['visa_services.service_status'=>4,'visa_services.due_to_customer'=> $_SESSION['id'],'visa_services.deleted'=>0])->count();;
+                  
+                 //get data of car service
+                 $data['save_car']=CarService::join('employees','employees.emp_id', '=','car_services.due_to_customer')
+                 ->where(['car_services.service_status'=>1,'car_services.due_to_customer'=> $_SESSION['id'],'car_services.deleted'=>0])->count();;
+                 $data['sent_car']=CarService::join('employees','employees.emp_id', '=','car_services.due_to_customer')
+                 ->where(['car_services.service_status'=>2,'car_services.due_to_customer'=> $_SESSION['id'],'car_services.deleted'=>0])->count();;
+                 $data['archev_car']=CarService::join('employees','employees.emp_id', '=','car_services.due_to_customer')
+                 ->where(['car_services.service_status'=>4,'car_services.due_to_customer'=> $_SESSION['id'],'car_services.deleted'=>0])->count();;
+                  
+                  //get data of medical service
+                  $data['save_med']=MedicalService::join('employees','employees.emp_id', '=','medical_services.due_to_customer')
+                  ->where(['medical_services.service_status'=>1,'medical_services.due_to_customer'=> $_SESSION['id'],'medical_services.deleted'=>0])->count();;
+                  $data['sent_med']=MedicalService::join('employees','employees.emp_id', '=','medical_services.due_to_customer')
+                  ->where(['medical_services.service_status'=>2,'medical_services.due_to_customer'=> $_SESSION['id'],'medical_services.deleted'=>0])->count();;
+                  $data['archev_med']=MedicalService::join('employees','employees.emp_id', '=','medical_services.due_to_customer')
+                  ->where(['medical_services.service_status'=>4,'medical_services.due_to_customer'=> $_SESSION['id'],'medical_services.deleted'=>0])->count();;
+                   
+                   //get data of serviceservice
+                   $data['save_service']=GeneralService::join('employees','employees.emp_id', '=','general_services.due_to_customer')
+                   ->where(['general_services.service_status'=>1,'general_services.due_to_customer'=> $_SESSION['id'],'general_services.deleted'=>0])->count();;
+                   $data['sent_service']=GeneralService::join('employees','employees.emp_id', '=','general_services.due_to_customer')
+                   ->where(['general_services.service_status'=>2,'general_services.due_to_customer'=> $_SESSION['id'],'general_services.deleted'=>0])->count();;
+                   $data['archev_service']=GeneralService::join('employees','employees.emp_id', '=','general_services.due_to_customer')
+                   ->where(['general_services.service_status'=>4,'general_services.due_to_customer'=> $_SESSION['id'],'general_services.deleted'=>0])->count();;
+                    
+                    return view('sales-wedgate',$data);
+   }
+
+
+  public function ticket(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_ticket',$data);
+  } 
+  public function bus(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_bus',$data);
+  } 
+  public function visa(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_visa',$data);
+  } 
+  public function car(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_car',$data);
+  } 
+  public function hotel(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_hotel',$data);
+  } 
+
+  public function medical(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_medical',$data);
+  } 
+  public function general(){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+   
+      return view('add_general',$data);
+  } 
 public function add_ticket( Request $req)
 { 
     $ticket=new TicketService;
@@ -173,17 +507,16 @@ public function add_ticket( Request $req)
     return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
 }
 
-
-
-
 public function add_bus( Request $req)
 { 
     $ticket=new BusService;
+
+
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
-    $ticket->passenger_name=$req->passenger_name;
-    $ticket->bus_number =$req->bus_number;
+    $ticket->passenger_name=$req->passenger_name2;
     $ticket->bus_name =$req->bus_name;
+    $ticket->bus_number =$req->bus_number;
     $ticket->bus_status =$req->bus_status;
     $ticket->Dep_city =$req->Dep_city;
     $ticket->arr_city =$req->arr_city;
@@ -193,11 +526,145 @@ public function add_bus( Request $req)
     $ticket->cur_id=$req->cur_id;
     $ticket->due_to_customer =$req->due_to_customer ;
     $ticket->cost =$req->cost ;
-    $ticket->service_id=2;
+    $ticket->service_id=1;
+    $ticket->passnger_currency=$req->passnger_currency2;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
+
+public function add_hotel( Request $req)
+{ 
+    $ticket=new HotelService;
+
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name2;
+    $ticket->voucher_number=$req->voucher_number;
+    $ticket->hotel_status =$req->hotel_status;
+    $ticket->Dep_city =$req->Dep_city;
+    $ticket->arr_city =$req->arr_city;
+    $ticket->dep_date =$req->dep_date;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=1;
+    $ticket->passnger_currency=$req->passnger_currency2;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
+
+
+public function add_visa( Request $req)
+{ 
+    $ticket=new VisaService;
+
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->voucher_number=$req->visa_number;
+    $ticket->visa_status =$req->visa_status;
+    $ticket->visa_type =$req->visa_type;
+    $ticket->visa_info =$req->visa_info;
+    $ticket->country  =$req->country ;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=4;
     $ticket->passnger_currency=$req->passnger_currency;
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
     return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
 }
+
+
+public function add_car( Request $req)
+{ 
+    $ticket=new CarService;
+
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->voucher_number =$req->voucher_number;
+    $ticket->car_info =$req->car_info;
+    $ticket->car_status =$req->car_status;
+    $ticket->Dep_city =$req->Dep_city;
+    $ticket->arr_city =$req->arr_city;
+    $ticket->dep_date =$req->dep_date;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=5;
+    $ticket->passnger_currency=$req->passnger_currency;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
+
+public function add_service( Request $req)
+{ 
+    $ticket=new GeneralService;
+
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->voucher_number=$req->voucher_number;
+    $ticket->gen_info =$req->med_info;
+    $ticket->general_status =$req->general_status;
+    $ticket->offered_status =$req->offered_status;
+    $ticket->dep_date =$req->dep_date;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=7;
+    $ticket->passnger_currency=$req->passnger_currency;
+    $ticket->remark=$req->remark;
+    $ticket->busher_time=$req->busher_time;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
+
+public function add_Medical( Request $req)
+{ 
+    $ticket=new MedicalService;
+
+
+    $ticket->Issue_date =$req->Issue_date;
+    $ticket->refernce=$req->refernce;
+    $ticket->passenger_name=$req->passenger_name;
+    $ticket->document_number=$req->document_number;
+    $ticket->med_info=$req->med_info;
+    $ticket->report_status=$req->report_status;
+    $ticket->from_city=$req->from_city;
+    $ticket->due_to_supp =$req->due_to_supp;
+    $ticket->provider_cost=$req->provider_cost;
+    $ticket->cur_id=$req->cur_id;
+    $ticket->due_to_customer =$req->due_to_customer ;
+    $ticket->cost =$req->cost ;
+    $ticket->service_id=7;
+    $ticket->passnger_currency=$req->passnger_currency;
+    $ticket->remark=$req->remark;
+    $ticket->service_status=1;
+    $ticket->save();
+    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+}
+
 }

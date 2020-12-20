@@ -230,7 +230,7 @@
     <div class="tab text-center">
       <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">
         <i class="nav-icon fas fa-plane"></i>Ticket</button>
-      <button class="tablinks" onclick="openCity(event, 'bus')"> <i class="fas fa-bus"></i>Bus</button>
+      <button class="tablinks" onclick="openCity(ephp vent, 'bus')"> <i class="fas fa-bus"></i>Bus</button>
       <button class="tablinks" onclick="openCity(event, 'hotel')"><i class="fas fa-hotel"></i>Hotel</button>
       <button class="tablinks" onclick="openCity(event, 'visa')"><i class="fa fa-cc-visa"></i>Visa</button>
       <button class="tablinks" onclick="openCity(event, 'car')"><i class="fas fa-car"></i>Car</button>

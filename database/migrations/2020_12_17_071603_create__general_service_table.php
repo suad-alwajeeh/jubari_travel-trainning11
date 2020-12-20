@@ -35,6 +35,7 @@ class CreateGeneralServiceTable extends Migration
             $table->integer('deleted');
             $table->integer('service_status');
             $table->integer('general_status');
+            $table->text('attachment');
 
             $table->timestamps();
         });

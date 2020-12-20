@@ -37,6 +37,7 @@ class CreateTicketServiceTable extends Migration
             $table->string('passnger_currency');
             $table->text('remark');
             $table->text('bursher_time');
+            $table->text('attachment');
             $table->integer('deleted');
             $table->integer('service_status');
 
