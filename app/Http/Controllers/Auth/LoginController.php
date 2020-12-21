@@ -27,6 +27,21 @@ class LoginController extends Controller
      *
      * @var string
      */
+    protected  function authenticated(Request $req ,$user){
+        if($user->hasRole('sale_executive')){
+            return redirect('/service');
+        }
+        if($user->hasRole('admin')){
+            return redirect('/');
+        }
+        if($user->hasRole('sale_manager')){
+            return redirect('/service');
+        }
+        if($user->hasRole('accountant')){
+            return redirect('/role_display');
+        }
+    }
+    //protected $redirectTo = RouteServiceProvider::HOME;
   
     protected $redirectTo = '/';
 

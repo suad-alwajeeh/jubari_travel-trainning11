@@ -16,6 +16,10 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['role:admin ']); 
+    }
     public function index()
     {
         //$filter = Supplier::where('is_active',1)->paginate(7);

@@ -23,7 +23,7 @@
     @foreach($data as $item)
       <tr id="tr{{$item->id}}" >
       <td>{{$item->id}}</td>
-      <td>{{$item->name}}</td>
+      <td>{{$item->display_name}}</td>
       <td>
       @if($item->is_active == 0)
       
