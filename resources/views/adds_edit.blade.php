@@ -27,7 +27,9 @@
     </div>
     <div class="form-group mb-3">
       <label for="adds_text">advertisements_content</label>
-      <textarea class="form-control" name="adds_text" id="adds_text">{{$item->advertisements_content}}</textarea>
+      <textarea class="form-control" name="adds_text" id="adds_text">
+      {{$item->adds_text}}
+      </textarea>
     </div>
     <div class="form-group mb-3">
       <label for="adds_type">advertisements_type</label>

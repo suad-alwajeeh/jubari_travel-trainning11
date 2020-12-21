@@ -77,59 +77,12 @@
 <div class="btn-group btn-group-sm">
   <a type="button" class="btn btn-success" href="{{ url('adds_edit/'.$item->id) }}"><i class="fas fa-pencil-alt "></i></a>
   <a type="button" class="btn btn-danger"  onclick="delete{{$item->id}}()" ><i class="fas fa-trash "></i></a>
-  <a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal"><i class="fas fa-paper-plane "></i></a>
+  <a type="button" class="btn btn-secondary"  href="{{ url('adds_user/'.$item->id) }}"><i class="fas fa-paper-plane "></i></a>
 </div>
 @endif
         </td>
       </tr>
-      <!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">choiese users</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!-- Modal body -->
-      <div class="modal-body">
-      <div class="form-group">
-  <label for="sel1">department filter:</label>
-  <select class="form-control" onchange="dep_select()" id="selectdep">
-    <option>all</option>
-    @foreach($data1 as $item2) 
-    <option value="{{$item2->id}}">{{$item2->name}}</option>
-    @endforeach
-    </select>
-    <div class="">
-    <div class="form-group border-1">
-                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
-                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
-                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                    </div>
-                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
-                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
-                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                    </div>
-                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep2">
-                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
-                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                    </div>
-                    <div  class="custom-control custom-switch custom-switch-on-success custom-switch-off-danger dep4">
-                      <input onclick="myFunction{{$item->id}}()" checked type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}">
-                      <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                    </div>
-                  </div>
-
-    </div>
     
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-
-      </div>
-   </div>
-  </div>
-</div>
 
       <script>
      function dep_select(){

@@ -20,7 +20,7 @@ class ServiceController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:admin|user|sale_executive');
     }
     public function index()
     {

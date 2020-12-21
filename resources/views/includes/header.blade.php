@@ -8,6 +8,9 @@
         <a href="../../index3.html" class="nav-link">dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <a href="/logout" class="nav-link">logout</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
       
       </li>
     </ul>

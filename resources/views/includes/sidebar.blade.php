@@ -106,13 +106,6 @@
                   <p>DISPLAY ALL</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="role_display" class="nav-link">
-                  <i class="far fa-eye nav-icon"></i>
-                  <p>DISPLAY users roles</p>
-                </a>
-              </li>
-             
             </ul>
           </li>
             
@@ -126,7 +119,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="adds_add" class="nav-link">
+                <a href="/adds_add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add new</p>
                 </a>

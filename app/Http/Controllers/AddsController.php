@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\adds;
+use App\adds_user;
 use App\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -26,11 +27,21 @@ class AddsController extends Controller
         $affected = adds::where('id',$id)->get();
         return view('adds_edit',['data'=>$affected]);
                     }
+    public function adds_user($id)
+                    { 
+                        $affected = adds::where('id',$id)->get();
+                        $affected1 = DB::table('adds')->where('adds_id',$id)
+                        ->join('adds_users','adds.id','adds_users.adds_id')->where('adds_users.is_delete',0)
+                        ->join('users','adds_users.user_id','users.id')
+                        ->select('users.name as u_name','adds_users.id as au_id','adds.id as a_id')->get();
+                        $affected2 = DB::table('users')->where('is_delete','0')->get();
+                            return view('adds_user',['data'=>$affected,'data1'=>$affected1,'data2'=>$affected2]);
+}
     public function display()
-    {
+    {   $affected2 = DB::table('users')->where('is_delete','0')->get();
         $affected = adds::where('is_delete',0)->paginate(7);
         $affected1 = Department::where('is_active',1)->get();
-        return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
+        return view('adds_display',['data'=>$affected,'data1'=>$affected1,'data2'=>$affected2]);
         }
     public function add()
     {
@@ -77,6 +88,22 @@ class AddsController extends Controller
         return redirect('adds_display');
 
         }
+        public function hide_user_row($id){
+            $affected1= adds_user::where('id',$id)
+            ->update(['is_delete'=>'1']);
+               
+            }
+            public function add_user_row($id,$user){
+                $role=new adds_user;
+            
+                $role->user_id=$user;
+                $role->adds_id=$id;
+                 $role->save();
+                   
+                }
+                public function delete_user_row1($id,$user){
+                    $affected1= adds_user::where([['adds_id',$id],['user_id',$user]])->update(['is_delete'=>'1']);;                       
+                    }
         public function is_active($id){
             $affected1= adds::where('id',$id)
             ->update(['is_active'=>'1']);

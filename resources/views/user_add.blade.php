@@ -36,7 +36,7 @@
      <select class="form-control" name="emp_id" id="">
      @foreach($data as $item)
      <option class="so_emp" value="0">choice employee</option>
-     <option class="so_emp dep{{$item->dept_id}}" value="{{$item->id}}">{{$item->emp_first_name}} {{$item->emp_middel_name}} {{$item->emp_last_name}}</option>
+     <option class="so_emp dep{{$item->dept_id}}" value="{{$item->emp_id}}">{{$item->emp_first_name}} {{$item->emp_middel_name}} {{$item->emp_last_name}}</option>
      @endforeach
      </select>
     </div>
