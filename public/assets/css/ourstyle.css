@@ -18,5 +18,11 @@
   
 .so_emp{
 display: none;
-
+}
+.su_head{
+    background-color: #090732;
+    color: white;
+}
+.su_inf{
+    color: white;
 }

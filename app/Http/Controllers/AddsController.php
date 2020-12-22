@@ -17,7 +17,7 @@ class AddsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['role:admin']); 
+        $this->middleware(['auth']); 
     }
     public function index()
     {
@@ -37,6 +37,43 @@ class AddsController extends Controller
                         $affected2 = DB::table('users')->where('is_delete','0')->get();
                             return view('adds_user',['data'=>$affected,'data1'=>$affected1,'data2'=>$affected2]);
 }
+public function adds_user_display()
+{ 
+    $affected = DB::table('adds')->where([['adds.is_active',1],['adds.is_delete',0]])
+    ->join('adds_users','adds.id','adds_users.adds_id')->where('adds_users.is_delete',0)
+    ->join('users','adds_users.user_id','users.id')->where([['users.is_delete',0],['users.is_active',1]])
+    ->select('users.name as u_name','adds_users.id as au_id','adds.adds_text as a_text','adds.adds_name as a_name','adds_users.status as au_status')
+    ->paginate(15);
+        return view('adds_user_display',['data'=>$affected]);
+}
+public function adds_user_display_row($id)
+{ 
+    $affected = DB::table('adds')->where([['adds.is_active',1],['adds.is_delete',0]])
+    ->join('adds_users','adds.id','adds_users.adds_id')->where([['adds_users.is_delete',0],['adds_users.id',$id]])
+    ->join('users','adds_users.user_id','users.id')->where([['users.is_delete',0],['users.is_active',1]])
+    ->select('users.name as u_name','adds_users.id as au_id','adds.adds_text as a_text','adds.adds_name as a_name','adds_users.status as au_status')
+    ->get();
+    echo json_encode($affected);
+
+       // return view('adds_user_display',['data'=>$affected]);
+}
+public function adds_user_display_u($id)
+{ 
+    $affected = DB::table('adds')->where([['adds.is_active',1],['adds.is_delete',0]])
+    ->join('adds_users','adds.id','adds_users.adds_id')->where([['adds_users.is_delete',0],['adds_users.status','!=',2]])
+    ->join('users','adds_users.user_id','users.id')->where([['users.is_delete',0],['users.is_active',1],['users.id',$id]])
+    ->select('users.name as u_name','adds_users.id as au_id','adds.adds_text as a_text','adds.adds_name as a_name','adds_users.status as au_status')
+    ->get();
+    echo json_encode($affected);
+}
+public function ok($id){
+    $affected1= adds_user::where('id',$id)
+    ->update(['status'=>'2']);
+    }
+    public function cansel($id){
+        $affected1= adds_user::where('id',$id)
+        ->update(['status'=>'3']);
+        }
     public function display()
     {   $affected2 = DB::table('users')->where('is_delete','0')->get();
         $affected = adds::where('is_delete',0)->paginate(7);

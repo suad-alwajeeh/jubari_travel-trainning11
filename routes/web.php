@@ -40,6 +40,11 @@ Route::get('/is_active_adds/{id}', 'AddsController@is_active');
 Route::get('/no_active_adds/{id}', 'AddsController@is_not_active');
 Route::get('/adds_display/{id}', 'AddsController@filter');
 Route::get('/adds_display', 'AddsController@display');
+Route::get('/adds_user_display', 'AddsController@adds_user_display');
+Route::get('/adds_user_display_row/{id}', 'AddsController@adds_user_display_row');
+Route::get('/adds_user_display_u/{id}', 'AddsController@adds_user_display_u');
+Route::get('/ok/{id}', 'AddsController@ok');
+Route::get('/cansel/{id}', 'AddsController@cansel');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
 /*****************users************** */
