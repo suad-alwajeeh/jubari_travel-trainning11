@@ -19,11 +19,11 @@
 
     <div class="form-group mb-3">
       <label for="pwd">role_name</label>
-      <input type="text" class="form-control" value="{{$item->role_name}}" placeholder="role_name" name="role_name">
+      <input type="text" class="form-control" value="{{$item->display_name}}" placeholder="role_name" name="role_name">
     </div>
     <div class="form-group mb-3">
     <input type="text" hidden="hidden" value="{{$item->id}}" class="form-control" id="id" placeholder="id" name="id">
-    <input type="text" hidden="hidden" value="{{$item->how_create_it}}" class="form-control" id="how_create_it" placeholder="how_create_it" name="how_create_it">
+    <input type="text" hidden="hidden" value="{{ Auth::user()->id }}" class="form-control" id="how_create_it" placeholder="how_create_it" name="how_create_it">
     </div>
     <div class="form-group mb-3">
       <label for="role_descripe">	role_descripe</label>

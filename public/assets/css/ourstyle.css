@@ -18,8 +18,8 @@
   
 .so_emp{
 display: none;
-
 }
+<<<<<<< HEAD
 .filepond--drop-label {
   color: #4c4e53;
 }
@@ -417,3 +417,13 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield !important;
 }
+||||||| f0f53ff
+=======
+.su_head{
+    background-color: #090732;
+    color: white;
+}
+.su_inf{
+    color: white;
+}
+>>>>>>> f291104e67d08515e2a7395d258f05475c0ef14f

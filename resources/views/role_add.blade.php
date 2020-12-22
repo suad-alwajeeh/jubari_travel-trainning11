@@ -21,7 +21,7 @@
       <input type="text" class="form-control" id="" placeholder="role_name" name="role_name">
     </div>
     <div class="form-group mb-3">
-      <input type="text" hidden="hidden" value="1" class="form-control" id="how_create_it" placeholder="how_create_it" name="how_create_it">
+      <input type="text" hidden="hidden" value="{{ Auth::user()->id }}" class="form-control" id="how_create_it" placeholder="how_create_it" name="how_create_it">
     </div>
     <div class="form-group mb-3">
       <label for="role_descripe">	role_descripe</label>

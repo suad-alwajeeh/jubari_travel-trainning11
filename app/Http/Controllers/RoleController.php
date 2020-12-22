@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\rolee;
+use App\Models\role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class roleController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class roleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware(['role:admin']); 
     }
     public function index()
     {
@@ -22,12 +22,12 @@ class roleController extends Controller
     }
     public function display_row($id)
     { 
-        $affected = rolee::where('id',$id)->get();
+        $affected = Role::where('id',$id)->get();
         return view('role_edit',['data'=>$affected]);
                     }
     public function display()
     {
-        $affected = rolee::where('is_delete',0)->paginate(7);
+        $affected = Role::where('is_delete',0)->paginate(7);
         return view('role_display',['data'=>$affected]);
         }
     public function add()
@@ -41,13 +41,13 @@ class roleController extends Controller
         "role_descripe"=>"required",
         "is_active"=>"required",
         ]);
-      $role=new rolee;
-      $role->role_name=$req->role_name;
-      $role->role_descripe=$req->role_descripe;
-      $role->how_create_it=$req->how_create_it;
+      $role=new Role;
+      $role->name=$req->role_name;
+      $role->description=$req->role_descripe;
+      $role->how_add_it=$req->how_create_it;
       $role->is_active=$req->is_active;
        $role->save();
-      $affected = rolee::where('is_delete',0)->paginate(7);
+      $affected = Role::where('is_delete',0)->paginate(7);
       return redirect('role_display');
     }
     public function edit_row(Request $req){
@@ -56,32 +56,32 @@ class roleController extends Controller
             "role_descripe"=>"required",
             "is_active"=>"required",
             ]);
-        $role=new rolee;
+        $role=new Role;
         $role::where('id',$req->id)
-        ->update(['role_name'=>$req->role_name,'role_descripe'=>$req->role_descripe,
-        'how_create_it'=>$req->how_create_it,'is_active'=>$req->is_active,
+        ->update(['name'=>$req->role_name,'description'=>$req->role_descripe,
+        'how_add_it'=>$req->how_create_it,'is_active'=>$req->is_active,
         ]);
-        $affected = rolee::where('is_delete',0)->paginate(7);
+        $affected = Role::where('is_delete',0)->paginate(7);
         return redirect('role_display');        
     }
     public function hide_row($id){
-        $affected1= rolee::where('id',$id)
+        $affected1= Role::where('id',$id)
         ->update(['is_delete'=>'1']);
-        $affected = role::where('is_delete',0)->paginate(7);
+        $affected = Role::where('is_delete',0)->paginate(7);
         return redirect('role_display');
 
         }
         public function is_active($id){
-            $affected1= rolee::where('id',$id)
+            $affected1= Role::where('id',$id)
             ->update(['is_active'=>'1']);
-            $affected = rolee::where('is_delete',0)->paginate(7);
+            $affected = Role::where('is_delete',0)->paginate(7);
             return redirect('role_display');
     
             }
             public function is_not_active($id){
-                $affected1= rolee::where('id',$id)
+                $affected1= Role::where('id',$id)
                 ->update(['is_active'=>'0']);
-                $affected = rolee::where('is_delete',0)->paginate(7);
+                $affected = Role::where('is_delete',0)->paginate(7);
                 return redirect('role_display');
         
                 }

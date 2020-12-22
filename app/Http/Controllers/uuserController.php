@@ -21,7 +21,7 @@ class uuserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware(['role:sale_executive |admin']); 
     }
     public function login()
     {
@@ -52,12 +52,17 @@ class uuserController extends Controller
                     }
     public function display()
     {
-        $affected = users::where('is_delete',0)->join('employee','users.emp_id','employee.emp_id')->join('departments','employee.dept_id','departments.id')->select('users.id as u_id','users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
-        return view('user_display',['data'=>$affected]);
+        $affected = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')
+        ->join('employee','role_user.user_id','employee.emp_id')
+        ->join('departments','employee.dept_id','departments.id')
+        ->select('users.id as u_id', 'users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
+        $affected1 = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')->select('users.id as u_id');
+
+        return view('user_display',['data'=>$affected,'data1'=>$affected1]);
         }
     public function add()
     {
-        $affected = DB::table('employee')->where('delete','0')->get();
+        $affected = DB::table('employee')->where('deleted','0')->get();
         $affected1 = Department::where('is_active',1)->get();
        
         return view('user_add',['data'=>$affected,'data1'=>$affected1]);
