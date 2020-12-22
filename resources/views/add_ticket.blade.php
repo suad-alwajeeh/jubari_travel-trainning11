@@ -1,220 +1,10 @@
 @extends('app_layouts.master')
+
 @section('main_content')
-<style>
-  /* @extend display-flex; */
-  display-flex,
-  .display-flex,
-  .display-flex-center {
-    display: flex;
-  }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/filepond/dist/filepond.min.css'><link rel="stylesheet" href="./style.css">
 
-  a:focus,
-  a:active {
-    text-decoration: none;
-    outline: none;
-    transition: all 300ms ease 0s;
-
-  }
-
-  input,
-  select,
-  textarea {
-    outline: none;
-    appearance: unset !important;
-  }
-
-
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    outline: none;
-    box-shadow: none !important;
-  }
-
-
-
-  input[type=radio] {
-    appearance: radio !important;
-  }
-
-  input[type=checkbox] {
-    appearance: checkbox !important;
-  }
-
-
-  figure {
-    margin: 0;
-  }
-
-  p {
-    margin-bottom: 0px;
-    font-size: 15px;
-    color: #777;
-  }
-
-  h2 {
-    line-height: 1.66;
-    margin: 0;
-    padding: 0;
-    font-weight: 900;
-    color: #222;
-    font-family: 'Montserrat';
-    font-size: 24px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .clear {
-    clear: both;
-  }
-
-
-  body {}
-
-  .container {
-
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .display-flex {
-    justify-content: space-between;
-
-    align-items: center;
-  }
-
-  .display-flex-center {
-    justify-content: center;
-
-    align-items: center;
-  }
-
-  .position-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .signup-content {
-    background: #fff;
-    border-radius: 10px;
-
-    padding: 50px 85px;
-  }
-
-  .form-group {
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-
-  .form-input {
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-
-    padding: 17px 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-weight: 500;
-    color: #222;
-  }
-
-  .form-input:focus {
-    border: 1px solid transparent;
-    border-image-source: linear-gradient(to right, #9face6, #74ebd5);
-
-    border-image-slice: 1;
-    border-radius: 5px;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-  }
-
-
-  .form-submit {
-    border-radius: 5px;
-
-    padding: 17px 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    float: right;
-    background-image: linear-gradient(to left, #74ebd5, #9face6);
-  }
-
-
-
-
-
-  .label-agree-term {
-    font-size: 12px;
-    font-weight: 600;
-    color: #555;
-  }
-
-  .term-service {
-    color: #555;
-  }
-
-  .around {
-    border-bottom: rgb(189, 184, 184) 1px solid;
-  }
-
-  .around2 {
-    border-right: rgb(189, 184, 184) 1px solid;
-  }
-
-  .tab {
-    overflow: hidden;
-    border: 1px solid #fff;
-    background-color: #fff;
-  }
-
-  /* Style the buttons inside the tab */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
-
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ABD2EA;
-  }
-
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #ABD2EA;
-  }
-
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #000;
-    border-top: none;
-  }
-
-  /* Style the close button */
-  .topright {
-    float: right;
-    cursor: pointer;
-    font-size: 28px;
-  }
-
-  .topright:hover {
-    color: red;
-  }
-</style>
 <div class="content-wrapper">
 
   <div class="main">
@@ -223,6 +13,7 @@
           <div class="signup-content">
 <form method="POST" action="add_ticket" enctype="multipart/form-data" id="signup-form" class="signup-form">
               @csrf
+             
               <div class="around">
                 <h2 class="form-title">Ticket Info</h2>
 
@@ -231,15 +22,15 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Issued Date: </label>
                     <div class="form-group " data-select2-id="44">
 
-                      <input required type="date" class="form-control select2 select2-hidden-accessible"
-                        name="Issue_date" id="date"  />
+                      <input required type="date" class="form-control "
+name="Issue_date" id="date"  />
                     </div>
                   </div>
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-xm-12">Reference </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" class="form-control select2 select2-hidden-accessible" name="refernce">
+                      <input required type="text" class="form-control" name="refernce">
                     </div>
                   </div>
                 </div>
@@ -248,7 +39,7 @@
                   <div class="form-group" data-select2-id="44">
 
                     <input required type="text" class="form-control select2 select2-hidden-accessible"
-                      name="passenger_name" class="form-control select2 select2-hidden-accessible"
+                      name="passenger_name" 
                       style="width: 100%;" />
                   </div>
                 </div>
@@ -305,7 +96,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Ticket Number :</label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" class="form-control select2 select2-hidden-accessible"
+                      <input required type="text" class="form-control "
                         style="width:100%;" name="ticket_number" />
                     </div>
                   </div>
@@ -335,7 +126,7 @@
                     <div class="form-group" data-select2-id="44">
 
                       <input required name="Dep_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum"
-                        type="text" class="form-control select2 select2-hidden-accessible" list="cars" />
+                        type="text" class="form-control " list="cars" />
 
                     </div>
                   </div>
@@ -352,7 +143,7 @@
                     <div class="form-group" data-select2-id="44">
 
                       <input required type="text" style="width:100%" name="arr_city" onkeyup="addHyphen(this)"
-                        id="tbNum2" class="form-control select2 select2-hidden-accessible" list="cars" />
+                        id="tbNum2" class="form-control " list="cars" />
 
                     </div>
                   </div>
@@ -367,7 +158,7 @@
 
 
                         <input type="text" name="dep_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum3"
-                          class="form-control select2 select2-hidden-accessible" list="cars" />
+                          class="form-control " list="cars" />
 
                       </div>
                     </div>
@@ -384,7 +175,7 @@
                       <div class="form-group" data-select2-id="44">
 
                         <input type="text" name="arr_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum4"
-                          class="form-control select2 select2-hidden-accessible" list="cars" />
+                          class="form-control " list="cars" />
 
 
                       </div>
@@ -397,7 +188,7 @@
                       <label class="col-md-10 col-sm-10 col-xm-10">Bursher Time </label>
 
                       <div id="text" class="form-group">
-                        <input type="date" class="form-control select2 select2-hidden-accessible"
+                        <input type="date" class="form-control "
                           style="display:none; width:100%" name="bursher_time" id="date3" />
                       </div>
                     </div>
@@ -431,7 +222,7 @@
                     <div class="form-group" data-select2-id="44">
 
                       <input type="text" style="width:100%;" required name="provider_cost"
-                        class="form-control select2 select2-hidden-accessible" />
+                        class="form-control " />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
@@ -440,7 +231,6 @@
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
                         style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-
                       </select>
                     </div>
                   </div>
@@ -469,26 +259,27 @@
                     <div class="form-group" data-select2-id="44">
 
                       <input required type="text" name="cost" style="width: 100%;"
-                        class="form-control select2 select2-hidden-accessible" />
+                        class="form-control " />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Currency </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <select name="passnger_currency2" class="form-control select2 select2-hidden-accessible"
+                      <select name="passnger_currency" class="form-control "
                         style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
 
 
-                        <option value="" selected>YER</option>
-                        <option value="">SAR</option>
-                        <option value="">USD</option>
+                        <option value="YER" selected>YER</option>
+                        <option value="SAR">SAR</option>
+                        <option value="USD">USD</option>
 
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
+             
               <div class="around">
                 <div class="form-group col-md-12 col-sm-12 col-xm-12">
                   <h3 class="col-md-12 col-sm-12 col-xm-12">Remark </h3>
@@ -499,9 +290,22 @@
                   </div>
                 </div>
               </div>
+              <div class="form-group col-md-12 col-sm-12 col-xm-12">
+                  <h3 class="col-md-12 col-sm-12 col-xm-12">Attachment </h3>
+                  <div class="gallery"></div>
+                  <div class="form-group" data-select2-id="44">
+                  <div id="drop-area">
+
+<input type="file" name="attachment[]" id="fileElem" multiple onchange="handleFiles(this.files)">
+<label class="button" for="fileElem">Select some files</label>
+<progress id="progress-bar" max=100 value=0></progress>
+<div id="gallery" /></div>
+</div>
+       </div>
+       </div>
           </div>
           <div class="form-group">
-            <input type="submit" name="submit" id="submit" class="form-submit" value="Save" />
+          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="submit" >Save Change</button>
           </div>
           </form>
 
@@ -513,26 +317,115 @@
   </div>
 
 
-   
-    
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
+  
+// ************************ Drag and drop ***************** //
+let dropArea = document.getElementById("drop-area")
 
+// Prevent default drag behaviors
+;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false)   
+  document.body.addEventListener(eventName, preventDefaults, false)
+})
+
+// Highlight drop area when item is dragged over it
+;['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false)
+})
+
+;['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false)
+})
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false)
+
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+function highlight(e) {
+  dropArea.classList.add('highlight')
+}
+
+function unhighlight(e) {
+  dropArea.classList.remove('active')
+}
+
+function handleDrop(e) {
+  var dt = e.dataTransfer
+  var files = dt.files
+
+  handleFiles(files)
+}
+
+let uploadProgress = []
+let progressBar = document.getElementById('progress-bar')
+
+function initializeProgress(numFiles) {
+  progressBar.value = 0
+  uploadProgress = []
+
+  for(let i = numFiles; i > 0; i--) {
+    uploadProgress.push(0)
+  }
+}
+
+function updateProgress(fileNumber, percent) {
+  uploadProgress[fileNumber] = percent
+  let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+  console.debug('update', fileNumber, percent, total)
+  progressBar.value = total
+}
+
+function handleFiles(files) {
+  files = [...files]
+  initializeProgress(files.length)
+  files.forEach(uploadFile)
+  files.forEach(previewFile)
+}
+
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+    let img = document.createElement('img')
+    img.src = reader.result
+    document.getElementById('gallery').appendChild(img)
+  }
+}
+
+function uploadFile(file, i) {
+  var url = 'https://api.cloudinary.com/v1_1/joezimim007/image/upload'
+  var xhr = new XMLHttpRequest()
+  var formData = new FormData()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+  // Update progress (can be used to show progress indicator)
+  xhr.upload.addEventListener("progress", function(e) {
+    updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+  })
+
+  xhr.addEventListener('readystatechange', function(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      updateProgress(i, 100) // <- Add this
+    }
+    else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Error. Inform the user
+    }
+  })
+
+  formData.append('upload_preset', 'ujpu6gyk')
+  formData.append('file', file)
+  xhr.send(formData)
+}
+  
   // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
   $(document).ready(function () {
     let td = '';
     var now = new Date();
@@ -546,6 +439,7 @@
     $('#date2').val(today);
     $('#date3').val(today);
     $('#date4').val(today);
+    console.log( $('#date').val(today));
     $("input[type='radio']").change(function () {
       if ($(this).val() == "other") {
         $(".otherAnswer").show();

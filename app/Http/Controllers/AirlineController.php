@@ -72,6 +72,11 @@ class AirlineController extends Controller
         return redirect('airline_display');
 
         }
+        public function show_row()
+        { 
+            $data['airline']= Airline::where('id',$_GET['id'])->get();
+            return json_encode($data);
+                        }
     /**
      * Show the form for creating a new resource.
      *

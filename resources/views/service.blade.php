@@ -66,7 +66,7 @@
         <div class="modal-footer">
           <a href="{{url('service')}}"><button type="button" class="btn btn-secondary"
               data-dismiss="modal">Close</button></a>
-          <a id="add2"> <button type="button" class="btn btn-primary">Save changes</button></a>
+          <a id="add2"> <button type="button" class="btn btncolor">Save changes</button></a>
         </div>
       </div>
     </div>
@@ -116,8 +116,8 @@
                   <option class="form-control  d-inline-block" value="1">Active</option>
                   <option class="form-control  d-inline-block" value="0">Deactive</option>
                 </select>
-                <a class="btn btn-primary  col-2 float-right p-2 d-inline-block" href="" data-toggle="modal"
-                  data-target="#add"> <i class="fa fa-plus" aria-hidden="true"></i>Add New Service</a>
+                <a class="btn btncolor col-2 float-right p-2 d-inline-block" href="" data-toggle="modal"
+                  data-target="#add"> <i class="fa fa-plus" aria-hidden="true"></i> New Service</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -143,9 +143,9 @@
 
 
                       <td>
-                        <a type="button" class="btn btn-success"
+                        <a type="button" class="btn btncolor"
                           href="{{ url('service/service-edit/'.$ser->ser_id) }}"><i class="fas fa-pencil-alt "></i></a>
-                        <button type="button" class="btn btn-danger deletebtn"><i class="fas fa-trash "></i></button>
+                        <button type="button" class="btn btncolor deletebtn"><i class="fas fa-trash "></i></button>
               </div>
               @endforeach
               </tbody>
@@ -222,6 +222,37 @@
         });
     });
 
+    $("#dropselect").change(function () {
+
+console.log('jbwjebfjw');
+console.log($("#dropselect"));
+
+              var id=$('#dropselect').val();
+              console.log(id);
+              $.ajax({
+      url:"{{url('service')}}",
+      data: {id:id},
+      success: function (data) {
+        console.log('sec');
+        //console.log(data);
+         $.each(JSON.parse(data), function (key, value) {
+          for (var i = 0; i < value.length; i++){
+            console.log(value.length);
+            console.log(value.length);
+            if(value.length>0)
+{myJSON = JSON.parse(data);
+td +='<tr><input type="hidden" class="delete_id" value="'+value[i].ser_id+'"><td>'+value[i].ser_id+'</td><td>'+value[i].ser_name+'</td> <td>'+value[i].discrption+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="{{ url("/service/service-edit/'+value[i].ser_id+'")}}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
+$('.row2').html(td);}
+          }
+          td='';
+          
+
+
+});  },
+      error:function(){
+        console.log('err');
+ }    }); 
+          });
     $("#add2").click(function () {
               var ser_name=$('#ser_name').val();
               var discrption=$('#discrption').val();

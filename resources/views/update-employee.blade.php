@@ -1,19 +1,6 @@
 @extends('app_layouts.master')
 @section('main_content')
 
-
-<style>
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none !important;
-  margin: 0 !important;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield !important;
-}
-  </style>
 <div class="container">
 
    
@@ -72,7 +59,7 @@ input[type=number] {
          <div class="input-group ">
          <input type="hidden"  class="form-check-input" name="emp_photo1" value="{{$emp->emp_photo}}">
 
-             <label for="upload" class=" p-2 mt-3 mx-auto  bg-primary"  >Chose Image:</label>
+             <label for="upload" class=" p-2 mt-3 mx-auto  btncolor"  >Chose Image:</label>
              <input id="upload"  type="file" name="emp_photo" onchange="onFilePicked(event)"  accept="image/*"  style="display: none;">
              
          </div>
@@ -142,9 +129,10 @@ input[type=number] {
                 </div>
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info">ADD</button>
-                <a href="{{url('employees')}}" class="btn btn-default float-right">Cancel</a>
+            <div class="">
+                <a href="{{url('employees')}}" class="btn btn-default  m-2 p-2 float-left col-3">Cancel</a>
+                <button type="submit" class="btn btncolor text-white m-2 p-2 float-right col-3">Update</button>
+           
             </div>
             <!-- /.card-footer -->
             @endforeach

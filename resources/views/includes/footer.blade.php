@@ -1,6 +1,6 @@
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0-pre
-    </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+    <div class="float-right d-none d-sm-block col-12 text-center">
+      
+    
+    <strong class="">Copyright &copy;   <a href="">Jubari.Travel</a>.</strong> All rights reserved.
+    </div></footer>

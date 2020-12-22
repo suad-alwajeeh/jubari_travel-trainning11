@@ -50,9 +50,10 @@
             <!-- /.card-footer -->
             <input type="hidden" name="id" value="{{$item->ser_id}}" id="id">
          @endforeach
-         <div class="card-footer">
-                <button type="submit" class="btn btn-info">Update</button>
-                <a href="{{url('service')}}" class="btn btn-default float-right">Cancel</a>
+         <div class="">
+                <a href="{{url('service')}}" class="btn btn-default float-left col-3 m-3 p-2">Cancel</a>
+                <button type="submit" class="btn btncolor float-right col-3 m-3 p-2">Update</button>
+           
             </div>
         </form> 
     </div>

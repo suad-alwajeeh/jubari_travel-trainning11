@@ -16,7 +16,7 @@
         </div>
         <div class="info">
        
-          <a href="#" class="d-block">   {{ Auth::user()->name }}</a>
+          <a href="#" class="d-block"> </a>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-                <a href="department" class="nav-link">
+                <a href="/department" class="nav-link">
                   <i class="fa fa-building-o"></i>
                   <p>Department</p>
                 </a>
@@ -56,8 +56,9 @@
             </ul>
               </li>
               <li class="nav-item">
-                <a href="service" class="nav-link">
-                <img src="https://img.icons8.com/ios/25/FFFFFF/waiter.png" />                  <p>Service</p>
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>Service</p>
                 </a>
               </li>
           <li class="nav-item">
@@ -70,13 +71,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="airline_add" class="nav-link">
+                <a href="/airline_add" class="nav-link">
                   <i class="fas fa-plus-circle nav-icon"></i>
                   <p>add airline </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="airline_display" class="nav-link">
+                <a href="/airline_display" class="nav-link">
                   <i class="fas fa-eye nav-icon"></i>
                   <p>disply airline</p>
                 </a>
@@ -95,19 +96,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="role_add" class="nav-link">
+                <a href="/role_add" class="nav-link">
                   <i class="fas fa-plus-circle nav-icon"></i>
                   <p>ADD NEW</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="role_display" class="nav-link">
+                <a href="/role_display" class="nav-link">
                   <i class="fas fa-eye nav-icon"></i>
                   <p>DISPLAY ALL</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="role_display" class="nav-link">
+                <a href="/role_display" class="nav-link">
                   <i class="far fa-eye nav-icon"></i>
                   <p>DISPLAY users roles</p>
                 </a>
@@ -126,19 +127,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="adds_add" class="nav-link">
+                <a href="/adds_add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add new</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="adds_display" class="nav-link">
+                <a href="/adds_display" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Display advertisements</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="adds_user_display" class="nav-link">
+                <a href="/adds_user_display" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>users advertisements</p>
                 </a>
@@ -156,13 +157,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="user_add" class="nav-link">
+                <a href="/user_add" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add new</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="user_display" class="nav-link">
+                <a href="/user_display" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Display users</p>
                 </a>

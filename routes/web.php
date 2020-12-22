@@ -65,7 +65,7 @@ Route::post('/editrole','RoleController@edit_row');
 Route::get('employees', 'EmployeeController@index');
 Route::get('/employees/insert', 'EmployeeController@insert');
 Route::post('/employees/saved', 'EmployeeController@saved');
-Route::get('/employees/employee_delete/{id}', 'EmployeeController@hide_row');
+Route::get('/employees/employee_delete/{id}','EmployeeController@hide_row');
 Route::get('employees/employee-edit/{id}', 'EmployeeController@display_row');
 Route::get('/employees/employee-show/{id}','EmployeeController@show_row');
 Route::post('employees/editemployee','EmployeeController@edit_row');
@@ -79,7 +79,7 @@ Route::get('department/editdepartment','DepartmentController@edit_row');
 Route::get('/is_active_dept/{id}', 'AddsController@is_active');
 Route::get('/no_active_dept/{id}', 'AddsController@is_not_active');
 
-Route::get('service', 'ServiceController@index');
+Route::get('service_test','ServiceController@index');
 Route::get('/service/insert', 'ServiceController@insert');
 Route::get('/service/saved', 'ServiceController@saved');
 Route::get('/service/service_delete/{id}','ServiceController@hide_row');
@@ -87,6 +87,9 @@ Route::get('/service/service-edit/{id}','ServiceController@display_row');
 Route::get('/service/editservice/','ServiceController@edit_row');
 Route::get('/service/sales/','ServiceController@show');
 Route::post('/service/add_ticket/','ServiceController@add_ticket');
+Route::get('/service/update_ticket/{id}','ServiceController@update_ticket');
+Route::get('/service/update_ticketAttachment/{id}','ServiceController@ticketAttachment');
+Route::post('/service/add_bus/','ServiceController@add_bus');
 Route::post('/service/add_hotel/','ServiceController@add_hotel');
 Route::post('/service/add_car/','ServiceController@add_car');
 Route::post('/service/add_visa/','ServiceController@add_visa');
@@ -124,6 +127,8 @@ Route::get('/service/ticket_med/{id}','ServiceController@send_med');
 
 
 
+Route::get('/airline/airline_row','AirlineController@show_row');
+Route::get('/suplier/suplier_row','SuplierController@show_row');
 Route::get('/form',function(){
 
   return view('form');

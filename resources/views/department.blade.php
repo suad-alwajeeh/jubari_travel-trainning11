@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-8">
                         <div class="form-check">
-                            <input type="checkbox" value=1  id="is_active" class="form-check-input" name="is_acive" id="active">
+                            <input type="checkbox" id="is_active" class="form-check-input" name="is_acive" id="active">
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
             <!-- /.card-footer -->
         </form>     </div>
       <div class="modal-footer">
-      <a  href="{{url('department')}}"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
-      <a id="add2"> <button type="button" class="btn btn-primary">Save changes</button></a>
+      <a  href="{{url('department')}}"><button type="button" class="btn btn-secondary   m-3 p-2 float-left" data-dismiss="modal">Close</button></a>
+      <a id="add2"> <button type="button" class="btn btncolor m-3 p-2 float-right">Save changes</button></a>
       </div>
     </div>
   </div>
@@ -106,7 +106,7 @@
 <option  class="form-control  d-inline-block" value="1">Active</option>
 <option  class="form-control  d-inline-block" value="0">Deactive</option>
 </select>
-            <a class="btn btn-primary col-3 p-2  float-right d-inline-block"data-toggle="modal" data-target="#add">  <i class="fa fa-plus" aria-hidden="true"></i>Add New Department</a>
+            <a class="btn btncolor col-3 p-2 text-white float-right d-inline-block"data-toggle="modal" data-target="#add">  <i class="fa fa-plus" aria-hidden="true"></i>New Department</a>
       </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -131,8 +131,8 @@
                     <td>
                     <input type="hidden" id="test">
                     <div class="btn-group btn-group-sm">
-  <a type="button" class="btn btn-success" href="{{ url('department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
-  <a type="button" class="btn btn-danger deletebtn" ><i class="fas fa-trash "></i></a>
+  <a type="button" class="btn btncolor" href="{{ url('department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
+  <a type="button" class="btn btncolor  deletebtn" ><i class="fas fa-trash  text-white"></i></a>
 </div></td>
                   </tr>
                   @endforeach
@@ -238,10 +238,11 @@ $("#dropselect").change(function () {
               console.log(value.length);
               if(value.length>0)
 {myJSON = JSON.parse(data);
-td +='<tr><td>'+value[i].id+'</td><td>'+value[i].name+'</td> <td>'+value[i].created_at+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
+td +='<tr><input type="hidden" class="delete_id" value="'+value[i].id+'"><td>'+value[i].id+'</td><td>'+value[i].name+'</td> <td>'+value[i].created_at+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="{{ url("/department/department-edit/'+value[i].id+'")}}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
 $('.row2').html(td);}
             }
             td='';
+            
 
 
 });  },

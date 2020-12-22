@@ -20,7 +20,6 @@ class ServiceController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('role:admin');
     }
     public function index()
     {
@@ -52,7 +51,7 @@ class ServiceController extends Controller
            
             $data['service']=Service::join('employees','employees.emp_id', '=', 'services.emp_id_how_create')
             ->where($where)->get();
-            return view('service',$data);
+            return view('services',$data);
         }
 
     
@@ -129,7 +128,7 @@ public function show_ticket($id)
  $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
  ->join('currency','currency.cur_id','=','ticket_services.cur_id')
  ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
-return view('sales',$data);
+return view('show_ticket',$data);
 
 
 } 
@@ -188,7 +187,7 @@ public function hide_ticket($id){
  ->join('currency','currency.cur_id','=','ticket_services.cur_id')
  ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
  */
- return redirect('service')->with('seccess','Seccess Data Delete');
+ return back()->with('seccess','Seccess Data Delete');
 
     }
 
@@ -208,7 +207,7 @@ public function hide_ticket($id){
       else{
         $affected= TicketService::where(['id'=>$id])
         ->update(['service_status'=>2]);
-     return redirect('service')->with('Status','Seccess Data Delete');
+     return back()->with('Status','Seccess Data Delete');
        
      }
         }
@@ -418,6 +417,14 @@ public function hide_ticket($id){
    
       return view('add_ticket',$data);
   } 
+  public function update_ticket($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['tickets']=TicketService::where('id',$id)->get();
+   
+      return view('update_ticket',$data);
+  } 
   public function bus(){
     $data['airline']=Airline::where('is_active',1)->get();
     $data['suplier']=Suplier::where('is_active',1)->get();
@@ -493,6 +500,25 @@ public function add_ticket( Request $req)
     else{
         $ticket->dep_date2='';
     }
+   
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
 
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
@@ -514,7 +540,7 @@ public function add_ticket( Request $req)
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 public function add_bus( Request $req)
@@ -522,9 +548,27 @@ public function add_bus( Request $req)
     $ticket=new BusService;
 
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
-    $ticket->passenger_name=$req->passenger_name2;
+    $ticket->passenger_name=$req->passenger_name;
     $ticket->bus_name =$req->bus_name;
     $ticket->bus_number =$req->bus_number;
     $ticket->bus_status =$req->bus_status;
@@ -536,22 +580,36 @@ public function add_bus( Request $req)
     $ticket->cur_id=$req->cur_id;
     $ticket->due_to_customer =$req->due_to_customer ;
     $ticket->cost =$req->cost ;
-    $ticket->service_id=1;
-    $ticket->passnger_currency=$req->passnger_currency2;
+    $ticket->service_id=2;
+    $ticket->passnger_currency=$req->passnger_currency;
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 public function add_hotel( Request $req)
 { 
     $ticket=new HotelService;
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $ticket->attachment .=$attchmentName.',';  
+       }
+    }
+    else{
+      $ticket->attachment='null';
+    }
 
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
-    $ticket->passenger_name=$req->passenger_name2;
+    $ticket->passenger_name=$req->passenger_name;
     $ticket->voucher_number=$req->voucher_number;
     $ticket->hotel_status =$req->hotel_status;
     $ticket->Dep_city =$req->Dep_city;
@@ -562,12 +620,12 @@ public function add_hotel( Request $req)
     $ticket->cur_id=$req->cur_id;
     $ticket->due_to_customer =$req->due_to_customer ;
     $ticket->cost =$req->cost ;
-    $ticket->service_id=1;
-    $ticket->passnger_currency=$req->passnger_currency2;
+    $ticket->service_id=3;
+    $ticket->passnger_currency=$req->passnger_currency;
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 
@@ -575,6 +633,24 @@ public function add_visa( Request $req)
 { 
     $ticket=new VisaService;
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
 
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
@@ -594,7 +670,7 @@ public function add_visa( Request $req)
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 
@@ -603,6 +679,24 @@ public function add_car( Request $req)
     $ticket=new CarService;
 
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
     $ticket->passenger_name=$req->passenger_name;
@@ -622,7 +716,7 @@ public function add_car( Request $req)
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 public function add_service( Request $req)
@@ -630,6 +724,24 @@ public function add_service( Request $req)
     $ticket=new GeneralService;
 
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
     $ticket->passenger_name=$req->passenger_name;
@@ -649,7 +761,7 @@ public function add_service( Request $req)
     $ticket->busher_time=$req->busher_time;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 public function add_Medical( Request $req)
@@ -657,6 +769,24 @@ public function add_Medical( Request $req)
     $ticket=new MedicalService;
 
 
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       //$ticket->attachment=$attchmentName;
+       $ticket->attachment .=$attchmentName.',';
+   
+       }
+    //$ticket->attachment =$attachment;
+
+    }
+    else{
+      $ticket->attachment='null';
+    }
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
     $ticket->passenger_name=$req->passenger_name;
@@ -669,12 +799,12 @@ public function add_Medical( Request $req)
     $ticket->cur_id=$req->cur_id;
     $ticket->due_to_customer =$req->due_to_customer ;
     $ticket->cost =$req->cost ;
-    $ticket->service_id=7;
+    $ticket->service_id=6;
     $ticket->passnger_currency=$req->passnger_currency;
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/service_sales')->with('seccess','Seccess Data Insert');
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
 }

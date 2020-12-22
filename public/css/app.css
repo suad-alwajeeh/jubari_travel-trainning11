@@ -11144,3 +11144,7 @@ body {}
 .topright:hover {
   color: red;
 }
+.btncolor{
+  background-color: #3f3a73;
+  color:white;
+}

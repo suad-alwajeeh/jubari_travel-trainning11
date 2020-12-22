@@ -9,7 +9,7 @@
     <div class="row  card  w-50  justify-content-center mx-auto  m-5">
         <!-- left column -->
         <div class="card-header">
-            <h3 class="card-title text-center">ADD DEPARTMENT</h3>
+            <h3 class="card-title text-center">Update DEPARTMENT</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -43,9 +43,10 @@
                 @endforeach
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info">Update</button>
-                <a href="{{url('department')}}" class="btn btn-default float-right">Cancel</a>
+            <div class="">
+                <a href="{{url('department')}}" class="btn btn-default float-left col-3 m-3 p-2">Cancel</a>
+                <button type="submit" class="btn btncolor float-right col-3 m-3 p-2">Update</button>
+           
             </div>
             <!-- /.card-footer -->
         </form>
