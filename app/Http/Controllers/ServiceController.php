@@ -15,12 +15,12 @@ use App\visaService;
 use App\HotelService;
 use App\MedicalService;
 use App\GeneralService;
+use App\User;
 class ServiceController extends Controller
 {
     //
     public function __construct()
     {
-      $this->middleware('role:admin|sale_executive');
     }
     public function index()
     {
@@ -111,7 +111,7 @@ public function display_row($id)
         ->update(['deleted'=>1]);
         $data['service'] = Service::where('deleted',0)->paginate(7);
       // return response()->json(['status'=>'Delete Successfully']);
-      return redirect('service')->with('seccess','Seccess Data Delete');
+      return redirect('service_test')->with('seccess','Seccess Data Delete');
 
         }
   
@@ -128,66 +128,63 @@ public function show_ticket($id)
 {
  $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
  ->join('currency','currency.cur_id','=','ticket_services.cur_id')
- ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
-return view('show_ticket',$data);
+ ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->paginate(3);
+return view('sales',$data);
 
 
 } 
 public function show_bus($id)
 {
- $data['buses']=BusService::join('supliers','supliers.sup_id','=','bus_services.due_to_supp')
+ $data['bus']=BusService::join('supliers','supliers.sup_id','=','bus_services.due_to_supp')
  ->join('currency','currency.cur_id','=','bus_services.cur_id')
- ->where(['bus_services.service_status'=>$id,'bus_services.deleted'=>0])->get();
-return view('bus',$data);
+ ->where(['bus_services.service_status'=>$id,'bus_services.deleted'=>0])->paginate(3);
+return view('show_bus',$data);
 } 
 public function show_hotel($id)
 {
- $data['hotels']=HotelService::join('supliers','supliers.sup_id','=','hotel_services.due_to_supp')
+ $data['hotel']=HotelService::join('supliers','supliers.sup_id','=','hotel_services.due_to_supp')
  ->join('currency','currency.cur_id','=','hotel_services.cur_id')
- ->where(['hotel_services.service_status'=>$id,'hotel_services.deleted'=>0])->get();
-return view('hotel',$data);
+ ->where(['hotel_services.service_status'=>$id,'hotel_services.deleted'=>0])->paginate(3);
+return view('show_hotel',$data);
 }
 
 public function show_visa($id)
 {
- $data['visas']=VisaService::join('supliers','supliers.sup_id','=','visa_services.due_to_supp')
+ $data['visa']=VisaService::join('supliers','supliers.sup_id','=','visa_services.due_to_supp')
  ->join('currency','currency.cur_id','=','visa_services.cur_id')
- ->where(['visa_services.service_status'=>$id,'visa_services.deleted'=>0])->get();
-return view('visa',$data);
+ ->where(['visa_services.service_status'=>$id,'visa_services.deleted'=>0])->paginate(3);
+return view('show_visa',$data);
 } 
 
 public function show_car($id)
 {
  $data['car']=CarService::join('supliers','supliers.sup_id','=','car_services.due_to_supp')
  ->join('currency','currency.cur_id','=','car_services.cur_id')
- ->where(['car_services.service_status'=>$id,'car_services.deleted'=>0])->get();
-return view('car',$data);
+ ->where(['car_services.service_status'=>$id,'car_services.deleted'=>0])->paginate(3);
+return view('show_car',$data);
 } 
 
 public function show_med($id)
 {
- $data['meds']=MedicalService::join('supliers','supliers.sup_id','=','medical_services.due_to_supp')
+                 
+  $_SESSION['id']=1;
+ $data['med']=MedicalService::join('supliers','supliers.sup_id','=','medical_services.due_to_supp')
  ->join('currency','currency.cur_id','=','medical_services.cur_id')
- ->where(['medical_services.service_status'=>$id,'medical_services.deleted'=>0])->get();
-return view('medical',$data);
+ ->where(['medical_services.service_status'=>$id,'medical_services.deleted'=>0,'medical_services.due_to_customer'=> $_SESSION['id']])->paginate(3);
+ return view('show_med',$data);
 } 
-
 public function show_gen($id)
 {
- $data['gens']=GeneralService::join('supliers','supliers.sup_id','=','general_services.due_to_supp')
+ $data['gen']=GeneralService::join('supliers','supliers.sup_id','=','general_services.due_to_supp')
  ->join('currency','currency.cur_id','=','general_services.cur_id')
- ->where(['general_services.service_status'=>$id,'general_services.deleted'=>0])->get();
-return view('general',$data);
+ ->where(['general_services.service_status'=>$id,'general_services.deleted'=>0])->paginate(3);
+return view('show_gen',$data);
 } 
-
 public function hide_ticket($id){
     echo $id;
     $affected1= TicketService::where('id',$id)
     ->update(['deleted'=>1]);
-   /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
- ->join('currency','currency.cur_id','=','ticket_services.cur_id')
- ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
- */
+  
  return back()->with('seccess','Seccess Data Delete');
 
     }
@@ -217,16 +214,13 @@ public function hide_ticket($id){
         echo $id;
         $affected1= BusService::where('bus_id',$id)
         ->update(['deleted'=>1]);
-       /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
-     ->join('currency','currency.cur_id','=','ticket_services.cur_id')
-     ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
-     */
-     return redirect('service')->with('seccess','Seccess Data Delete');
+     
+        return back()->with('seccess','Seccess Data Delete');
     
         }
         public function send_bus($id){
             echo $id;
-            $where=['id'=>$id];
+            $where=['bus_id'=>$id];
     
             $where +=['attachment'=>'null'];
             $affected1=BusService::where($where)->count();
@@ -238,26 +232,42 @@ public function hide_ticket($id){
         // print_r(json_encode($x));
          }
           else{
-            $affected= BusService::where(['id'=>$id])
+            $affected= BusService::where(['bus_id'=>$id])
             ->update(['service_status'=>2]);
-         return redirect('service')->with('Status','Seccess Data Delete');
+            return back()->with('seccess','Seccess Data Delete');
            
          }
             }
+            public function send_visa($id){
+              echo $id;
+              $where=['visa_id'=>$id];
+      
+              $where +=['attachment'=>'null'];
+              $affected1=VisaService::where($where)->count();
+              if($affected1 >0)
+             { 
+             
+           //return redirect('service')->with('Erroe','Seccess Data Delete');
+           json_encode('noorder');
+          // print_r(json_encode($x));
+           }
+            else{
+              $affected= VisaService::where(['visa_id'=>$id])
+              ->update(['service_status'=>2]);
+              return back()->with('seccess','Seccess Data Delete');
+             
+           }
+              }
         public function hide_hotel($id){
             echo $id;
             $affected1=HotelService::where('hotel_id',$id)
             ->update(['deleted'=>1]);
-           /* $data['ticket']=TicketService::join('supliers','supliers.sup_id','=','ticket_services.due_to_supp')
-         ->join('currency','currency.cur_id','=','ticket_services.cur_id')
-         ->where(['ticket_services.service_status'=>$id,'ticket_services.deleted'=>0])->get();
-         */
-         return redirect('service')->with('seccess','Seccess Data Delete');
-        
+            return back()->with('seccess','Seccess Data Delete');
+
             }
             public function send_hotel($id){
                 echo $id;
-                $where=['id'=>$id];
+                $where=['hotel_id'=>$id];
         
                 $where +=['attachment'=>'null'];
                 $affected1=HotelService::where($where)->count();
@@ -266,20 +276,20 @@ public function hide_ticket($id){
                 json_encode('noorder');
              }
               else{
-                $affected= HotelService::where(['id'=>$id])
+                $affected= HotelService::where(['hotel_id'=>$id])
                 ->update(['service_status'=>2]);
-             return redirect('service')->with('Status','Seccess Data Delete');  
-             }
+                return back()->with('seccess','Seccess Data Delete');
+              }
                 }
             public function hide_car($id){
                 echo $id;
                 $affected1=CarService::where('car_id',$id)
                 ->update(['deleted'=>1]);
-             return redirect('service')->with('seccess','Seccess Data Delete');
-             }
+                return back()->with('seccess','Seccess Data Delete');
+              }
              public function send_car($id){
                 echo $id;
-                $where=['id'=>$id];
+                $where=['car_id'=>$id];
         
                 $where +=['attachment'=>'null'];
                 $affected1=CarService::where($where)->count();
@@ -288,9 +298,9 @@ public function hide_ticket($id){
                            json_encode('noorder');
              }
               else{
-                $affected= CarService::where(['id'=>$id])
+                $affected= CarService::where(['car_id'=>$id])
                 ->update(['service_status'=>2]);
-             return redirect('service')->with('Status','Seccess Data Delete');
+                return back()->with('seccess','Seccess Data Delete');
                
              }
                 }
@@ -298,14 +308,14 @@ public function hide_ticket($id){
                     echo $id;
                     $affected1=VisaService::where('visa_id',$id)
                     ->update(['deleted'=>1]);
-                 return redirect('service')->with('seccess','Seccess Data Delete');       
-                    }
+                    return back()->with('seccess','Seccess Data Delete');
+                  }
                     public function hide_med($id){
                         echo $id;
                         $affected1=MedicalService::where('med_id',$id)
                         ->update(['deleted'=>1]);
-                     return redirect('service')->with('seccess','Seccess Data Delete');                  
-                        }
+                        return back()->with('seccess','Seccess Data Delete');
+                      }
                         public function send_med($id){
                             echo $id;
                             $where=['id'=>$id];
@@ -319,7 +329,7 @@ public function hide_ticket($id){
                           else{
                             $affected= MedicalService::where(['id'=>$id])
                             ->update(['service_status'=>2]);
-                         return redirect('service')->with('Status','Seccess Data Delete');
+                            return back()->with('seccess','Seccess Data Delete');
                            
                          }
                             }
@@ -327,12 +337,12 @@ public function hide_ticket($id){
                             echo $id;
                             $affected1=GeneralService::where('gen_id',$id)
                             ->update(['deleted'=>1]);
-                          return redirect('service')->with('seccess','Seccess Data Delete');
+                            return back()->with('seccess','Seccess Data Delete');
                         
                             }
                             public function send_gen($id){
                                 echo $id;
-                                $where=['id'=>$id];
+                                $where=['gen_id'=>$id];
                         
                                 $where +=['attachment'=>'null'];
                                 $affected1=GeneralService::where($where)->count();
@@ -342,9 +352,9 @@ public function hide_ticket($id){
                              json_encode('noorder');
                              }
                               else{
-                                $affected= GeneralService::where(['id'=>$id])
+                                $affected= GeneralService::where(['gen_id'=>$id])
                                 ->update(['service_status'=>2]);
-                             return redirect('service')->with('Status','Seccess Data Delete');
+                                return back()->with('seccess','Seccess Data Delete');
                                
                              }
                                 }
@@ -390,7 +400,6 @@ public function hide_ticket($id){
                  ->where(['car_services.service_status'=>2,'car_services.due_to_customer'=> $_SESSION['id'],'car_services.deleted'=>0])->count();;
                  $data['archev_car']=CarService::join('employees','employees.emp_id', '=','car_services.due_to_customer')
                  ->where(['car_services.service_status'=>4,'car_services.due_to_customer'=> $_SESSION['id'],'car_services.deleted'=>0])->count();;
-                  
                   //get data of medical service
                   $data['save_med']=MedicalService::join('employees','employees.emp_id', '=','medical_services.due_to_customer')
                   ->where(['medical_services.service_status'=>1,'medical_services.due_to_customer'=> $_SESSION['id'],'medical_services.deleted'=>0])->count();;
@@ -422,9 +431,58 @@ public function hide_ticket($id){
     $data['airline']=Airline::where('is_active',1)->get();
     $data['suplier']=Suplier::where('is_active',1)->get();
     $data['emp']=Employee::where('is_active',1)->get();
-    $data['tickets']=TicketService::where('id',$id)->get();
+    $data['tickets']=TicketService::join('currency','currency.cur_id','=','ticket_services.cur_id')->where('id',$id)->get();
    
       return view('update_ticket',$data);
+  } 
+  public function update_Bus($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['buss']=BusService::join('currency','currency.cur_id','=','bus_services.cur_id')->where('bus_id',$id)->get();
+   
+      return view('update_bus',$data);
+  } 
+  public function update_Hotel($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['hotels']=HotelService::join('currency','currency.cur_id','=','hotel_services.cur_id')->where('hotel_id',$id)->get();
+   
+      return view('update_hotel',$data);
+  } 
+  public function update_Car($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['cars']=CarService::join('currency','currency.cur_id','=','car_services.cur_id')->where('car_id',$id)->get();
+   
+      return view('update_car',$data);
+  } 
+
+  public function update_visa($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['visas']=VisaService::join('currency','currency.cur_id','=','visa_services.cur_id')->where('visa_id',$id)->get();
+   
+      return view('update_visa',$data);
+  } 
+  public function update_med($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['meds']=MedicalService::join('currency','currency.cur_id','=','medical_services.cur_id')->where('med_id',$id)->get();
+   
+      return view('update_med',$data);
+  } 
+  public function update_gen($id){
+    $data['airline']=Airline::where('is_active',1)->get();
+    $data['suplier']=Suplier::where('is_active',1)->get();
+    $data['emp']=Employee::where('is_active',1)->get();
+    $data['gens']=GeneralService::join('currency','currency.cur_id','=','general_services.cur_id')->where('gen_id',$id)->get();
+   
+      return view('update_gen',$data);
   } 
   public function bus(){
     $data['airline']=Airline::where('is_active',1)->get();
@@ -544,6 +602,91 @@ public function add_ticket( Request $req)
 return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
 }
 
+public function updateTicket( Request $req)
+{ 
+    $ticket=new TicketService;
+$dep_city2='';
+$arr_city2='';
+$img='';
+$dp_date='';
+$busher='';
+    if(isset($req->Dep_city2))
+    {
+        $dep_city2 =$req->Dep_city1;
+
+    }
+    else{
+        $dep_city2='';
+    }
+    if(isset($req->arr_city2))
+    {
+        $arr_city2 =$req->arr_city1;
+
+    }
+    else{
+        $arr_city2='';
+    }
+
+    
+
+    if(isset($req->dep_date2))
+    {
+        $dp_date =$req->dep_date2;
+        $ticket->bursher_time =$req->bursher_time;
+
+    }
+    else{
+        $dp_date='';
+    }
+    if(isset($req->bursher_time))
+    {
+        $busher =$req->dep_date2;
+
+    }
+    else{
+        $busher='';
+    }
+   
+
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+
+       $ticket::where('id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,'airline_id'=>$req->airline,
+       'ticket'=>$req->ticket,'ticket_status'=>$req->ticket_status,
+       'ticket_number'=>$req->ticket_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>1,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img ,'Dep_city2'=>$dep_city2,'arr_city2'=>$arr_city2,'dep_date2'=>$dp_date,'bursher_time'=>$busher
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('id',$req->id)
+      ->update(['Issue_date'=>$req->Issue_date,
+      'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,'airline_id'=>$req->airline,
+      'ticket'=>$req->ticket,'ticket_status'=>$req->ticket_status,
+      'ticket_number'=>$req->ticket_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+     'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+     'cost'=>$req->cost,'service_id'=>1,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+     'Dep_city2'=>$dep_city2,'arr_city2'=>$arr_city2,'dep_date2'=>$dp_date,'bursher_time'=>$busher
+
+      ]); 
+    }
+return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+}
+
 public function add_bus( Request $req)
 { 
     $ticket=new BusService;
@@ -586,12 +729,13 @@ public function add_bus( Request $req)
     $ticket->remark=$req->remark;
     $ticket->service_status=1;
     $ticket->save();
-    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+    return back()->with('seccess','Seccess Data Insert');
 }
-
-public function add_hotel( Request $req)
+public function updateBus( Request $req)
 { 
-    $ticket=new HotelService;
+    $ticket=new BusService;
+
+   $img='';
 
     if($req->hasfile('attachment'))
     {
@@ -601,8 +745,272 @@ public function add_hotel( Request $req)
          $ext=$attchmentFile[$i]->getClientOriginalExtension();
        $attchmentName =rand(123456,999999).".".$ext;
        $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
-       $ticket->attachment .=$attchmentName.',';  
+       $img.=$attchmentName.',';
+   
        }
+
+       $ticket::where('bus_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'bus_name'=>$req->bus_name,'bus_status'=>$req->bus_status,
+       'bus_number'=>$req->bus_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img 
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('bus_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'bus_name'=>$req->bus_name,'bus_status'=>$req->bus_status,
+       'bus_number'=>$req->bus_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+
+       ]); 
+    }
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+  }
+
+
+public function updateHotel( Request $req)
+{ 
+    $ticket=new HotelService;
+
+   $img='';
+
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+
+       $ticket::where('hotel_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'hotel_status'=>$req->hotel_status,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img 
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('hotel_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'hotel_status'=>$req->hotel_status,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+
+       ]); 
+    }
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+  }
+
+public function updateCar( Request $req)
+{ 
+    $ticket=new CarService;
+
+   $img='';
+
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+
+       $ticket::where('car_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'car_status'=>$req->car_status,'car_info'=>$req->car_info,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img 
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('car_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'car_status'=>$req->car_status,'car_info'=>$req->car_info,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+
+       ]); 
+    }
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+  }
+
+  public function updateGen( Request $req)
+  { 
+      $ticket=new GeneralService;
+  
+     $img='';
+  
+      if($req->hasfile('attachment'))
+      {
+         $attchmentFile =$req->file('attachment') ;
+         $num=count($attchmentFile);
+        for($i=0;$i<$num;$i++){
+           $ext=$attchmentFile[$i]->getClientOriginalExtension();
+         $attchmentName =rand(123456,999999).".".$ext;
+         $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+         $img.=$attchmentName.',';
+     
+         }
+  
+         $ticket::where('gen_id',$req->id)
+         ->update(['Issue_date'=>$req->Issue_date,
+         'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+         'offered_status'=>$req->offered_status,'gen_info'=>$req->gen_info,
+         'voucher_number'=>$req->voucher_number,'general_status '=>$req->general_status ,
+        'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+        'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+        'attachment'=>$img 
+  
+         ]); 
+  
+      }
+      else{
+        $ticket::where('gen_id',$req->id)
+        ->update(['Issue_date'=>$req->Issue_date,
+        'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+        'offered_status'=>$req->offered_status,'gen_info'=>$req->gen_info,
+        'voucher_number'=>$req->voucher_number,'general_status '=>$req->general_status ,
+       'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+       'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+ 
+        ]); 
+      }
+      return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+    }
+  
+public function updateMed( Request $req)
+{ 
+    $ticket=new MedicalService;
+
+   $img='';
+
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+
+       $ticket::where('car_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'car_status'=>$req->car_status,'car_info'=>$req->car_info,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img 
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('car_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'car_status'=>$req->car_status,'car_info'=>$req->car_info,
+       'voucher_number'=>$req->voucher_number,'Dep_city'=>$req->Dep_city1,'arr_city'=>$req->arr_city,'dep_date'=>$req->dep_date,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+
+       ]); 
+    }
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+  }
+
+public function updateVisa( Request $req)
+{ 
+    $ticket=new VisaService;
+
+   $img='';
+
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+
+       $ticket::where('visa_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'visa_status'=>$req->visa_status,'visa_type'=>$req->visa_type,'country'=>$req->country,'visa_info'=>$req->visa_info,
+       'voucher_number'=>$req->voucher_number,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1,
+      'attachment'=>$img 
+
+       ]); 
+
+    }
+    else{
+      $ticket::where('visa_id',$req->id)
+       ->update(['Issue_date'=>$req->Issue_date,
+       'refernce'=>$req->refernce,'passenger_name'=>$req->passenger_name,
+       'visa_status'=>$req->visa_status,'visa_type'=>$req->visa_type,'country'=>$req->country,'visa_info'=>$req->visa_info,
+       'voucher_number'=>$req->voucher_number,
+      'due_to_supp'=>$req->due_to_supp,'provider_cost'=>$req->provider_cost,'cur_id'=>$req->cur_id,'due_to_customer'=>$req->due_to_customer,
+      'cost'=>$req->cost,'service_id'=>2,'passnger_currency'=>$req->passnger_currency,'remark'=>$req->remark,'service_status'=>1
+
+       ]); 
+    }
+    return redirect('/service/sales_repo')->with('seccess','Seccess Data Insert');
+  }
+public function add_hotel( Request $req)
+{ 
+    $ticket=new HotelService;
+    $img='';
+    if($req->hasfile('attachment'))
+    {
+       $attchmentFile =$req->file('attachment') ;
+       $num=count($attchmentFile);
+      for($i=0;$i<$num;$i++){
+         $ext=$attchmentFile[$i]->getClientOriginalExtension();
+       $attchmentName =rand(123456,999999).".".$ext;
+       $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
+       $img.=$attchmentName.',';
+   
+       }
+       $ticket->attachment=$img;
     }
     else{
       $ticket->attachment='null';
@@ -633,7 +1041,7 @@ public function add_hotel( Request $req)
 public function add_visa( Request $req)
 { 
     $ticket=new VisaService;
-
+    $img='';
     if($req->hasfile('attachment'))
     {
        $attchmentFile =$req->file('attachment') ;
@@ -642,17 +1050,14 @@ public function add_visa( Request $req)
          $ext=$attchmentFile[$i]->getClientOriginalExtension();
        $attchmentName =rand(123456,999999).".".$ext;
        $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
-       //$ticket->attachment=$attchmentName;
-       $ticket->attachment .=$attchmentName.',';
+       $img.=$attchmentName.',';
    
        }
-    //$ticket->attachment =$attachment;
-
+       $ticket->attachment=$img;
     }
     else{
       $ticket->attachment='null';
     }
-
     $ticket->Issue_date =$req->Issue_date;
     $ticket->refernce=$req->refernce;
     $ticket->passenger_name=$req->passenger_name;
@@ -679,7 +1084,7 @@ public function add_car( Request $req)
 { 
     $ticket=new CarService;
 
-
+    $img='';
     if($req->hasfile('attachment'))
     {
        $attchmentFile =$req->file('attachment') ;
@@ -688,12 +1093,10 @@ public function add_car( Request $req)
          $ext=$attchmentFile[$i]->getClientOriginalExtension();
        $attchmentName =rand(123456,999999).".".$ext;
        $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
-       //$ticket->attachment=$attchmentName;
-       $ticket->attachment .=$attchmentName.',';
+       $img.=$attchmentName.',';
    
        }
-    //$ticket->attachment =$attachment;
-
+       $ticket->attachment=$img;
     }
     else{
       $ticket->attachment='null';
@@ -724,7 +1127,7 @@ public function add_service( Request $req)
 { 
     $ticket=new GeneralService;
 
-
+    $img='';
     if($req->hasfile('attachment'))
     {
        $attchmentFile =$req->file('attachment') ;
@@ -733,12 +1136,10 @@ public function add_service( Request $req)
          $ext=$attchmentFile[$i]->getClientOriginalExtension();
        $attchmentName =rand(123456,999999).".".$ext;
        $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
-       //$ticket->attachment=$attchmentName;
-       $ticket->attachment .=$attchmentName.',';
+       $img.=$attchmentName.',';
    
        }
-    //$ticket->attachment =$attachment;
-
+       $ticket->attachment=$img;
     }
     else{
       $ticket->attachment='null';
@@ -768,8 +1169,7 @@ public function add_service( Request $req)
 public function add_Medical( Request $req)
 { 
     $ticket=new MedicalService;
-
-
+    $img='';
     if($req->hasfile('attachment'))
     {
        $attchmentFile =$req->file('attachment') ;
@@ -778,12 +1178,10 @@ public function add_Medical( Request $req)
          $ext=$attchmentFile[$i]->getClientOriginalExtension();
        $attchmentName =rand(123456,999999).".".$ext;
        $attchment=$attchmentFile[$i]->move('img/user_attchment/',$attchmentName);
-       //$ticket->attachment=$attchmentName;
-       $ticket->attachment .=$attchmentName.',';
+       $img.=$attchmentName.',';
    
        }
-    //$ticket->attachment =$attachment;
-
+       $ticket->attachment=$img;
     }
     else{
       $ticket->attachment='null';

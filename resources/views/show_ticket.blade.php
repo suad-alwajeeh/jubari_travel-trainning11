@@ -18,6 +18,7 @@ p{
 word-spacing: 5px;
 margin:auto;
 }
+
 </style>
   <!-- Content Wrapper. Contains page content -->
   
@@ -38,7 +39,7 @@ margin:auto;
   <div class="row m-2">
   @foreach($ticket as $tickets)
 
-    <div class="wrapp wapper">
+    <div class="wrapp wapper text-center mx-auto">
      
 
       <div class="profile">
@@ -60,7 +61,7 @@ margin:auto;
         <label>Passenger Cuurency :</label><p class="description">{{$tickets->passnger_currency}}</p><br>
        @if($tickets->ticket_status==1)
         <label>Ticket Status :</label><p class="description">OK</p><br>
-        @elseif($tickets->ticket_status==1)
+        @elseif($tickets->ticket_status==2)
         <label>Ticket Status :</label><p class="description">Avoid</p><br>
         @else
         <label>Ticket Status :</label><p class="description">Revent</p><br>
@@ -78,7 +79,7 @@ margin:auto;
         </div>
         <div class="icon mx-auto text-center">
         <input type="hidden" class="delete_id" value="{{$tickets->id}}">
-          <a class="sendbtn" ><i class="fa fa-upload" aria-hidden="true"></i></a>
+          <a class="" href="{{ url('/service/update_ticket/'.$tickets->id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
 
         </div>
 
@@ -91,8 +92,12 @@ margin:auto;
       </div>
     </div>
     @endforeach
+
   </div>
+{{$ticket->links()}}
+
 </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

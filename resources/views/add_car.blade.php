@@ -33,35 +33,34 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group clo-12">
+              <div class="form-row col-md-12 col-sm-12 col-xm-12">
+
+                <div class="form-group col-md-6 col-sm-12 col-xm-12">
                   <label class="col-12">Passenger Name : </label>
-                  <div class="form-group"    >
 
                     <input required type="text" class="form-control     "
                       name="passenger_name" class="form-control     "
                       style="width: 100%;" />
                   </div>
-                </div>
-              <div class="form-row col-md-12 col-sm-12 col-xm-12">
 
-                <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                <div class="form-group col-md-3 col-sm-12 col-xm-12">
                   <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
-                  <div class="form-group"    >
-                    <input type="text"  class="form-control     " name="voucher_number" />
+                  <div class="form-group">
+                    <input type="text"  class="form-control" name="voucher_number" />
                   </div>
                 </div>
-                <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                <div class="form-group col-md-3 col-sm-12 col-xm-12">
                   <label class="col-md-12 col-sm-12 col-xm-12">Car Status :</label>
-                  <div class="form-group"    >
+                  <div class="form-group" >
 
                   <select class="form-control select2 select2-hidden-accessible" name="car_status" id="code"
-                      style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      style="width: 100%;" data-select2-id="6" tabindex="0" aria-hidden="true">
 
 
 
                       <option value="1">OK</option>
-                      <option value="2" disable>Avoid</option>
-                      <option value="3" disable>Refent</option>
+                      <option value="2" disabled>Avoid</option>
+                      <option value="3" disabled>Refent</option>
 
 
                     </select>
@@ -115,7 +114,7 @@
                     <div class="form-group"    >
                       <select  name="due_to_supp" required
                         class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="1"
-                        tabindex="-1" aria-hidden="true">
+                        tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
 
@@ -138,7 +137,7 @@
                     <div class="form-group"    >
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="2" tabindex="0" aria-hidden="true">
 
                       </select>
                     </div>
@@ -151,7 +150,7 @@
                     <div class="form-group"    >
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">
 
                         @foreach($emp as $emps)
 
@@ -176,7 +175,7 @@
                     <div class="form-group"    >
 
                       <select name="passnger_currency" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="5" tabindex="0" aria-hidden="true">
 
 
                         <option value="YER" selected>YER</option>

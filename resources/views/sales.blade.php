@@ -106,8 +106,9 @@
                     <td>{{$tickets->ticket_status}} </td>
                     <td>{{$tickets->remark}} </td>
                     <td>
-                    <a type="button" class="btn sendbtn" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-                    <a type="button" class="btn  deletebtn" ><i class="fas fa-trash "></i></a>
+                    <a type="button" class="btn sendbtn btncolor text-white" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                    <a class="btn btncolor" type="button" href="{{ url('/service/update_ticket/'.$tickets->id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a type="button" class="btn  deletebtn btncolor text-white" ><i class="fas fa-trash "></i></a>
 </td>
                   </tr>
                   @endforeach
@@ -118,10 +119,13 @@
                   </tr>
                   </tfoot>
                 </table>
+
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            {{$ticket->links()}}
+
           </div>
           <!-- /.col -->
         </div>

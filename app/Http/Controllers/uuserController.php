@@ -21,7 +21,7 @@ class uuserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['role:sale_executive |admin']); 
+        //$this->middleware(['role:sale_executive |admin']); 
     }
     public function login()
     {

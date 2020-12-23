@@ -73,6 +73,7 @@ Route::post('/editrole','RoleController@edit_row');
 
 //employees
 Route::get('employees', 'EmployeeController@index');
+Route::get('employees/active', 'EmployeeController@Activate');
 Route::get('/employees/insert', 'EmployeeController@insert');
 Route::post('/employees/saved', 'EmployeeController@saved');
 Route::get('/employees/employee_delete/{id}','EmployeeController@hide_row');
@@ -98,6 +99,19 @@ Route::get('/service/editservice/','ServiceController@edit_row');
 Route::get('/service/sales/','ServiceController@show');
 Route::post('/service/add_ticket/','ServiceController@add_ticket');
 Route::get('/service/update_ticket/{id}','ServiceController@update_ticket');
+Route::get('/service/update_bus/{id}','ServiceController@update_bus');
+Route::get('/service/update_car/{id}','ServiceController@update_car');
+Route::get('/service/update_hotel/{id}','ServiceController@update_hotel');
+Route::get('/service/update_visa/{id}','ServiceController@update_visa');
+Route::get('/service/update_med/{id}','ServiceController@update_med');
+Route::get('/service/update_gen/{id}','ServiceController@update_gen');
+Route::post('/service/updateTicket','ServiceController@updateTicket');
+Route::post('/service/updateBus','ServiceController@updateBus');
+Route::post('/service/updateCar','ServiceController@updateCar');
+Route::post('/service/updateHotel','ServiceController@updateHotel');
+Route::post('/service/updateVisa','ServiceController@updateVisa');
+Route::post('/service/updateMed','ServiceController@updateMed');
+Route::post('/service/updateGen','ServiceController@updateGen');
 Route::get('/service/update_ticketAttachment/{id}','ServiceController@ticketAttachment');
 Route::post('/service/add_bus/','ServiceController@add_bus');
 Route::post('/service/add_hotel/','ServiceController@add_hotel');
@@ -128,12 +142,12 @@ Route::get('/service/visa_delete/{id}','ServiceController@hide_visa');
 Route::get('/service/med_delete/{id}','ServiceController@hide_med');
 Route::get('/service/gen_delete/{id}','ServiceController@hide_gen');
 Route::get('/service/ticket_send/{id}','ServiceController@send_ticket');
-Route::get('/service/ticket_bus/{id}','ServiceController@send_bus');
-Route::get('/service/ticket_visa/{id}','ServiceController@send_visa');
-Route::get('/service/ticket_car/{id}','ServiceController@send_car');
-Route::get('/service/ticket_hotel/{id}','ServiceController@send_hotel');
-Route::get('/service/ticket_gen/{id}','ServiceController@send_gen');
-Route::get('/service/ticket_med/{id}','ServiceController@send_med');
+Route::get('/service/bus_send/{id}','ServiceController@send_bus');
+Route::get('/service/send_visa/{id}','ServiceController@send_visa');
+Route::get('/service/send_car/{id}','ServiceController@send_car');
+Route::get('/service/send_hotel/{id}','ServiceController@send_hotel');
+Route::get('/service/send_gen/{id}','ServiceController@send_gen');
+Route::get('/service/send_med/{id}','ServiceController@send_med');
 
 //Supplier
 

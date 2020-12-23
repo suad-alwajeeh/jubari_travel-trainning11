@@ -58,13 +58,13 @@
                   <div class="form-group"  >
 
                     <select class="form-control select2 select2-hidden-accessible" name="bus_status" id="code"
-                      style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
 
 
 
                       <option value="1">OK</option>
-                      <option value="2" disable>Avoid</option>
-                      <option value="3" disable>Refent</option>
+                      <option value="2" disabled>Avoid</option>
+                      <option value="3" disabled>Refent</option>
 
 
                     </select>
@@ -117,8 +117,8 @@
 
                     <div class="form-group"  >
                       <select  name="due_to_supp" required
-                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="1"
-                        tabindex="-1" aria-hidden="true">
+                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="2"
+                        tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
 
@@ -141,7 +141,7 @@
                     <div class="form-group"  >
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">
 
                       </select>
                     </div>
@@ -154,7 +154,7 @@
                     <div class="form-group"  >
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="4" tabindex="0" aria-hidden="true">
 
                         @foreach($emp as $emps)
 
@@ -179,7 +179,7 @@
                     <div class="form-group"  >
 
                       <select name="passnger_currency" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="6" tabindex="0" aria-hidden="true">
 
 
                         <option value="YER" selected>YER</option>

@@ -34,20 +34,19 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
                 </div>
-                <div class="form-group clo-12">
+                <div class="form-row col-md-12 col-sm-12 col-xm-12">
                   <label class="col-12">Passenger Name : </label>
-                  <div class="form-group" data-select2-id="44">
+                  <div class="form-group col-6" data-select2-id="44">
 
                     <input required type="text" class="form-control select2 select2-hidden-accessible"
                       name="passenger_name" 
                       style="width: 100%;" />
                   </div>
-                </div>
-                <div class="form-row ">
-                  <div class="form-group col-6">
+               
+                  <div class="form-group col-2">
                     <input type="radio" onchange="hideB(this)" name="aorb" class=" m-2" checked>one Way
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-2">
                     <input type="radio" onchange="hideA(this)" name="aorb" class=" m-2" value="other">RoundTrip
                   </div>
 
@@ -56,13 +55,12 @@ name="Issue_date" id="date"  />
 
                 <div class="form-row col-md-12 col-sm-12 col-xm-12">
 
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Airline :</label>
 
                     <div class="form-group" data-select2-id="44">
                       <select id="airline" name="airline" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-
+                        style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">
                         @foreach($airline as $airs)
 
                         <option value="{{$airs->id}}">{{$airs->airline_name}}</option>
@@ -71,12 +69,11 @@ name="Issue_date" id="date"  />
                       </select>
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">code </label>
-                    <div class="form-group" data-select2-id="44">
-                      <select class="form-control select2 select2-hidden-accessible" name="ticket" id="code"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-
+                    <div class="form-group" data-select2-id="4">
+                      <select name="ticket" id="code"
+                      class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="4" tabindex="0" aria-hidden="true">
                         @foreach($airline as $airs)
 
                         <option value="{{$airs->id}}">{{$airs->airline_code}}</option>
@@ -88,31 +85,27 @@ name="Issue_date" id="date"  />
 
 
                   </div>
-                </div>
-
-                <div class="form-row">
-
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+               
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Ticket Number :</label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" >
 
-                      <input required type="text" class="form-control "
-                        style="width:100%;" name="ticket_number" />
+                      <input required class="form-control "
+                        style="width: 100%;"  name="ticket_number" />
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Ticket Status :</label>
 
 
                     <div class="form-group" data-select2-id="44">
-                      <select class="form-control select2 select2-hidden-accessible" name="ticket_status" id="code"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      <select  name="ticket_status" id="code"
+                      class="form-control select2 select2-hidden-accessible"
+                        style="width: 100%;" data-select2-id="6" tabindex="0" aria-hidden="true">
 
-
-
-                        <option value="1">OK</option>
-                        <option value="2" disable>Avoid</option>
-                        <option value="3" disable>Refent</option>
+                        <option value="1" >OK</option>
+                        <option value="2" disabled>Avoid</option>
+                        <option value="3" disabled>Refent</option>
 
 
                       </select>
@@ -134,13 +127,13 @@ name="Issue_date" id="date"  />
                   <div class="form-group col-md-4 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Dep Date </label>
                     <div class="form-group" data-select2-id="44">
-                      <input required type="date" style="width:100%"
-                        class="form-control select2 select2-hidden-accessible" name="dep_date" id="date2" />
+                      <input required type="date" class="form-control select2 select2-hidden-accessible"
+                        style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true" name="dep_date" id="date2" />
                     </div>
                   </div>
                   <div class="form-group col-md-4 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Arr City </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" >
 
                       <input required type="text" style="width:100%" name="arr_city" onkeyup="addHyphen(this)"
                         id="tbNum2" class="form-control " list="cars" />
@@ -154,7 +147,7 @@ name="Issue_date" id="date"  />
 
                     <div class="form-group col-md-4 col-sm-12 col-xm-12">
                       <label class="col-md-12 col-sm-12 col-xm-12">Dep City </label>
-                      <div class="form-group" data-select2-id="44">
+                      <div class="form-group">
 
 
                         <input type="text" name="dep_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum3"
@@ -165,14 +158,14 @@ name="Issue_date" id="date"  />
 
                     <div class="form-group col-md-4 col-sm-12 col-xm-12">
                       <label class="col-md-12 col-sm-12 col-xm-12">Dep Date </label>
-                      <div class="form-group" data-select2-id="44">
+                      <div class="form-group">
                         <input type="date" name="dep_date2" style="width:100%"
                           class="form-control select2 select2-hidden-accessible" id="date2" />
                       </div>
                     </div>
                     <div class="form-group col-md-4 col-sm-12 col-xm-12">
                       <label class="col-md-12 col-sm-12 col-xm-12">Arr City </label>
-                      <div class="form-group" data-select2-id="44">
+                      <div class="form-group">
 
                         <input type="text" name="arr_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum4"
                           class="form-control " list="cars" />
@@ -182,7 +175,7 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" >
 
                       <input type="checkbox" id="myCheck" onclick="myFunction()">
                       <label class="col-md-10 col-sm-10 col-xm-10">Bursher Time </label>
@@ -206,8 +199,8 @@ name="Issue_date" id="date"  />
 
                     <div class="form-group" data-select2-id="44">
                       <select  name="due_to_supp" required
-                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="1"
-                        tabindex="-1" aria-hidden="true">
+                      class="form-control select2 select2-hidden-accessible"
+                        style="width: 100%;" data-select2-id="7" tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
 
@@ -227,10 +220,10 @@ name="Issue_date" id="date"  />
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-4 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" data-select2-id="8">
 
-                      <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      <select  name="cur_id" required class="form-control select2 select2-hidden-accessible"
+                        style="width: 100%;" data-select2-id="9" tabindex="0" aria-hidden="true">
                       </select>
                     </div>
                   </div>
@@ -239,10 +232,10 @@ name="Issue_date" id="date"  />
                   <h2 class="form-title"> Customer Info</h2>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Customer Name </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" data-select2-id="40">
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
 
                         @foreach($emp as $emps)
 
@@ -256,7 +249,7 @@ name="Issue_date" id="date"  />
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" data-select2-id="45">
 
                       <input required type="text" name="cost" style="width: 100%;"
                         class="form-control " />
@@ -264,13 +257,12 @@ name="Issue_date" id="date"  />
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group">
 
-                      <select name="passnger_currency" class="form-control "
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      <select name="passnger_currency" class="form-control select2 select2-hidden-accessible"
+                        style="width: 100%;" data-select2-id="2" tabindex="0" aria-hidden="true">
 
-
-                        <option value="YER" selected>YER</option>
+                        <option value="YER">YER</option>
                         <option value="SAR">SAR</option>
                         <option value="USD">USD</option>
 

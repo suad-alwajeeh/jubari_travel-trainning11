@@ -55,13 +55,13 @@
                   <div class="form-group"     >
 
                   <select class="form-control select2 select2-hidden-accessible" name="general_status" id="code"
-                      style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      style="width: 100%;" data-select2-id="7" tabindex="0" aria-hidden="true">
 
 
 
                       <option value="1">OK</option>
-                      <option value="2" disable>Avoid</option>
-                      <option value="3" disable>Refent</option>
+                      <option value="2" disabled>Avoid</option>
+                      <option value="3" disabled>Refent</option>
 
 
                     </select>
@@ -73,13 +73,13 @@
 
 
                     <select class="form-control select2 select2-hidden-accessible" name="offered_status" id="code"
-                      style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                      style="width: 100%;" data-select2-id="2" tabindex="0" aria-hidden="true">
 
 
 
                       <option value="1">OK</option>
-                      <option value="2" disable>Avoid</option>
-                      <option value="3" disable>Refent</option>
+                      <option value="2" disabled>Avoid</option>
+                      <option value="3" disabled>Refent</option>
 
 
                     </select>
@@ -89,22 +89,22 @@
                 <div class="form-group col-md-12 col-sm-12 col-xm-12">
                   <label>Additional Info </label>
                   <div class="form-group"     >
-                    <input type="text" class="form-control     " name="med_info">
+                    <input type="text" class="form-control" name="med_info">
                   </div>
                 </div>
-                <div class="form-group col-md-12 col-sm-12 col-xm-12">
-                  <div class="form-group"     >
+               
+                 <div class="form-row col-md-12 col-sm-12 col-xm-12">
+                    <div class="form-group col-md-12 col-sm-12 col-xm-12" >
 
+                      <input type="checkbox" id="myCheck" class="" onclick="myFunction()">
+                      <label class="col-md-4 col-sm-10 col-xm-10">Enter Sevice Date</label>
 
-                    <input type="checkbox" class="form-control col-2" id="myChecks"
-                      onclick="myFunctions()">
-                    <label class="col-md-8 col-sm-8 col-xm-8">Enter Sevice Date </label>
-
-                    <div id="text" class="form-group">
-                      <input type="date" class="form-input"  style="display:none;" disable name="busher_time" id="date4" />
+                      <div id="text" class="form-group">
+                        <input type="date" class="form-control col-md-4 col-sm-10 col-xm-10 " style="display:none; width:100%" name="bursher_time" id="date3" />
+                      </div>
                     </div>
+
                   </div>
-                 </div>
               </div>
 
 
@@ -117,8 +117,8 @@
 
                     <div class="form-group" >
                       <select  name="due_to_supp" required
-                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="1"
-                        tabindex="-1" aria-hidden="true">
+                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="3"
+                        tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
 
@@ -141,7 +141,7 @@
                     <div class="form-group"     >
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="4" tabindex="0" aria-hidden="true">
 
                       </select>
                     </div>
@@ -154,7 +154,7 @@
                     <div class="form-group"     >
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="6" tabindex="0" aria-hidden="true">
 
                         @foreach($emp as $emps)
 
@@ -179,7 +179,7 @@
                     <div class="form-group"     >
 
                       <select name="passnger_currency" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="8" tabindex="0" aria-hidden="true">
 
 
                         <option value="YER" selected>YER</option>

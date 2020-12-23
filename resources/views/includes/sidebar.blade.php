@@ -107,7 +107,6 @@
                   <p>DISPLAY ALL</p>
                 </a>
               </li>
-<<<<<<< HEAD
               <li class="nav-item">
                 <a href="/role_display" class="nav-link">
                   <i class="far fa-eye nav-icon"></i>
@@ -115,16 +114,6 @@
                 </a>
               </li>
              
-||||||| f0f53ff
-              <li class="nav-item">
-                <a href="role_display" class="nav-link">
-                  <i class="far fa-eye nav-icon"></i>
-                  <p>DISPLAY users roles</p>
-                </a>
-              </li>
-             
-=======
->>>>>>> f291104e67d08515e2a7395d258f05475c0ef14f
             </ul>
           </li>
             
