@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MedicalService extends Model
 {
+    protected $table="medical_services";
     protected $fillable = [
         'Issue_date', 'refernce', 'passenger_name ','document_number',
         'Dep_city','arr_city','dep_date','due_to_supp','provider_cost',
