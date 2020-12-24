@@ -152,6 +152,10 @@ Route::get('/displaySupplier/{id}', 'SupplierController@filter');
 
 //
 
+// Sales Manager
+Route::get('/displaySalesManager', 'SalesManagerController@display');
+//
+
 Route::get('/form',function(){
 
   return view('form');
