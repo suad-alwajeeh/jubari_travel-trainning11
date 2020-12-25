@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GeneralService extends Model
 {
+    protected $table="general_services";
     protected $fillable = [
         'Issue_date', 'refernce', 'passenger_name ','bus_number',
        'due_to_supp','provider_cost','user_id','user_status',

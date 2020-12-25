@@ -6,7 +6,47 @@
 <link rel='stylesheet' href='https://unpkg.com/filepond/dist/filepond.min.css'>
 <link rel="stylesheet" href="./style.css">
 
-<div class="content-wrapper">
+<div class="container">
+
+   
+    <div class="row  card  w-50  justify-content-center mx-auto  m-5">
+        <!-- left column -->
+        <div class="card-header">
+            <h3 class="card-title text-center">ADD Employee</h3>
+        </div>
+        <!-- ///.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" id="form1" method="POST" action="saved" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body">
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Firest Name :</label>
+                    <div class="col-sm-8">
+                    <input type="text"class="form-control" id="user" name="emp_first_name" placeholder="First_name">
+					<small id="helpId1" class="text-muted"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Middel Name :</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="emp_middel_name" name="emp_medil_name" required placeholder="Middel Name ">
+                        <small id="helpId2" class="text-muted"></small> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Thired Name :</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="emp_thired_name" name="emp_thired_name" required placeholder="Thired Name ">
+                        <small id="helpId3" class="text-muted"></small> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">last Name :</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control"  id="emp_last_name" name="emp_last_name" required placeholder="last Name ">
+                        <small id="helpId4" class="text-muted"></small> 
+                    </div>
+                </div>
 
 
     <!-- /.card-header -->

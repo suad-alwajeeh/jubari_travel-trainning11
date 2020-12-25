@@ -259,7 +259,7 @@ return view('show_gen',$data);
 } 
 public function hide_ticket($id){
     echo $id;
-    $affected1= TicketService::where('id',$id)
+    $affected1= TicketService::where('ids',$id)
     ->update(['deleted'=>1]);
   
  return back()->with('seccess','Seccess Data Delete');

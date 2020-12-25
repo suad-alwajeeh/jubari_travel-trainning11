@@ -236,7 +236,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($ticket->Issue_date)-
                         tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
-                        @if($ticket->due_to_supp==$sup->sup_id)
+                        @if($tickets->due_to_supp==$sup->sup_id)
 
 
                         <option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HotelService extends Model
 {
+    protected $table="hotel_services";
     protected $fillable = [
         'Issue_date', 'refernce', 'passenger_name ','voucher_number',
         'country','city','hotel_name','due_to_supp','provider_cost','check_in','check_out',

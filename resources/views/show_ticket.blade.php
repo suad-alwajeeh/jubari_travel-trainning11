@@ -99,7 +99,7 @@
                   @forelse($ticket as $tickets)
                   
                   <tr>
-			<td><input type="checkbox" name="ids[]" class="selectbox" value="{{$tickets->id }}"></td>
+			<td><input type="checkbox" name="ids[]" class="selectbox" value="{{$tickets->ids }}"></td>
       <input type="hidden" class="delete_id" value="{{$tickets->id}}">
                   <td><?php echo $i;?></td>
                     <td>{{$tickets->Issue_date }}</td>
