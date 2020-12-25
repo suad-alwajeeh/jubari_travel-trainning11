@@ -9,7 +9,7 @@
         <div class="card-header">
             <h3 class="card-title text-center">ADD Employee</h3>
         </div>
-        <!-- /.card-header -->
+        <!-- ///.card-header -->
         <!-- form start -->
         <form class="form-horizontal" id="form1" method="POST" action="saved" enctype="multipart/form-data">
             @csrf

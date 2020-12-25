@@ -85,6 +85,31 @@
              
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Supplier
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/addSupplier" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>Add Supplier </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/displaySupplier" class="nav-link">
+                  <i class="fas fa-eye nav-icon"></i>
+                  <p>Disply Suppliers</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
          
           <li class="nav-item">
             <a href="#" class="nav-link">
