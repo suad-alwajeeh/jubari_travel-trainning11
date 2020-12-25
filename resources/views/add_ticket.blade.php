@@ -11,7 +11,7 @@
   <section class="signup">
         <div class="container">
           <div class="signup-content">
-<form method="POST" action="add_ticket" enctype="multipart/form-data" id="signup-form" class="signup-form">
+<form method="POST" action="add_ticket" enctype="multipart/form-data" id="form1" class="signup-form">
               @csrf
              
               <div class="around">
@@ -27,7 +27,7 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-xm-12">Reference </label>
+                    <label class="col-md-12 col-xm-12">REFERENCE </label>
                     <div class="form-group" data-select2-id="44">
 
                       <input required type="text" class="form-control" name="refernce">
@@ -91,7 +91,9 @@ name="Issue_date" id="date"  />
                     <div class="form-group" >
 
                       <input required class="form-control "
-                        style="width: 100%;"  name="ticket_number" />
+                        style="width: 100%;"  name="ticket_number" id="number" />
+                        <small id="helpId2" class="text-muted"></small>
+
                     </div>
                   </div>
                   <div class="form-group col-md-3 col-sm-12 col-xm-12">
@@ -214,7 +216,7 @@ name="Issue_date" id="date"  />
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " />
                     </div>
                   </div>
@@ -251,7 +253,7 @@ name="Issue_date" id="date"  />
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="45">
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " />
                     </div>
                   </div>
@@ -274,7 +276,7 @@ name="Issue_date" id="date"  />
              
               <div class="around">
                 <div class="form-group col-md-12 col-sm-12 col-xm-12">
-                  <h3 class="col-md-12 col-sm-12 col-xm-12">Remark </h3>
+                  <h3 class="col-md-12 col-sm-12 col-xm-12">Note </h3>
 
                   <div class="form-group" data-select2-id="44">
 
@@ -297,7 +299,7 @@ name="Issue_date" id="date"  />
        </div>
           </div>
           <div class="form-group">
-          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="submit" >Save Change</button>
+          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="sub" >Save Change</button>
           </div>
           </form>
 
@@ -586,6 +588,26 @@ function uploadFile(file, i) {
     let finalVal = ele.match(/.{1,3}/g).join('/');
     document.getElementById(element.id).value = finalVal;
   }
+  var form1 = document.getElementById("number");
+    var sub = document.getElementById("sub");
+
+
+    var mass2 = document.getElementById("helpId2");
+  
+    var phoneNumber = "^[0-9]{10}$";
+    var ssnNumber = "^\d{0-9}$";
+    form1.addEventListener("keyup", function confirmName() {
+
+        if (form1.value.match(phoneNumber)) {
+            form1.style.borderColor = "green";
+            return true;
+        }
+        else {
+            mass2.innerHTML = "*Enter 10 number  ";
+            form1.style.borderColor = "red";
+            return false;
+        }
+    });
 </script>
 
 @endsection

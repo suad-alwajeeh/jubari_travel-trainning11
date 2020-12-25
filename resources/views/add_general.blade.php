@@ -10,7 +10,7 @@
   <section class="signup">
       <div class="container">
         <div class="signup-content">
-          <form method="POST" id="signup-form" action="add_service" class="signup-form">
+          <form method="POST" id="signup-form" action="add_service" class="signup-form" enctype="multipart/form-data">
           @csrf
             <div class="around">
               <h2 class="form-title">General Service Info</h2>
@@ -47,7 +47,7 @@
                 <div class="form-group col-md-4 col-sm-12 col-xm-12">
                   <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
                   <div class="form-group"     >
-                    <input type="text" name="voucher_number" class="form-control     " name="reference" />
+                    <input type="number" name="voucher_number" class="form-control     " name="reference" />
                   </div>
                 </div>
                 <div class="form-group col-md-4 col-sm-12 col-xm-12">
@@ -96,11 +96,11 @@
                  <div class="form-row col-md-12 col-sm-12 col-xm-12">
                     <div class="form-group col-md-12 col-sm-12 col-xm-12" >
 
-                      <input type="checkbox" id="myCheck" class="" onclick="myFunction()">
+                      <input type="checkbox" id="myCheck" class=""  tabindex="0"  onclick="myFunction()">
                       <label class="col-md-4 col-sm-10 col-xm-10">Enter Sevice Date</label>
 
                       <div id="text" class="form-group">
-                        <input type="date" class="form-control col-md-4 col-sm-10 col-xm-10 " style="display:none; width:100%" name="bursher_time" id="date3" />
+                        <input type="date" class="form-control col-md-4 col-sm-10 col-xm-10 " style="display:none; width:100%" name="busher_time" id="date3" />
                       </div>
                     </div>
 
@@ -132,7 +132,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control     " />
                     </div>
                   </div>
@@ -170,7 +170,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control     " />
                     </div>
                   </div>

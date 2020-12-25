@@ -14,18 +14,17 @@ class CreateMedicalServiceTable extends Migration
     public function up()
     {
         Schema::create('medical_service', function (Blueprint $table) {
-            $table->id('med_id');
+            $table->string('med_id');
             $table->date('Issue_date');
             $table->string('refernce');
             $table->string('passenger_name');
-            $table->integer('report_status');
-            $table->integer('document_number');
+            $table->integer('report_status')->default(1);
+            $table->string('document_number');
             $table->string('from_city');
             $table->text('med_info');
             $table->string('Dep_city');
             $table->string('arr_city');
             $table->date('dep_date');
-            $table->string('bus_name');
             $table->string('due_to_supp');
             $table->decimal('provider_cost');
             $table->integer('cur_id');
@@ -33,10 +32,15 @@ class CreateMedicalServiceTable extends Migration
             $table->decimal('cost');
             $table->integer('service_id');
             $table->string('passnger_currency');
-            $table->text('remark');
-            $table->integer('deleted');
-            $table->integer('service_status');
             $table->text('attachment');
+            $table->text('remark')->default(null);
+            $table->integer('service_status')->default(1);
+            $table->text('attachment');
+            $table->boolean('deleted')->default(0);
+            $table->boolean('user_status')->default(0);
+            $table->integer('user_id');
+            $table->string('created_at')->default(null);
+            $table->string('updated_at')->default(null);
 
         });
     }

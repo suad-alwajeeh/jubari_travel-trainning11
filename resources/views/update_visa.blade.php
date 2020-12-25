@@ -48,15 +48,15 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
                 
                 <div class="form-row">
                
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" class="form-control "
+                      <input required type="number" class="form-control "
                         style="width:100%;" name="voucher_number" value="{{$visa->voucher_number}}" />
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Visa Status :</label>
 
 
@@ -75,10 +75,8 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
                       </select>
                     </div>
                   </div>
-                </div>
-                <div class="form-row">
                
-               <div class="form-group col-md-6 col-sm-12 col-xm-12">
+               <div class="form-group col-md-3 col-sm-12 col-xm-12">
                  <label class="col-md-12 col-sm-12 col-xm-12">Country :</label>
                  <div class="form-group" data-select2-id="44">
 
@@ -86,7 +84,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
                      style="width:100%;" name="country" value="{{$visa->country}}" />
                  </div>
                </div>
-               <div class="form-group col-md-6 col-sm-12 col-xm-12">
+               <div class="form-group col-md-3 col-sm-12 col-xm-12">
                  <label class="col-md-12 col-sm-12 col-xm-12">Visa Type :</label>
 
 
@@ -140,7 +138,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " value="{{ $visa->provider_cost}}" />
                     </div>
                   </div>
@@ -185,7 +183,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " value="{{ $visa->cost}}" />
                     </div>
                   </div>

@@ -15,7 +15,7 @@
               @csrf
              
               <div class="around">
-                <h2 class="form-title">Med Info</h2>
+                <h2 class="form-title">Medical Info</h2>
 
 @foreach($meds as $med)
                 <div class="form-row col-md-12 col-sm-12 col-xm-12">
@@ -53,7 +53,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($med->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Document Number :</label>
                     <div class="form-group" >
 
-                      <input required type="text" class="form-control "
+                      <input required type="number" class="form-control "
                         style="width:100%;" name="document_number" value="{{$med->document_number}}" />
                     </div>
                   </div>
@@ -62,11 +62,11 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($med->Issue_date)->fo
 
 
                     <div class="form-group" data-select2-id="44">
-                      <select class="form-control select2 select2-hidden-accessible" name="report_status " id="code"
+                      <select class="form-control select2 select2-hidden-accessible" name="report_status" id="code"
                         style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
 
  
-                        @if($med->med_status==1)
+                        @if($med->report_status==1)
                         <option value="1" selected>OK</option>
                         <option value="2" disabled>Avoid</option>
                         <option value="3" disabled>Refent</option>
@@ -130,7 +130,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($med->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " value="{{ $med->provider_cost}}" />
                     </div>
                   </div>
@@ -175,7 +175,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($med->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " value="{{ $med->cost}}" />
                     </div>
                   </div>

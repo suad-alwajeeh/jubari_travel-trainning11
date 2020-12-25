@@ -10,7 +10,7 @@
   <section class="signup">
       <div class="container">
         <div class="signup-content">
-          <form method="POST" id="signup-form" action="add_medical" class="signup-form">
+          <form method="POST" id="signup-form" action="add_medical" enctype="multipart/form-data" class="signup-form">
           @csrf
             <div class="around">
               <h2 class="form-title">Medical Report Info</h2>
@@ -46,7 +46,7 @@
                   <label class="col-md-12 col-sm-12 col-xm-12">Document Number :</label>
                   <div class="form-group"     >
 
-                    <input type="text" class="form-control     " name="document_number" />
+                    <input type="number" class="form-control" name="document_number" />
                   </div>
                 </div>
                 <div class="form-group col-md-4 col-sm-12 col-xm-12">
@@ -104,7 +104,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control     " />
                     </div>
                   </div>
@@ -142,7 +142,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control     " />
                     </div>
                   </div>

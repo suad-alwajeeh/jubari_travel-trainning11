@@ -10,10 +10,10 @@
   <section class="signup">
       <div class="container">
         <div class="signup-content">
-          <form method="POST" id="signup-form" action="add_car" class="signup-form">
+          <form method="POST" id="signup-form" action="add_car" class="signup-form" enctype="multipart/form-data">
           @csrf
             <div class="around">
-              <h2 class="form-title">Car Info</h2>
+              <h2 class="form-title">Rental Car Info</h2>
 
 
               <div class="form-row col-md-12 col-sm-12 col-xm-12">
@@ -46,7 +46,7 @@
                 <div class="form-group col-md-3 col-sm-12 col-xm-12">
                   <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
                   <div class="form-group">
-                    <input type="text"  class="form-control" name="voucher_number" />
+                    <input type="number"  class="form-control" name="voucher_number" />
                   </div>
                 </div>
                 <div class="form-group col-md-3 col-sm-12 col-xm-12">
@@ -128,7 +128,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"    >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control     " />
                     </div>
                   </div>
@@ -166,8 +166,8 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"    >
 
-                      <input required type="text" name="cost" style="width: 100%;"
-                        class="form-control     " />
+                    <input type="number"  class="form-control"name="cost" style="width: 100%;"
+                        required />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">

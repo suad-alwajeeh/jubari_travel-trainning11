@@ -16,35 +16,41 @@ class EmployeeController extends Controller
     {
         //$this->middleware(['role:admin']); 
     }
+   
     public function index()
     {
-        
-    
-            //$where=['departments.is_active'=>1];
-            $where =['employees.deleted'=>0];
-            $where +=['departments.deleted'=>0];
-        $where +=['departments.is_active'=>1];
-            $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-            ->where($where)->get();
+        $where =['employees.deleted'=>0];
+      $where +=['departments.deleted'=>0];
+      $where +=['departments.is_active'=>1];
+      $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
+      ->where($where,1)->paginate(6);
             return view('employees',$data);
-        
-
-    
-    }
+       }
     public function Activate(){
-        if(isset($_GET['id']) && ($_GET['id']==0 || $_GET['id']==1) )
+        if(isset($_GET['id']) && $_GET['id']==0)
         { 
-        
+       
          $where=['employees.is_active'=>$_GET['id']];
          $where +=['employees.deleted'=>0];
          $where +=['departments.deleted'=>0];
          $where +=['departments.is_active'=>1];
-        
          $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-         ->get();
+         ->where($where,1)->paginate(6);
          return json_encode($data);
      }
      
+     elseif(isset($_GET['id']) &&  $_GET['id']==1 )
+     { 
+     
+        $where=['employees.is_active'=>$_GET['id']];
+        $where +=['employees.deleted'=>0];
+        $where +=['departments.deleted'=>0];
+        $where +=['departments.is_active'=>1];
+        $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
+        ->where($where,1)->paginate(6);
+        return json_encode($data);
+  }
+  
      else 
      { 
      
@@ -53,7 +59,7 @@ class EmployeeController extends Controller
       $where +=['departments.deleted'=>0];
       $where +=['departments.is_active'=>1];
       $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-      ->where($where,1)->get();
+      ->where($where,1)->paginate(6);
       return json_encode($data);}
     }
     public function insert(){

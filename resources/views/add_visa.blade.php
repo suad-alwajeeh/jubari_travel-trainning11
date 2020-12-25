@@ -10,7 +10,7 @@
   <section class="signup">
       <div class="container">
         <div class="signup-content">
-          <form method="POST" id="signup-form" action="add_visa" class="signup-form">
+          <form method="POST" id="signup-form" action="add_visa" class="signup-form" enctype="multipart/form-data">
           @csrf
             <div class="around">
               <h2 class="form-title">Visa Info</h2>
@@ -118,7 +118,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"   >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " />
                     </div>
                   </div>
@@ -156,7 +156,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"   >
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " />
                     </div>
                   </div>

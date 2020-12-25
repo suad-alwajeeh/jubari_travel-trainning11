@@ -1,4 +1,5 @@
 @extends('app_layouts.master')
+
 @section('main_content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'>
@@ -10,7 +11,7 @@
   <section class="signup">
       <div class="container">
         <div class="signup-content">
-          <form method="POST" id="signup-form" action="add_hotel" class="signup-form">
+          <form method="POST" id="signup-form" action="add_hotel" class="signup-form" enctype="multipart/form-data">
           @csrf
             <div class="around">
               <h2 class="form-title">Hotel Info</h2>
@@ -46,7 +47,7 @@
                 <div class="form-group col-md-3 col-sm-12 col-xm-12">
                   <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
                   <div class="form-group"     >
-                    <input type="text" class="form-control     " name="voucher_number" />
+                    <input type="number" class="form-control     " name="voucher_number" />
                   </div>
                 </div>
                 <div class="form-group col-md-3 col-sm-12 col-xm-12">
@@ -67,35 +68,53 @@
                   </div>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row col-md-12 col-sm-12 col-xm-12">
 
-                <div class="form-group col-4">
-                  <label class="col-4">Dep City </label>
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Country </label>
                   <div class="form-group"     >
 
-                    <input required name="Dep_city" style="width:100%" onkeyup="addHyphen(this)" id="tbNum7" type="text"
+                    <input required name="country" style="width:100%"  id="tbNum7" type="text"
                       class="form-control" list="cars" />
 
                   </div>
                 </div>
 
-                <div class="form-group col-4">
-                  <label class="col-6">Dep Date </label>
-                  <div class="form-group"     >
-                    <input required type="date" style="width:100%"
-                      class="form-control     " name="dep_date" id="date2" />
-                  </div>
-                </div>
-                <div class="form-group col-4">
-                  <label class="col-4">Arr City </label>
+              
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">City </label>
                   <div class="form-group"     >
 
-                    <input required type="text" style="width:100%" name="arr_city" onkeyup="addHyphen(this)" id="tbNum8"
+                    <input required type="text" style="width:100%" name="city"  id="tbNum8"
                       class="form-control " list="cars" />
 
                   </div>
                 </div>
-              </div>
+                <div class="form-group col-md-4 col-sm-12 col-xm-12">
+                  <label class="col-12">Hotel Name </label>
+                  <div class="form-group"     >
+
+                    <input required type="text" style="width:100%" name="hotel_name"  id="tbNum8"
+                      class="form-control " list="cars" />
+
+                  </div>
+                </div>
+             
+              <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Check In Date </label>
+                  <div class="form-group"     >
+                    <input required type="date" style="width:100%"
+                      class="form-control" name="check_in" id="date2" />
+                  </div>
+                </div>
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Check Out Date </label>
+                  <div class="form-group"     >
+                    <input required type="date" style="width:100%"
+                      class="form-control" name="check_out" id="date4" />
+                  </div>
+                </div>
+                </div>
               </div>
               <div class="around col-md-12 col-sm-12 col-xm-12 m-3">
                 <div class="col-md-5 col-sm-12 col-xm-12 d-inline-block">
@@ -121,7 +140,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control     " />
                     </div>
                   </div>
@@ -159,7 +178,7 @@
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group"     >
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control     " />
                     </div>
                   </div>
@@ -190,11 +209,11 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group col-md-12 col-sm-12 col-xm-12">
+           
+              <div class="form-group col-md-12 col-sm-12 col-xm-12">
                   <h3 class="col-md-12 col-sm-12 col-xm-12">Attachment </h3>
                   <div class="gallery"></div>
-                  <div class="form-group"     >
+                  <div class="form-group" data-select2-id="44">
                   <div id="drop-area">
 
 <input type="file" name="attachment[]" id="fileElem" multiple onchange="handleFiles(this.files)">
@@ -206,7 +225,7 @@
        </div>
           </div>
           <div class="form-group">
-          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="submit" >Save Change</button>
+          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="sub" >Save Change</button>
           </div>
           </form>
 
@@ -325,6 +344,7 @@ function uploadFile(file, i) {
   formData.append('file', file)
   xhr.send(formData)
 }
+  
   
   $(document).ready(function () {
     let td = '';

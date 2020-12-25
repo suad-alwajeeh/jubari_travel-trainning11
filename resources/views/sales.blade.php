@@ -25,7 +25,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1> Employees</h1>
+            <h1> Ticket Service</h1>
           </div>
           <div class="col-sm-6">
            
@@ -86,10 +86,11 @@
                   </tr>
                   </thead>
                   <tbody class="row2">
-                 @foreach($ticket as $tickets)
+                  <?php $i=1 ?>
+                 @forelse($ticket as $tickets)
                   <tr>
                   <input type="hidden" class="delete_id" value="{{$tickets->id}}">
-                  <td>{{$tickets->id}}</td>
+                  <td><?php echo $i;?></td>
                     <td>{{$tickets->Issue_date }}</td>
                     <td> {{$tickets->refernce}} </td>
                     <td>{{$tickets->passenger_name}}</td>
@@ -103,16 +104,27 @@
                     <td>{{$tickets->cur_name}}</td>
                     <td>{{$tickets->cost}}  </td>
                     <td> {{$tickets->passnger_currency}} </td>
-                    <td>{{$tickets->ticket_status}} </td>
+                    @if($tickets->ticket_status==1)
+                    <td>OK</td>
+                    @endif
                     <td>{{$tickets->remark}} </td>
                     <td>
+                    @if($tickets->service_status==1)
                     <a type="button" class="btn sendbtn btncolor text-white" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                  @endif 
+                  
                     <a class="btn btncolor" type="button" href="{{ url('/service/update_ticket/'.$tickets->id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                    @if($tickets->service_status==1||$tickets->service_status==2)
+
                     <a type="button" class="btn  deletebtn btncolor text-white" ><i class="fas fa-trash "></i></a>
-</td>
+@endif
+                  </td>
                   </tr>
-                  @endforeach
-                  </tbody>
+                  <?php $i++ ?>
+
+                  @empty
+<tr> <td colspan="10" >There is No data  Pleas Add Service <td></tr>
+                  @endforelse                  </tbody>
                   <tfoot>
                   <tr>
                   

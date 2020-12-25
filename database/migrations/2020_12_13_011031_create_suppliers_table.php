@@ -24,7 +24,7 @@ class CreateSuppliersTable extends Migration
             $table->integer('supplier_acc_no');
             $table->date('create_date');
             $table->string('supplier_remark'); 
-            $table->integer('is_active');
+            $table->integer('is_active')->default(1);
         });
     }
 

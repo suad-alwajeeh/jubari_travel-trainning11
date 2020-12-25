@@ -34,29 +34,26 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($car->Issue_date)->fo
                     </div>
                   </div>
                 </div>
-                <div class="form-group clo-12">
+                <div class="form-row col-md-12 col-sm-12 col-xm-12">
+                <div class="form-group col-md-6 col-sm-12 col-xm-12">
                   <label class="col-12">Passenger Name : </label>
-                  <div class="form-group" >
+                  <div class="form-group col-md-12 col-sm-12 col-xm-12" >
 
                     <input required type="text" class="form-control select2 select2-hidden-accessible"
                       name="passenger_name" value="{{$car->passenger_name}}" class="form-control select2 select2-hidden-accessible"
                       style="width: 100%;" />
                   </div>
-                </div>
-
-               
-                
-                <div class="form-row">
-               
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  </div>
+              
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
                     <div class="form-group">
 
-                      <input required type="text" class="form-control "
+                      <input required type="number" class="form-control "
                         style="width:100%;" name="voucher_number" value="{{$car->voucher_number}}" />
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Car Status :</label>
 
 
@@ -148,7 +145,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($car->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " value="{{ $car->provider_cost}}" />
                     </div>
                   </div>
@@ -193,7 +190,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($car->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " value="{{ $car->cost}}" />
                     </div>
                   </div>

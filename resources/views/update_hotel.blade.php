@@ -9,105 +9,118 @@
 
   <div class="main">
   <section class="signup">
-        <div class="container">
-          <div class="signup-content">
-<form method="POST" action="/service/updateHotel" enctype="multipart/form-data" id="signup-form" class="signup-form">
-              @csrf
-             
-              <div class="around">
-                <h2 class="form-title">Hotel Info</h2>
+      <div class="container">
+        <div class="signup-content">
+          <form method="POST" id="signup-form" action="/service/updateHotel" class="signup-form" enctype="multipart/form-data">
+          @csrf
 @foreach($hotels as $hotel)
-                <div class="form-row col-md-12 col-sm-12 col-xm-12">
+
+            <div class="around">
+              <h2 class="form-title">Hotel Info</h2>
+
+              <input type="hidden" value="{{$hotel->hotel_id}}" name="id">
+
+              <div class="form-row col-md-12 col-sm-12 col-xm-12">
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Issued Date: </label>
-                    <div class="form-group " data-select2-id="44">
-<input type="hidden" value="{{$hotel->hotel_id}}" name="id">
-                      <input required type="date" class="form-control "
-name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->format('Y-m-d')}}" />
+                    <div class="form-group "     >
+
+                      <input required type="date" class="form-control     "
+                        name="Issue_date" id="date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->format('Y-m-d')}}" />
                     </div>
                   </div>
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-xm-12">Reference </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"     >
 
-                      <input required type="text" class="form-control" value="{{$hotel->refernce}}" name="refernce">
+                      <input required type="text" class="form-control select2 select2-hidden-accessible" value="{{$hotel->refernce}}"  name="refernce">
                     </div>
                   </div>
                 </div>
-                <div class="form-group clo-12">
+                <div class="form-row col-md-12 col-sm-12 col-xm-12">
+                <div class="form-group col-md-6 col-sm-12 col-xm-12">
+
                   <label class="col-12">Passenger Name : </label>
-                  <div class="form-group" data-select2-id="44">
 
-                    <input required type="text" class="form-control select2 select2-hidden-accessible"
-                      name="passenger_name" value="{{$hotel->passenger_name}}" class="form-control select2 select2-hidden-accessible"
-                      style="width: 100%;" />
+                    <input required type="text" class="form-control  "
+                      name="passenger_name" class="form-control "
+                      style="width: 100%;"  value="{{$hotel->passenger_name}}" />
+                  </div>
+               
+                <div class="form-group col-md-3 col-sm-12 col-xm-12">
+                  <label class="col-md-12 col-sm-12 col-xm-12">Voucher Number :</label>
+                  <div class="form-group"     >
+                    <input type="number" class="form-control " value="{{$hotel->voucher_number}}" name="voucher_number" />
                   </div>
                 </div>
+                <div class="form-group col-md-3 col-sm-12 col-xm-12">
+                  <label class="col-md-12 col-sm-12 col-xm-12">Hotel Status :</label>
+                  <div class="form-group"     >
 
-               
-                
-                <div class="form-row">
-               
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-sm-12 col-xm-12">Voucher  Number :</label>
-                    <div class="form-group">
-
-                      <input required type="text" class="form-control "
-                        style="width:100%;" name="voucher_number" value="{{$hotel->voucher_number}}" />
-                    </div>
-                  </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-sm-12 col-xm-12">Hotel Status :</label>
+                  <select class="form-control select2 select2-hidden-accessible" name="hotel_status" id="code"
+                      style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
 
 
-                    <div class="form-group" >
-                      <select class="form-control select2 select2-hidden-accessible" name="hotel_status" id="code"
-                        style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
-
- 
-                        @if($hotel->hotel_status==1)
+                      @if($hotel->hotel_status==1)
                         <option value="1" >OK</option>
                         <option value="2" disabled>Avoid</option>
                         <option value="3" disabled>Refent</option>
                        
                         @endif
 
-                      </select>
-                    </div>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row col-md-12 col-sm-12 col-xm-12">
+
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Country </label>
+                  <div class="form-group"     >
+
+                    <input required name="country" style="width:100%"  id="tbNum7" type="text"
+                      class="form-control" list="cars"  value="{{$hotel->country}}"/>
+
                   </div>
                 </div>
 
-                <div class="form-row col-md-12 col-sm-12 col-xm-12">
+              
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">City </label>
+                  <div class="form-group"     >
 
-                  <div class="form-group col-md-4 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-sm-12 col-xm-12">Dep City </label>
-                    <div class="form-group" data-select2-id="44">
+                    <input required type="text" style="width:100%" name="city"  id="tbNum8"
+                      class="form-control " list="cars" value="{{$hotel->city}}" />
 
-                      <input required name="Dep_city1" style="width:100%" onkeyup="addHyphen(this)" id="tbNum"
-                        type="text" value="{{$hotel->Dep_city}}" class="form-control " list="cars" />
-
-                    </div>
-                  </div>
-
-                  <div class="form-group col-md-4 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-sm-12 col-xm-12">Dep Date </label>
-                    <div class="form-group" data-select2-id="44">
-                      <input required type="date" style="width:100%" value="{{ \Carbon\Carbon::createFromDate($hotel->Dep_date)->format('Y-m-d')}}""
-                        class="form-control  " name="dep_date"  />
-                    </div>
-                  </div>
-                  <div class="form-group col-md-4 col-sm-12 col-xm-12">
-                    <label class="col-md-12 col-sm-12 col-xm-12">Arr City </label>
-                    <div class="form-group" data-select2-id="44">
-
-                      <input required type="text" style="width:100%" name="arr_city" onkeyup="addHyphen(this)"
-                        id="tbNum2" class="form-control " value="{{$hotel->arr_city}}" list="cars" />
-
-                    </div>
                   </div>
                 </div>
-                @endforeach
+                <div class="form-group col-md-4 col-sm-12 col-xm-12">
+                  <label class="col-12">Hotel Name </label>
+                  <div class="form-group"     >
 
+                    <input required type="text" style="width:100%" name="hotel_name"  id="tbNum8"
+                      class="form-control " list="cars" value="{{$hotel->hotel_name}}"/>
+
+                  </div>
+                </div>
+             
+              <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Check In Date </label>
+                  <div class="form-group"     >
+                    <input required type="date" style="width:100%"
+                      class="form-control" name="check_in" id="date2"value="{{ \Carbon\Carbon::createFromDate($hotel->check_in)->format('Y-m-d')}}" />
+                  </div>
+                </div>
+                <div class="form-group col-md-2 col-sm-12 col-xm-12">
+                  <label class="col-12">Check Out Date </label>
+                  <div class="form-group"     >
+                    <input required type="date" style="width:100%"
+                      class="form-control" value="{{ \Carbon\Carbon::createFromDate($hotel->check_out)->format('Y-m-d')}}" name="check_out" id="date4" />
+                  </div>
+                </div>
+                </div>
+              </div>
               <div class="around col-md-12 col-sm-12 col-xm-12 m-3">
                 <div class="col-md-5 col-sm-12 col-xm-12 d-inline-block">
                   <h2 class="form-title">Provider Info </h2>
@@ -115,14 +128,13 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
                     <label class="col-md-12 col-sm-12 col-xm-12">Provider Name </label>
 
 
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"     >
                       <select  name="due_to_supp" required
                         class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="2"
                         tabindex="0" aria-hidden="true">
-
                         @foreach($suplier as $sup)
 
-                        @if($hotel->due_to_supp==$sup->sup_id)
+@if($hotel->due_to_supp==$sup->sup_id)
 
 
 <option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>
@@ -131,24 +143,26 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
 
 @endif                        @endforeach
 
+
                       </select>
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"     >
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
-                        class="form-control " value="{{ $hotel->provider_cost}}" />
+                      <input type="number" style="width:100%;" required name="provider_cost"
+                        class="form-control " value="{{ $hotel->provider_cost}}"/>
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-4 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group" >
+                    <div class="form-group"     >
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
                         style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">
                         <option value="{{$hotel->cur_id}}" selected> {{$hotel->cur_name}}</option>
+
                       </select>
                     </div>
                   </div>
@@ -157,12 +171,11 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
                   <h2 class="form-title"> Customer Info</h2>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Customer Name </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"     >
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
                         style="width: 100%;" data-select2-id="4" tabindex="0" aria-hidden="true">
 
-                       
                         @foreach($emp as $emps)
                         @if($hotel->due_to_customer==$emps->emp_id)
 
@@ -181,22 +194,22 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"  value="{{ $hotel->cost}}"   >
 
-                      <input required type="text" name="cost" style="width: 100%;"
-                        class="form-control " value="{{ $hotel->cost}}" />
+                      <input required type="number" name="cost" style="width: 100%;"
+                        class="form-control     " />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group"     >
 
-                      <select name="passnger_currency" class="form-control "
+                      <select name="passnger_currency" class="form-control select2 select2-hidden-accessible"
                         style="width: 100%;" data-select2-id="6" tabindex="0" aria-hidden="true">
 
-                       
                         <option value="{{$hotel->passnger_currency}}" selected>{{$hotel->passnger_currency}}</option>
-                        <option value="YER" >YER</option>
+
+                        <option value="YER" selected>YER</option>
                         <option value="SAR">SAR</option>
                         <option value="USD">USD</option>
 
@@ -205,7 +218,6 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
                   </div>
                 </div>
               </div>
-             
               <div class="around">
                 <div class="form-group col-md-12 col-sm-12 col-xm-12">
                   <h3 class="col-md-12 col-sm-12 col-xm-12">Remark </h3>
@@ -231,7 +243,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
 
 <div class="images text-center mx-auto">
 @foreach(explode(',', $hotel->attachment) as $img) 
-<img class="" src="{{asset('img/user_attchment/'.$img)}}" alt=" ">
+<img class="" src="{{asset('img/user_attchment/'.$img)}}" alt="  ">
 @endforeach
 </div>
 <div id="drop-area">
@@ -249,14 +261,13 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($hotel->Issue_date)->
           <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="submit" >Save Change</button>
           </div>
           </form>
-
+@endforeach
         </div>
     </div>
     </section>
 
   </div>
   </div>
-
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -328,7 +339,6 @@ function handleFiles(files) {
   initializeProgress(files.length)
   files.forEach(uploadFile)
   files.forEach(previewFile)
-  $(".images").hide();
 }
 
 function previewFile(file) {
@@ -367,10 +377,20 @@ function uploadFile(file, i) {
   xhr.send(formData)
 }
   
-  document.getElementById("defaultOpen").click();
+  
   $(document).ready(function () {
     let td = '';
-   
+    var now = new Date();
+
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+    $('#date').val(today);
+    $('#date2').val(today);
+    $('#date3').val(today);
+    $('#date4').val(today);
     $("input[type='radio']").change(function () {
       if ($(this).val() == "other") {
         $(".otherAnswer").show();

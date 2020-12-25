@@ -59,7 +59,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($bus->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Bus Number :</label>
                     <div class="form-group" >
 
-                      <input required type="text" class="form-control "
+                      <input required type="number" class="form-control "
                         style="width:100%;" name="bus_number" value="{{$bus->bus_number}}" />
                     </div>
                   </div>
@@ -145,7 +145,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($bus->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input type="text" style="width:100%;" required name="provider_cost"
+                      <input type="number" style="width:100%;" required name="provider_cost"
                         class="form-control " value="{{ $bus->provider_cost}}" />
                     </div>
                   </div>
@@ -190,7 +190,7 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($bus->Issue_date)->fo
                     <label class="col-md-12 col-sm-12 col-xm-12">Cost </label>
                     <div class="form-group" data-select2-id="44">
 
-                      <input required type="text" name="cost" style="width: 100%;"
+                      <input required type="number" name="cost" style="width: 100%;"
                         class="form-control " value="{{ $bus->cost}}" />
                     </div>
                   </div>

@@ -148,6 +148,23 @@ Route::get('/service/send_car/{id}','ServiceController@send_car');
 Route::get('/service/send_hotel/{id}','ServiceController@send_hotel');
 Route::get('/service/send_gen/{id}','ServiceController@send_gen');
 Route::get('/service/send_med/{id}','ServiceController@send_med');
+//ti send or delete multi  row in table service
+Route::delete('/deleteallticket','ServiceController@deleteAllticket');
+Route::delete('/sendallticket','ServiceController@sendallticket');
+Route::delete('/deleteallhotel','ServiceController@deleteAllhotel');
+Route::delete('/sendallhotel','ServiceController@sendallhotel');
+Route::delete('/deleteallbus','ServiceController@deleteAllbus');
+Route::delete('/sendallbus','ServiceController@sendAllbus');
+Route::delete('/deleteallcar','ServiceController@deleteAllcar');
+Route::delete('/sendallcar','ServiceController@sendallcar');
+Route::delete('/deleteallhotel','ServiceController@deleteallhotel');
+Route::delete('/sendallhotel','ServiceController@sendallhotel');
+Route::delete('/deleteallvisa','ServiceController@deleteallvisa');
+Route::delete('/sendallvisa','ServiceController@sendallvisa');
+Route::delete('/deleteallmed','ServiceController@deleteallmed');
+Route::delete('/sendallmed','ServiceController@sendallmed');
+Route::delete('/deleteallgen','ServiceController@deleteallgen');
+Route::delete('/sendallgen','ServiceController@sendallgen');
 
 //Supplier
 
