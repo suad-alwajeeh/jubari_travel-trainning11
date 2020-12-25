@@ -117,7 +117,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$ticket2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -126,7 +126,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$ticket3}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                        <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -135,7 +135,7 @@
                       Archived
                       <span class="float-right"><b>{{$ticket4}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                        <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -178,7 +178,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$bus2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -187,7 +187,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$bus3}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                      <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -196,7 +196,7 @@
                       Archived
                       <span class="float-right"><b>{{$bus4}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
+                      <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -240,7 +240,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$hotel2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -249,7 +249,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$hotel3}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                      <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -258,7 +258,7 @@
                       Archived
                       <span class="float-right"><b>{{$hotel4}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
+                      <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -306,7 +306,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$visa2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -315,7 +315,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$visa3}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                        <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -324,7 +324,7 @@
                       Archived
                       <span class="float-right"><b>{{$visa4}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 90%"></div>
+                        <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -367,7 +367,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$car2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -376,7 +376,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$car3}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                      <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -385,7 +385,7 @@
                       Archived
                       <span class="float-right"><b>{{$car4}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
+                      <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -429,7 +429,7 @@
                       in Sales Manager
                       <span class="float-right"><b>{{$med2}}</b></span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        <div class="progress-bar bg-primary" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -438,7 +438,7 @@
                       <span class="progress-text">in Accountant</span>
                       <span class="float-right"><b>{{$med3}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                      <div class="progress-bar  bg-warning" style="width: 10%"></div>
                       </div>
                     </div>
 
@@ -447,7 +447,7 @@
                       Archived
                       <span class="float-right"><b>{{$med4}}</b></span>
                       <div class="progress progress-sm">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
+                      <div class="progress-bar bg-success" style="width: 10%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
@@ -495,7 +495,7 @@
                     in Sales Manager
                     <span class="float-right"><b>{{$gen2}}</b></span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-primary" style="width: 90%"></div>
+                      <div class="progress-bar bg-primary" style="width: 10%"></div>
                     </div>
                   </div>
 
@@ -504,7 +504,7 @@
                     <span class="progress-text">in Accountant</span>
                     <span class="float-right"><b>{{$gen3}}</b></span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar  bg-warning" style="width: 90%"></div>
+                      <div class="progress-bar  bg-warning" style="width: 10%"></div>
                     </div>
                   </div>
 
@@ -513,7 +513,7 @@
                     Archived
                     <span class="float-right"><b>{{$gen4}}</b></span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
+                      <div class="progress-bar bg-success" style="width: 10%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
@@ -525,7 +525,12 @@
           </div>
           <!-- /.card -->
               </div>
-              <div class="col-md-4">
+              
+              
+      </div>
+      <!-- /.row -->
+      <div class="row">
+      <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Recently Added Users</h3>
@@ -562,9 +567,7 @@
               <!-- /.card-footer -->
             </div>
               </div>
-              
       </div>
-      <!-- /.row -->
         
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
