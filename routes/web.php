@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 /**************
  * suad routs
  ************* */
-
  /*****************AIRLINE************** */
  Auth::routes();
- Route::group(['middleware' => ['auth']], function() {
- Route::get('/logout','Auth\LoginController@logout');
- Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth','role:admin|sale_manager|sale_executive|accountant']], function() {
+  Route::get('/logout','Auth\LoginController@logout');
+});
+ Route::group(['middleware' => ['auth','role:admin']], function() {
  Route::get('/','dashboard@index');
 Route::get('/airline_add', 'AirlineController@add');
 Route::get('/airline_edit/{id}', 'AirlineController@display_row');
@@ -48,19 +48,20 @@ Route::get('/cansel/{id}', 'AddsController@cansel');
 Route::post('/addadds','AddsController@save1');
 Route::post('/editadds','AddsController@edit_row');
 /*****************users************** */
-Route::post('/logout', 'LoginController@logout');
 Route::get('/user_add', 'uuserController@add');
 Route::get('/user_edit/{id}', 'uuserController@display_row');
-Route::get('/user_delete/{id}', 'uuserController@hide_row');
+Route::get('/user_edit/{id}', 'uuserController@display_row');
+Route::get('/user_profile/{id}', 'uuserController@user_profile');
 Route::get('/is_active_user/{id}', 'uuserController@is_active');
 Route::get('/no_active_user/{id}', 'uuserController@is_not_active');
 Route::get('/user_display/{id}', 'uuserController@filter');
+Route::get('/employee_dept/{id}', 'uuserController@employee_dept');
+Route::get('/employee_data/{id}', 'uuserController@employee_data');
 Route::get('/user_display', 'uuserController@display');
-Route::post('/adduser','uuserController@save1');
+Route::get('/user_display/{id}', 'uuserController@filter');
+Route::post('/adduser','uuserController@save17');
 Route::post('/edituser','uuserController@edit_row');
 /*****************users************** */
-
-
 /*****************ROLE************** */
 Route::get('/role_add', 'RoleController@add');
 Route::get('/role_edit/{id}', 'RoleController@display_row');
@@ -68,7 +69,12 @@ Route::get('/role_delete/{id}', 'RoleController@hide_row');
 Route::get('/is_active/{id}', 'RoleController@is_active');
 Route::get('/no_active/{id}', 'RoleController@is_not_active');
 Route::get('/role_display', 'RoleController@display');
+Route::get('/role_user_display', 'RoleController@display_role_user');
+Route::get('/role_user_display1/{id}', 'RoleController@display_role_user1');
+Route::get('/user_role_delete/{u_id}/{r_id}', 'RoleController@role_user_hide_row');
+Route::get('/add_role_user', 'RoleController@add_role_user');
 Route::post('/addrole','RoleController@save1');
+Route::post('/addroleuser','RoleController@save_user_role');
 Route::post('/editrole','RoleController@edit_row');
 
 //employees
@@ -134,30 +140,28 @@ Route::get('/service/ticket_car/{id}','ServiceController@send_car');
 Route::get('/service/ticket_hotel/{id}','ServiceController@send_hotel');
 Route::get('/service/ticket_gen/{id}','ServiceController@send_gen');
 Route::get('/service/ticket_med/{id}','ServiceController@send_med');
-
-//Supplier
-
-
-Route::get('/airline/airline_row','AirlineController@show_row');
-Route::get('/suplier/suplier_row','SuplierController@show_row');
-Route::get('/addSupplier', 'SupplierController@add');
-Route::get('/displaySupplier', 'SupplierController@display');
-Route::get('/editSupplier/{id}', 'SupplierController@display_row');
-Route::get('/deleteSupplier/{id}', 'SupplierController@hide_row');
-Route::post('/add_supplier','SupplierController@save1');
-Route::post('/edit_supplier','SupplierController@edit_row');
-Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
-Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
-Route::get('/displaySupplier/{id}', 'SupplierController@filter');
-
-//
-
-Route::get('/form',function(){
-
+/********************supplier***************** */
+  Route::get('/suplier/suplier_row','SuplierController@show_row');
+  Route::get('/addSupplier', 'SupplierController@add');
+  Route::get('/displaySupplier', 'SupplierController@display');
+  Route::get('/editSupplier/{id}', 'SupplierController@display_row');
+  Route::get('/deleteSupplier/{id}', 'SupplierController@hide_row');
+  Route::post('/add_supplier','SupplierController@save1');
+  Route::post('/edit_supplier','SupplierController@edit_row');
+  Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
+  Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
+  Route::get('/displaySupplier/{id}', 'SupplierController@filter');
   return view('form');
   });
 
- });
+ Route::group(['middleware' => ['auth','role:accountant']], function() {
+  Route::get('/accountant','accountantController@accountant_view');
+  Route::get('/accountant_ticket','accountantController@accountant_ticket');
 
- 
+});
+Route::group(['middleware' => ['auth','role:sale_manager']], function() {
 
+});
+Route::group(['middleware' => ['auth','role:sale_executive']], function() {
+
+});

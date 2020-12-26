@@ -31,7 +31,7 @@
       <td>{{$item->country}}</td>
         <td>
         <div class="btn-group btn-group-sm">
-  <a type="button" class="btn btn-success" href="{{ url('airline_edit/'.$item->id) }}"><i class="fas fa-pencil-alt "></i></a>
+  <a type="button" class="btn btn-success" href="airline_edit/{{$item->id}}"><i class="fas fa-pencil-alt "></i></a>
   <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ><i class="fas fa-trash "></i></a>
 </div>
      <!-- The Modal -->

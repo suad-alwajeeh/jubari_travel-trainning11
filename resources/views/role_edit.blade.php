@@ -28,7 +28,7 @@
     <div class="form-group mb-3">
       <label for="role_descripe">	role_descripe</label>
       <textarea class="form-control" name="role_descripe" id="role_descripe">
-      {{$item->role_descripe}}
+      {{$item->description}}
 </textarea>
     </div>
     <div class="form-group mb-3">

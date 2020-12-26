@@ -88,14 +88,14 @@ return [
     */
     'models' => [
 
-        'role' => \App\Role::class,
+        'role' => \App\Models\Role::class,
 
-        'permission' => \App\Permission::class,
+        'permission' => \App\Models\Permission::class,
 
         /**
          * Will be used only if the teams functionality is enabled.
          */
-        'team' => \App\Team::class,
+        //'team' => \App\Team::class,
     ],
 
     /*
@@ -166,7 +166,7 @@ return [
         /**
          * Define if the laratrust middleware are registered automatically in the service provider
          */
-        'register' => true,
+        'register' => false,
 
         /**
          * Method to be called in the middleware return case.

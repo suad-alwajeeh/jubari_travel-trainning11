@@ -8,11 +8,9 @@ class userController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin|sale_executive');
     }
     public function index(){
         return view('user_display');
-        
             }
             
         }

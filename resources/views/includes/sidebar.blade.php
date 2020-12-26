@@ -11,21 +11,18 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('assets/img/logo.png')}}" class="img-circle elevation-2" alt="User Image">
+        <div class="image" id="su_user_image">
+          
         </div>
         <div class="info">
        
-          <a href="#" class="d-block"> </a>
+          <a href="#" class="d-block" id="su_user_name"> </a>
         </div>
       </div>
+@php
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item">
+$_GLOBALS['admin_link']='
+              <li class="nav-item">
                 <a href="/department" class="nav-link">
                   <i class="fa fa-building-o"></i>
                   <p>Department</p>
@@ -56,12 +53,6 @@
             </ul>
               </li>
               <li class="nav-item">
-                <a href="/service_test" class="nav-link">
-                <i class="fas fa-user-cog nav-icon"></i>
-              <p>Service</p>
-                </a>
-              </li>
-          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-plane"></i>
               <p>
@@ -107,27 +98,45 @@
                   <p>DISPLAY ALL</p>
                 </a>
               </li>
-<<<<<<< HEAD
               <li class="nav-item">
-                <a href="/role_display" class="nav-link">
+                <a href="/role_user_display" class="nav-link">
                   <i class="far fa-eye nav-icon"></i>
                   <p>DISPLAY users roles</p>
                 </a>
               </li>
              
-||||||| f0f53ff
-              <li class="nav-item">
-                <a href="role_display" class="nav-link">
-                  <i class="far fa-eye nav-icon"></i>
-                  <p>DISPLAY users roles</p>
-                </a>
-              </li>
-             
-=======
->>>>>>> f291104e67d08515e2a7395d258f05475c0ef14f
             </ul>
           </li>
-            
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-ad"></i>
+              <p>
+              Supplier
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/adds_add" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add new</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adds_display" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Display advertisements</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/adds_user_display" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>users advertisements</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-ad"></i>
@@ -181,6 +190,14 @@
               </li>
             </ul>
           </li>
+          ';
+$_GLOBALS['Sales_Executive']='<li class="nav-item">
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>Service</p>
+                </a>
+              </li>
+         
           <li class="nav-item">
               <a href="#" class="nav-link">
               <i class="fas fa-user" aria-hidden="true"></i>
@@ -197,9 +214,113 @@
                 </a>
               </li>
               </ul>
+              </li>';
+ $_GLOBALS['Sales_Manager']='
+<li class="nav-item">
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>Service</p>
+                </a>
               </li>
-              
+         
           <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <p>
+                Sales Executive
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/service/sales_repo/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>Sales Executive </p>
+                </a>
+              </li>
+              </ul>
+              </li>';  
+$_GLOBALS['Accountant']='
+          <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <p>
+              Accountant
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+                <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/service/sales_repo/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>request </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/service/sales_repo/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>finished </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/service/sales_repo/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>erorr log </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/service/sales_repo/" class="nav-link">
+                  <i class="fas fa-plus-circle nav-icon"></i>
+                  <p>check up </p>
+                </a>
+              </li>
+              </ul>
+              </li> 
+              <li class="nav-item">
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>all ticket</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/service_test" class="nav-link">
+                <i class="fas fa-user-cog nav-icon"></i>
+              <p>profile</p>
+                </a>
+              </li>';                      
+@endphp
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               @if(Auth::user()->hasRole('admin'))
+               @php
+               echo $_GLOBALS['admin_link'];
+              @endphp
+               @endif  
+               @if(Auth::user()->hasRole('sale_manager'))
+               @php
+               echo $_GLOBALS['Sales_Manager'];
+              @endphp
+               @endif 
+               @if(Auth::user()->hasRole('accountant'))
+               @php
+               echo $_GLOBALS['Accountant'];
+              @endphp
+               @endif 
+               @if(Auth::user()->hasRole('sale_executive'))
+               @php
+               echo $_GLOBALS['Sales_Executive'];
+              @endphp
+               @endif            
+            <!--li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
@@ -214,7 +335,7 @@
                 Gallery
               </p>
             </a>
-          </li>
+          </li-->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

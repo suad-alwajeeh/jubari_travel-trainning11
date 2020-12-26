@@ -19,7 +19,6 @@
 .so_emp{
 display: none;
 }
-<<<<<<< HEAD
 .filepond--drop-label {
   color: #4c4e53;
 }
@@ -417,13 +416,41 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield !important;
 }
-||||||| f0f53ff
-=======
-.su_head{
-    background-color: #090732;
-    color: white;
+  /* OUTER CONTAINER */
+  .tcontainer {
+    width: 100%;
+    overflow: hidden; /* Hide scroll bar */
+  }
+   
+  /* MIDDLE CONTAINER */
+  .ticker-wrap {
+    width: 100%;
+    padding-left: 100%;
+    background-color: #080231;
 }
-.su_inf{
-    color: white;
+  
+  /* INNER CONTAINER */
+  @keyframes ticker {
+    0% { transform: translate3d(0, 0, 100%); }
+    100% { transform: translate3d(-100%, 0, 0); }
+  }
+  .ticker-move {
+    /* Basically move items from right side of screen to left in infinite loop */
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 100%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: 15s;
+  }
+  .ticker-move:hover{
+    animation-play-state: paused; /* Pause scroll on mouse hover */
+  }
+  
+  /* ITEMS */
+  .ticker-item {
+    display: inline-block;
+    padding: 0 2rem;
+    color: #9f9595;
 }
->>>>>>> f291104e67d08515e2a7395d258f05475c0ef14f
