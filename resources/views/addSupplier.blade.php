@@ -13,10 +13,10 @@
       <input type="text" class="form-control" value="{{old('supplier_name')}}" id="supplier_name" placeholder="supplier_name" name="supplier_name">
         <div class="card-body">
       @if($errors->any('supplier_name'))
-      <button type="button" class="btn btn-danger swalDefaultError">
+      <span class="text-danger">
                  {{$errors->first('supplier_name')}}
-                </button>
-      <span class="text-danger"></span>
+                
+      </span>
       @endif
         </div>
     </div>
@@ -73,8 +73,8 @@
     <label for="supplier_service">Service</label>
     <select class="form-control col-2   mx-5 d-inline-block select2" name="supplier_service" multiple="multiple" id="dropselect" placeholder="select service" style="width: 100%;">
     <option value="">select service</option>
-                @if(count($services))
-                      @foreach($services as $service)
+                @if(count($data1))
+                      @foreach($data1 as $service)
 
                       <option  value="{{$service->ser_id}}">{{$service->ser_name}}</option>
 
@@ -93,10 +93,17 @@
     <div class="form-group mb-3">
       <label for="supplier_currency">Select currency</label>
      <select name="supplier_currency" id="">
-     <option value="USD">USD</option>
-     <option value="SR">SR</option>
-     <option value="YR">YR</option>
-     </select>
+     <option value="">select currency</option>
+                @if(count($data2))
+                      @foreach($data2 as $cur)
+
+                      <option  value="{{$cur->cur_id}}">{{$cur->cur_name}}</option>
+
+                      @endforeach
+                  @endif
+              
+                  
+                </select>
     <!-- @if($errors->any('is_active'))
       <span class="text-danger">{{$errors->first('is_active')}}</span>
       @endif -->

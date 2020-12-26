@@ -5,7 +5,7 @@
   <div class="content-wrapper">
   <div class="container p-4">
   
-<h2>edit airline page</h2>
+<h2>edit Supplier page</h2>
 <!--form action="airline_display1" method="post"-->
 <form id="supplier_edit" method="post" action="/edit_supplier"  enctype="multipart/form-data">
 @foreach($data as $item)
@@ -50,6 +50,39 @@
       <textarea class="form-control" name="supplier_remark" id="supplier_remark"> 
       {{$item->supplier_remark}}
       </textarea>
+    </div>
+    <div class="form-group mb-3">
+    <label for="supplier_service">Service</label>
+    <select class="form-control col-2   mx-5 d-inline-block select2" name="supplier_service" multiple="multiple" id="dropselect" placeholder="select service" style="width: 100%;">
+    <option value="">select service</option>
+                @if(count($data1))
+                      @foreach($data1 as $service)
+
+                      <option  value="{{$service->ser_id}}">{{$service->ser_name}}</option>
+
+                      @endforeach
+                  @endif
+              
+                  
+                </select>
+                </div>
+                <div class="form-group mb-3">
+      <label for="supplier_currency">Select currency</label>
+     <select name="supplier_currency" id="">
+     <option value="">select currency</option>
+                @if(count($data2))
+                      @foreach($data2 as $cur)
+
+                      <option  value="{{$cur->cur_id}}">{{$cur->cur_name}}</option>
+
+                      @endforeach
+                  @endif
+              
+                  
+                </select>
+    <!-- @if($errors->any('is_active'))
+      <span class="text-danger">{{$errors->first('is_active')}}</span>
+      @endif -->
     </div>
     <div class="form-group mb-3">
       <label for="is_active">is_active</label>
