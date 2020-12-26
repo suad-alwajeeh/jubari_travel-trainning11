@@ -15,10 +15,7 @@ class AddsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        //$this->middleware(['auth']); 
-    }
+    
     public function index()
     {
     }
@@ -26,6 +23,11 @@ class AddsController extends Controller
     { 
         $affected = adds::where('id',$id)->get();
         return view('adds_edit',['data'=>$affected]);
+                    }
+                    public function display_scroll()
+                    { 
+                        $adds = adds::where([['is_active',1],['is_delete',0]])->get();
+                        return view('includes.header',['data'=>$adds]);
                     }
     public function adds_user($id)
                     { 

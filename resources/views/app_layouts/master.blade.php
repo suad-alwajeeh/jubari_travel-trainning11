@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{asset("assets/css/adminlte.min.css")}}">
   <link rel="stylesheet" href="{{asset("assets/css/ourstyle.css")}}">
 </head>
-<body class="hold-transition sidebar-mini" onload="">
+<body class="hold-transition sidebar-mini" onload="test()">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -57,6 +57,27 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/js/demo.js")}}"></script>
 <script>
+$(document).ready(function(){
+  var get_image={{ Auth::user()->id }};
+  
+  $.ajax({
+url:'/user_profile/'+get_image,
+type:'get',
+dataType:'json',
+success:function(response){
+  
+  if(response.length==0){
+    console.log("not found thing");
+  }else{
+    console.log(response[0]);
+   // alert(response[0].e_photo);
+    var img=response[0].e_photo;
+    var name=response[0].ef_name +' '+response[0].em_name;
+   $('#su_user_image').html('<img src="img/users/'+img+'"  class="img-circle elevation-2" alt="User Image">');
+   $('#su_user_name').text(name);}
+}
+});
+})
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -67,5 +88,6 @@
     })
   });
     </script>
+       
 </body>
 </html>

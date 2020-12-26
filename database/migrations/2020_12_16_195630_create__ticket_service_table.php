@@ -13,15 +13,15 @@ class CreateTicketServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_service', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ticket_services', function (Blueprint $table) {
+            $table->string('id');
             $table->date('Issue_date');
             $table->string('refernce');
             $table->string('passenger_name');
             $table->integer('airline_id');
             $table->string('ticket');
-            $table->integer('ticket_status');
-            $table->integer('ticket_number');
+            $table->integer('ticket_status')->default(1);
+            $table->string('ticket_number');
             $table->string('Dep_city');
             $table->string('Dep_city2');
             $table->string('arr_city');
@@ -35,11 +35,15 @@ class CreateTicketServiceTable extends Migration
             $table->decimal('cost');
             $table->integer('service_id');
             $table->string('passnger_currency');
-            $table->text('remark');
+            $table->text('remark')->default(null);
             $table->text('bursher_time');
             $table->text('attachment');
-            $table->integer('deleted');
-            $table->integer('service_status');
+            $table->integer('service_status')->default(1);
+            $table->boolean('deleted')->default(0);
+            $table->boolean('user_status')->default(0);
+            $table->integer('user_id');
+            $table->string('created_at')->default(null);
+            $table->string('updated_at')->default(null);
 
             $table->timestamps();
         });

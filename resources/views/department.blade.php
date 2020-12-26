@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <div class="offset-sm-4 col-sm-8">
                         <div class="form-check">
-                            <input type="checkbox" id="is_active" class="form-check-input" name="is_acive" id="active">
+                            <input type="checkbox" id="is_active" class="form-check-input" name="is_acive" >
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                     <td>
                     <input type="hidden" id="test">
                     <div class="btn-group btn-group-sm">
-  <a type="button" class="btn btncolor" href="{{ url('department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
+  <a type="button" class="btn btncolor" href="{{ url('/department/department-edit/'.$department->id) }}"><i class="fas fa-pencil-alt "></i></a>
   <a type="button" class="btn btncolor  deletebtn" ><i class="fas fa-trash  text-white"></i></a>
 </div></td>
                   </tr>
@@ -238,7 +238,7 @@ $("#dropselect").change(function () {
               console.log(value.length);
               if(value.length>0)
 {myJSON = JSON.parse(data);
-td +='<tr><input type="hidden" class="delete_id" value="'+value[i].id+'"><td>'+value[i].id+'</td><td>'+value[i].name+'</td> <td>'+value[i].created_at+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="{{ url("/department/department-edit/'+value[i].id+'")}}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
+td +='<tr><input type="hidden" class="delete_id" value="'+value[i].id+'"><td>'+value[i].id+'</td><td>'+value[i].name+'</td> <td>'+value[i].created_at+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="/department/department-edit/'+value[i].id+'"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
 $('.row2').html(td);}
             }
             td='';

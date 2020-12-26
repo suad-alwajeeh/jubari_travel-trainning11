@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\users;
 use App\Department;
 use App\Employee;
+use App\role_user;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
@@ -21,9 +22,8 @@ class uuserController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware(['role:sale_executive |admin']); 
     }
-    public function login()
+  /*  public function login()
     {
         return view('login');
     }
@@ -43,48 +43,87 @@ class uuserController extends Controller
               return redirect('sign_in');
         }
         }
-
+*/
 
     public function display_row($id)
     { 
         $affected = users::where('id',$id)->get();
         return view('user_edit',['data'=>$affected]);
                     }
+     public function user_profile($id)
+            { 
+                $affected = users::where('id',$id)
+                ->join('employee','users.id','employee.emp_id')
+                ->select('employee.emp_first_name as ef_name',
+                          'employee.emp_middel_name as em_name',
+                          'employee.emp_thired_name as et_name',
+                          'employee.emp_photo as e_photo')->get();
+                          echo json_encode($affected);
+           }
+           public function employee_dept($id)
+           {  
+
+            $affected = DB::select('select * from employee where dept_id=? and emp_id not in(select id from users )',[$id]);
+            echo json_encode($affected);
+          }
+          public function employee_data($id)
+           {  $affected = DB::table('employee')->where('emp_id',$id)->get();            
+            echo json_encode($affected);
+          }
     public function display()
     {
-        $affected = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')
-        ->join('employee','role_user.user_id','employee.emp_id')
+        $affected = users::where('users.is_delete',0)
+        ->join('employee','users.id','employee.emp_id')
         ->join('departments','employee.dept_id','departments.id')
         ->select('users.id as u_id', 'users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
         $affected1 = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')->select('users.id as u_id');
-
         return view('user_display',['data'=>$affected,'data1'=>$affected1]);
         }
     public function add()
     {
-        $affected = DB::table('employee')->where('deleted','0')->get();
-        $affected1 = Department::where('is_active',1)->get();
        
-        return view('user_add',['data'=>$affected,'data1'=>$affected1]);
+        $affected1 = Department::where('is_active',1)->get();
+        $affected2= DB::table('roles')->where([['is_active',1],['is_delete',0]])->get();
+        return view('user_add',['data1'=>$affected1,'data3'=>$affected2]);
     }
-    public function save1(Request $req)
+    public function save17(Request $req)
     {
      $req->validate([
         "email"=>"required",
-        "password"=>"required",
         "how_create_it"=>"required",
         "is_active"=>"required",
         "emp_id"=>"required",
-        "name"=>"required",
+        "role"=>"required",
         ]);
+       
+            $part='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+            $pass=array();
+            $partLength=strlen($part)-1;
+            for($i =0; $i < 8 ; $i++){
+              $s=rand(0,$partLength);
+              $pass[]=$part[$s];
+            }
+            $PASSWORD= implode($pass);
+          
+          
       $user=new users;
+      $user->id=$req->u_id;
       $user->name=$req->name;
       $user->email=$req->email;
       $user->how_add_it=$req->how_create_it;
-      $user->emp_id=$req->emp_id;
       $user->is_active=$req->is_active;
-      $user->password=Hash::make($req->password);
+      $user->password=Hash::make($PASSWORD);
+      $user->pass=$PASSWORD;
        $user->save();
+       $role=$req->role;
+       foreach($role as $r){
+           $role= new role_user;
+           $role->role_id=$r;
+           $role->user_id=$req->u_id;
+           $role->how_create_it=$req->how_create_it;
+           $role->user_type='App\User';
+            $role->save();
+       }
       return redirect('user_display');
     }
     public function edit_row(Request $req){
@@ -124,13 +163,21 @@ class uuserController extends Controller
                 }
                 public function filter($id){
                     if($id==1){
-                        $affected1 = Department::where('is_active',1)->get();
-                        $affected = users::where([['is_delete',0],['is_active',1]])->paginate(7);
-                        return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
+                        $affected = users::where([['users.is_delete',0],['users.is_active',1]])
+                        ->join('role_user','users.id','role_user.user_id')
+                        ->join('employee','role_user.user_id','employee.emp_id')
+                        ->join('departments','employee.dept_id','departments.id')
+                        ->select('users.id as u_id', 'users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
+                        $affected1 = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')->select('users.id as u_id');
+                        return view('user_display',['data'=>$affected,'data1'=>$affected1]);
                     }elseif($id==0){
-                        $affected1 = Department::where('is_active',1)->get();
-                        $affected = users::where([['is_delete',0],['is_active',0]])->paginate(7);
-                        return view('adds_display',['data'=>$affected,'data1'=>$affected1]);
-                    }
+                           $affected = users::where([['users.is_delete',0],['users.is_active',0]])
+                            ->join('role_user','users.id','role_user.user_id')
+                            ->join('employee','role_user.user_id','employee.emp_id')
+                            ->join('departments','employee.dept_id','departments.id')
+                            ->select('users.id as u_id', 'users.is_active as u_is_active','users.is_delete as u_is_delete','users.name as u_name','users.email as u_email', 'departments.name as d_name')->paginate(7);
+                            $affected1 = users::where('is_delete',0)->join('role_user','users.id','role_user.user_id')->select('users.id as u_id');
+                              return view('user_display',['data'=>$affected,'data1'=>$affected1]);
+                              }
                 }
 }

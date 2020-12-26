@@ -51,7 +51,7 @@
             <input type="hidden" name="id" value="{{$item->ser_id}}" id="id">
          @endforeach
          <div class="">
-                <a href="{{url('service')}}" class="btn btn-default float-left col-3 m-3 p-2">Cancel</a>
+                <a href="{{url('service_test')}}" class="btn btn-default float-left col-3 m-3 p-2">Cancel</a>
                 <button type="submit" class="btn btncolor float-right col-3 m-3 p-2">Update</button>
            
             </div>

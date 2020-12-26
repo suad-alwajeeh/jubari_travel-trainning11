@@ -10,10 +10,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/logout" class="nav-link">logout</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-      <a type="button" class="btn btn-danger" data-toggle="modal" onclick="get_data()" data-target="#myModal" ><i class="fas fa-trash "></i></a>
-
-      </li>
+     
     </ul>
 
     <!-- SEARCH FORM -->
@@ -127,9 +124,32 @@
       </li>
     </ul>
   </nav>
+  <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
+  @foreach($addss as $aa)
+  <div class="ticker-item"> {{$aa->adds_text}}</div>
+@endforeach
+  </div></div></div>
 </div>
-     <!-- The Modal -->
-     <div class="modal fade" id="myModal" aria-hidden="true">
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" id="bb">
+
+      <a  type="button" class="btn btn-danger" data-dismiss="modal">yes</a>
+      </div>
+   </div>
+  </div>
+</div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -147,10 +167,10 @@
   </div>
 </div>
   <script>
-//$('#adds').ready(function(){
-function get_data(){
+  function test(){
   
   var user_id= {{ Auth::user()->id }};
+  $_SESSION['id']={{ Auth::user()->id }};
 $.ajax({
 url:'/adds_user_display_u/'+user_id,
 type:'get',
@@ -162,15 +182,15 @@ success:function(response){
   }else{
     console.log(response[0]);
 //foreach(response[0] as yy) {
+  $('#myModal').modal('show');
    $('#bb').html('<div class=card bg-dark id=card'+response[0].au_id+'><div class="card-body">'+response[0].a_text+'</div><div class="card-footer text-center"><div class="btn-group"><button onclick="ok('+response[0].au_id+')" type="button" class="btn btn-success">ok</button><button type="button" onclick="cansel('+response[0].au_id+')" class="btn btn-danger">cansel</button></div></div></div>');
-    $('#myModal').model('show');
+   
   //}
   }
 }
 });
-}
-//})
-function ok(id){
+  }
+  function ok(id){
   $('#card'+id).css("display","none");
 
 $.ajax({
@@ -192,4 +212,5 @@ $('#card'+id).css("display","none");
 }
 });
 }
+
 </script>

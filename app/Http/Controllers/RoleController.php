@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\role;
+use App\users;
+use App\role_user;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -14,12 +17,10 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware(['role:admin']); 
     }
     public function index()
     {
-        //
-    }
+echo 'ppppp';    }
     public function display_row($id)
     { 
         $affected = Role::where('id',$id)->get();
@@ -30,6 +31,60 @@ class RoleController extends Controller
         $affected = Role::where('is_delete',0)->paginate(7);
         return view('role_display',['data'=>$affected]);
         }
+        public function display_role_user()
+        {
+        $affected = users::where([['users.is_delete',0],['users.is_active',1]])
+        ->join('role_user','users.id','role_user.user_id')->where([['role_user.is_delete',0]])
+        ->join('roles','role_user.role_id','roles.id')
+        ->select('users.id as u_id','users.name as u_name','roles.id as r_id','roles.name as r_name')
+        ->orderBy('users.id','desc')
+        ->paginate(10);
+        $affected1 = users::where([['users.is_delete',0],['users.is_active',1]])
+        ->join('role_user','users.id','role_user.user_id')->where([['role_user.is_delete',0]])
+        ->join('roles','role_user.role_id','roles.id')
+        ->select('users.id as u_id','users.name as u_name','roles.id as r_id','roles.name as r_name')
+        ->orderBy('users.id','desc')
+        ->get();
+        return view('role_user_display',['data'=>$affected,'data1'=>$affected1]);
+        }
+        public function display_role_user1($id)
+        {
+        $affected = users::where('users.id',$id)
+        ->join('role_user','users.id','role_user.user_id')->where([['role_user.is_delete',0]])
+        ->join('roles','role_user.role_id','roles.id')
+        ->select('users.id as u_id','users.name as u_name','roles.id as r_id','roles.name as r_name')
+        ->orderBy('users.id','desc')
+        ->get();
+        echo json_encode($affected);
+                }
+        public function role_user_hide_row($u_id,$r_id){
+            $affected1= DB::table('role_user')->where([['user_id',$u_id],['role_id',$r_id]])
+            ->update(['is_delete'=>'1']);
+            }
+            public function add_role_user(){
+                $affected1= DB::table('users')->where([['is_active',1],['is_delete',0]])->get();
+                $affected2= DB::table('roles')->where([['is_active',1],['is_delete',0]])->get();
+                return view('add_role_user',['data'=>$affected2,'data1'=>$affected1]);
+
+            }
+            public function save_user_role(Request $req)
+             {
+                  $req->validate([
+                   "user_id"=>"required",
+                    "role"=>"required",
+                      ]);
+                            $u_id=$req->user_name;
+                            $role=$req->role;
+                            foreach($role as $r){
+                                $role= new role_user;
+                                $role->role_id=$r;
+                                $role->user_id=$req->user_id;
+                                $role->how_create_it=$req->how_create_it;
+                                $role->user_type='App\User';
+                                 $role->save();
+                            }
+                            return redirect('role_user_display');  
+                        }
     public function add()
     {
         return view('role_add');
@@ -43,6 +98,7 @@ class RoleController extends Controller
         ]);
       $role=new Role;
       $role->name=$req->role_name;
+      $role->display_name=$req->role_name;
       $role->description=$req->role_descripe;
       $role->how_add_it=$req->how_create_it;
       $role->is_active=$req->is_active;

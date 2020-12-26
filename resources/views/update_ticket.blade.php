@@ -5,274 +5,13 @@
 <link rel='stylesheet' href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'>
 <link rel='stylesheet' href='https://unpkg.com/filepond/dist/filepond.min.css'><link rel="stylesheet" href="./style.css">
 
-<style>
-.filepond--drop-label {
-  color: #4c4e53;
-}
-
-.filepond--label-action {
-  -webkit-text-decoration-color: #babdc0;
-          text-decoration-color: #babdc0;
-}
-
-.filepond--panel-root {
-  border-radius: 2em;
-  background-color: #edf0f4;
-  height: 1em;
-}
-
-.filepond--item-panel {
-  background-color: #595e68;
-}
-
-.filepond--drip-blob {
-  background-color: #7f8a9a;
-}
-
-
-  /* @extend display-flex; */
-  display-flex,
-  .display-flex,
-  .display-flex-center {
-    display: flex;
-  }
-
-  a:focus,
-  a:active {
-    text-decoration: none;
-    outline: none;
-    transition: all 300ms ease 0s;
-
-  }
-
-  input,
-  select,
-  textarea {
-    outline: none;
-    appearance: unset !important;
-  }
-
-
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    outline: none;
-    box-shadow: none !important;
-  }
-
-
-
-  input[type=radio] {
-    appearance: radio !important;
-  }
-
-  input[type=checkbox] {
-    appearance: checkbox !important;
-  }
-
-
-  figure {
-    margin: 0;
-  }
-
-  p {
-    margin-bottom: 0px;
-    font-size: 15px;
-    color: #777;
-  }
-
-  h2 {
-    line-height: 1.66;
-    margin: 0;
-    padding: 0;
-    font-weight: 900;
-    color: #222;
-    font-family: 'Montserrat';
-    font-size: 24px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .clear {
-    clear: both;
-  }
-
-
-  body {}
-
-  .container {
-
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .display-flex {
-    justify-content: space-between;
-
-    align-items: center;
-  }
-
-  .display-flex-center {
-    justify-content: center;
-
-    align-items: center;
-  }
-
-  .position-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .signup-content {
-    background: #fff;
-    border-radius: 10px;
-
-    padding: 50px 85px;
-  }
-
-  .form-group {
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-
-  .form-input {
-    border: 1px solid #ebebeb;
-    border-radius: 5px;
-
-    padding: 17px 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-weight: 500;
-    color: #222;
-  }
-
-  .form-input:focus {
-    border: 1px solid transparent;
-    border-image-source: linear-gradient(to right, #9face6, #74ebd5);
-
-    border-image-slice: 1;
-    border-radius: 5px;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-  }
-
-
-  .form-submit {
-    border-radius: 5px;
-
-    padding: 17px 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    float: right;
-    background-image: linear-gradient(to left, #74ebd5, #9face6);
-  }
-
-
-
-
-
-  .label-agree-term {
-    font-size: 12px;
-    font-weight: 600;
-    color: #555;
-  }
-
-  .term-service {
-    color: #555;
-  }
-
-  .around {
-    border-bottom: rgb(189, 184, 184) 1px solid;
-  }
-
-  .around2 {
-    border-right: rgb(189, 184, 184) 1px solid;
-  }
-
-  .tab {
-    overflow: hidden;
-    border: 1px solid #fff;
-    background-color: #fff;
-  }
-
-  /* Style the buttons inside the tab */
-  .tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-  }
-
-  /* Change background color of buttons on hover */
-  .tab button:hover {
-    background-color: #ABD2EA;
-  }
-
-  /* Create an active/current tablink class */
-  .tab button.active {
-    background-color: #ABD2EA;
-  }
-
-  /* Style the tab content */
-  .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #000;
-    border-top: none;
-  }
-
-  /* Style the close button */
-  .topright {
-    float: right;
-    cursor: pointer;
-    font-size: 28px;
-  }
-
-  .topright:hover {
-    color: red;
-  }
-  .filepond--drop-label {
-  color: #4c4e53;
-}
-
-.filepond--label-action {
-  -webkit-text-decoration-color: #babdc0;
-          text-decoration-color: #babdc0;
-}
-
-.filepond--panel-root {
-  border-radius: 2em;
-  background-color: #edf0f4;
-  height: 1em;
-}
-
-.filepond--item-panel {
-  background-color: #595e68;
-}
-
-.filepond--drip-blob {
-  background-color: #7f8a9a;
-}
-</style>
 <div class="content-wrapper">
 
   <div class="main">
   <section class="signup">
         <div class="container">
           <div class="signup-content">
-<form method="POST" action="add_ticket" enctype="multipart/form-data" id="signup-form" class="signup-form">
+<form method="POST" action="/service/updateTicket" enctype="multipart/form-data" id="signup-form" class="signup-form">
               @csrf
              
               <div class="around">
@@ -282,9 +21,9 @@
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Issued Date: </label>
                     <div class="form-group " data-select2-id="44">
-
+<input type="hidden" value="{{$ticket->id}}" name="id">
                       <input required type="date" class="form-control "
-name="Issue_date" id="date"  />
+name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($ticket->Issue_date)->format('Y-m-d')}}" />
                     </div>
                   </div>
                   <div class="form-group col-md-6 col-sm-12 col-xm-12">
@@ -295,7 +34,9 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
                 </div>
-                <div class="form-group clo-12">
+                <div class="form-row col-md-12 col-sm-12 col-xm-12">
+
+                <div class="form-group col-md-6 col-sm-12 col-xm-12">
                   <label class="col-12">Passenger Name : </label>
                   <div class="form-group" data-select2-id="44">
 
@@ -303,21 +44,20 @@ name="Issue_date" id="date"  />
                       name="passenger_name" value="{{$ticket->passenger_name}}" class="form-control select2 select2-hidden-accessible"
                       style="width: 100%;" />
                   </div>
-                </div>
-
-                <div class="form-row ">
+                  </div>
+             
                 @if ($ticket->dep_date2==null)
-                  <div class="form-group col-6">
+                  <div class="form-group col-3">
                     <input type="radio" onchange="hideB(this)" name="aorb" class=" m-2" checked>one Way
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-3">
                     <input type="radio" onchange="hideA(this)" name="aorb" class=" m-2" value="other">RoundTrip
                   </div>
                   @else
-                  <div class="form-group col-6">
+                  <div class="form-group col-3">
                     <input type="radio" onchange="hideB(this)" name="aorb" class=" m-2" >one Way
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-3">
                     <input type="radio" onchange="hideA(this)" name="aorb" class=" m-2" checked value="other">RoundTrip
                   </div>
                   @endif
@@ -327,12 +67,12 @@ name="Issue_date" id="date"  />
 
                 <div class="form-row col-md-12 col-sm-12 col-xm-12">
 
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Airline :</label>
 
                     <div class="form-group" data-select2-id="44">
                       <select id="airline" name="airline" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="1" tabindex="0" aria-hidden="true">
 
                         @foreach($airline as $airs)
                           @if($airs->id==$ticket->airline_id)
@@ -347,11 +87,11 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
 
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">code </label>
                     <div class="form-group" data-select2-id="44">
                       <select class="form-control select2 select2-hidden-accessible" name="ticket" id="code"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="2" tabindex="0" aria-hidden="true">
 
                         @foreach($airline as $airs)
                         @if($airs->id==$ticket->ticket)
@@ -368,11 +108,9 @@ name="Issue_date" id="date"  />
 
 
                   </div>
-                </div>
+               
 
-                <div class="form-row">
-
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Ticket Number :</label>
                     <div class="form-group" data-select2-id="44">
 
@@ -380,28 +118,20 @@ name="Issue_date" id="date"  />
                         style="width:100%;" name="ticket_number" value="{{$ticket->ticket_number}}" />
                     </div>
                   </div>
-                  <div class="form-group col-md-6 col-sm-12 col-xm-12">
+                  <div class="form-group col-md-3 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Ticket Status :</label>
 
 
                     <div class="form-group" data-select2-id="44">
                       <select class="form-control select2 select2-hidden-accessible" name="ticket_status" id="code"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">
 
  
                         @if($ticket->ticket_status==1)
                         <option value="1" selected>OK</option>
-                        <option value="2" disable>Avoid</option>
-                        <option value="3" disable>Refent</option>
-                        @elseif ($ticket->ticket_status==2)
-                        <option value="1">OK</option>
-                        <option value="2" selected>Avoid</option>
-                        <option value="3" disable>Refent</option>
-                        @else
-                        <option value="1">OK</option>
-                        <option value="2" >Avoid</option>
-                        <option value="3" selected>Refent</option>
-
+                        <option value="2" disabled>Avoid</option>
+                        <option value="3" disabled>Refent</option>
+                       
                         @endif
 
                       </select>
@@ -424,8 +154,8 @@ name="Issue_date" id="date"  />
                   <div class="form-group col-md-4 col-sm-12 col-xm-12">
                     <label class="col-md-12 col-sm-12 col-xm-12">Dep Date </label>
                     <div class="form-group" data-select2-id="44">
-                      <input required type="date" style="width:100%" value="{{$ticket->dep_city}}"
-                        class="form-control select2 select2-hidden-accessible" name="dep_date" id="date2" />
+                      <input required type="date" style="width:100%" value="{{ \Carbon\Carbon::createFromDate($ticket->Dep_date)->format('Y-m-d')}}""
+                        class="form-control  " name="dep_date"  />
                     </div>
                   </div>
                   <div class="form-group col-md-4 col-sm-12 col-xm-12">
@@ -438,8 +168,8 @@ name="Issue_date" id="date"  />
                     </div>
                   </div>
                 </div>
-
-                <div style="display:none;" class="otherAnswer">
+@if($ticket->Dep_city2!=null)
+                <div  class="otherAnswer">
                   <div class="form-row col-md-12 col-sm-12 col-xm-12">
 
                     <div class="form-group col-md-4 col-sm-12 col-xm-12">
@@ -457,7 +187,7 @@ name="Issue_date" id="date"  />
                       <label class="col-md-12 col-sm-12 col-xm-12">Dep Date </label>
                       <div class="form-group" data-select2-id="44">
                         <input type="date" name="dep_date2" style="width:100%"
-                          class="form-control select2 select2-hidden-accessible" value="{{$ticket->dep_date2}}" id="date2" />
+                          class="form-control select2 select2-hidden-accessible" value="{{ \Carbon\Carbon::createFromDate($ticket->Dep_date2)->format('Y-m-d')}}"  />
                       </div>
                     </div>
                     <div class="form-group col-md-4 col-sm-12 col-xm-12">
@@ -471,20 +201,25 @@ name="Issue_date" id="date"  />
                       </div>
                     </div>
                   </div>
-                  <div class="form-group col-md-12 col-sm-12 col-xm-12">
-                    <div class="form-group" data-select2-id="44">
+                 
+@if($ticket->bursher_time!=null)
+ <div class="form-group col-md-12 col-sm-12 col-xm-12">
+                    <div class="form-group" >
 
-                      <input type="checkbox" id="myCheck" onclick="myFunction()">
+                      <input type="checkbox" id="myCheck" checked onclick="myFunction()">
                       <label class="col-md-10 col-sm-10 col-xm-10">Bursher Time </label>
 
                       <div id="text" class="form-group">
-                        <input type="date" class="form-control select2 select2-hidden-accessible"
-                          style="display:none; width:100%" value="{{$ticket->busher_time}}" name="bursher_time" id="date3" />
+                        <input type="date" class="form-control " 
+ value="{{\Carbon\Carbon::createFromDate($ticket->bursher_time)->format('Y-m-d')}}" name="bursher_time"   name="bursher_time" id="date3" />
                       </div>
                     </div>
 
-                  </div>
-                </div>
+                  </div>    
+                    @endif
+
+                 
+                @endif
               </div>
               @endforeach
 
@@ -497,12 +232,18 @@ name="Issue_date" id="date"  />
 
                     <div class="form-group" data-select2-id="44">
                       <select  name="due_to_supp" required
-                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="1"
-                        tabindex="-1" aria-hidden="true">
+                        class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="6"
+                        tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
+                        @if($tickets->due_to_supp==$sup->sup_id)
 
-                        <option value="{{$sup->sup_id}}">{{$sup->sup_name}}</option>
+
+                        <option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>
+                       @else
+                       <option value="{{$sup->sup_id}}" >{{$sup->sup_name}}</option>
+
+                       @endif
                         @endforeach
 
                       </select>
@@ -513,16 +254,16 @@ name="Issue_date" id="date"  />
                     <div class="form-group" data-select2-id="44">
 
                       <input type="text" style="width:100%;" required name="provider_cost"
-                        class="form-control " />
+                        class="form-control " value="{{ $ticket->provider_cost}}" />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-4 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group" data-select2-id="44">
+                    <div class="form-group" >
 
                       <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-<option value="1"> yre</option>
+                        style="width: 100%;" data-select2-id="7" tabindex="0" aria-hidden="true">
+                        <option value="{{$ticket->cur_id}}" selected> {{$ticket->cur_name}}</option>
                       </select>
                     </div>
                   </div>
@@ -534,12 +275,18 @@ name="Issue_date" id="date"  />
                     <div class="form-group" data-select2-id="44">
 
                       <select name="due_to_customer" class="form-control select2 select2-hidden-accessible"
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="8" tabindex="0" aria-hidden="true">
 
                         @foreach($emp as $emps)
+                        @if($ticket->due_to_customer==$emps->emp_id)
 
-                        <option value="{{$emps->emp_id}}">{{$emps->emp_first_name}} {{$emps->emp_middel_name}}
+
+                        <option selected value="{{$emps->emp_id}}">{{$emps->emp_first_name}} {{$emps->emp_middel_name}}
+                          {{$emps->emp_thired_name}} {{$emps->emp_last_name}}</option>@else
+<option value="{{$emps->emp_id}}">{{$emps->emp_first_name}} {{$emps->emp_middel_name}}
                           {{$emps->emp_thired_name}} {{$emps->emp_last_name}}</option>
+@endif
+                        
                         @endforeach
 
                       </select>
@@ -551,7 +298,7 @@ name="Issue_date" id="date"  />
                     <div class="form-group" data-select2-id="44">
 
                       <input required type="text" name="cost" style="width: 100%;"
-                        class="form-control " />
+                        class="form-control " value="{{ $ticket->cost}}" />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
@@ -559,12 +306,13 @@ name="Issue_date" id="date"  />
                     <div class="form-group" data-select2-id="44">
 
                       <select name="passnger_currency" class="form-control "
-                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        style="width: 100%;" data-select2-id="9" tabindex="0" aria-hidden="true">
 
-
-                        <option value="" selected>YER</option>
-                        <option value="">SAR</option>
-                        <option value="">USD</option>
+                       
+                        <option value="{{$ticket->passnger_currency}}" selected>{{$ticket->passnger_currency}}</option>
+                        <option value="YER" >YER</option>
+                        <option value="SAR">SAR</option>
+                        <option value="USD">USD</option>
 
                       </select>
                     </div>
@@ -578,28 +326,41 @@ name="Issue_date" id="date"  />
 
                   <div class="form-group" data-select2-id="44">
 
-                    <textarea id="form7" class="md-textarea form-control" name="remark" rows="3"></textarea>
+                    <textarea id="form7" class="md-textarea form-control" name="remark" rows="3">{{$ticket->remark}}</textarea>
                   </div>
                 </div>
               </div>
               <div class="form-group col-md-12 col-sm-12 col-xm-12">
                   <h3 class="col-md-12 col-sm-12 col-xm-12">Attachment </h3>
-                  <div class="gallery" style="border:1px solid #CC8B79;width:100%;height:100;"></div>
+                  <div class="gallery"></div>
                   <div class="form-group" data-select2-id="44">
-              <input type="file" 
-              id="gallery-photo-add"
-       class="filepond"
-       type="file" 
-       name="attachment[]"
-       multiple
-       data-max-file-size="3MB"
-       />
-       <div class="test"></div>
+                  @if($ticket->attachment=='null')
+                  <div id="drop-area">
+
+<input type="file" name="attachment[]" id="fileElem" multiple onchange="handleFiles(this.files)">
+<label class="button" for="fileElem">Select some files</label>
+<progress id="progress-bar" max=100 value=0></progress>
+<div id="gallery" /></div>
+@else
+
+<div class="images text-center mx-auto">
+@foreach(explode(',', $ticket->attachment) as $img) 
+<img class="" src="{{asset('img/user_attchment/'.$img)}}" alt=" ">
+@endforeach
+</div>
+<div id="drop-area">
+
+<input type="file" name="attachment[]" id="fileElem" multiple onchange="handleFiles(this.files)">
+<label class="button" for="fileElem">Select some files</label>
+<progress id="progress-bar" max=100 value=0></progress>
+<div id="gallery" /></div>
+@endif
+</div>
        </div>
        </div>
           </div>
           <div class="form-group">
-            <input type="submit" name="submit" id="submit" class="form-submit" value="Save" />
+          <button type="submit" class="btn btncolor text-white m-2 p-2  float-right"  id="submit" >Save Change</button>
           </div>
           </form>
 
@@ -611,65 +372,119 @@ name="Issue_date" id="date"  />
   </div>
 
 
-  <script src='https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js'></script>
-<script src='https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js'></script>
-<script src='https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js'></script>
-<script src='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js'></script>
-<script src='https://unpkg.com/filepond/dist/filepond.min.js'></script>
-   
-   
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
   
+// ************************ Drag and drop ***************** //
+let dropArea = document.getElementById("drop-area")
 
-FilePond.registerPlugin(
-	
-	// encodes the file as base64 data
-  FilePondPluginFileEncode,
-	
-	// validates the size of the file
-	FilePondPluginFileValidateSize,
-	
-	// corrects mobile image orientation
-	FilePondPluginImageExifOrientation,
-	
-	// previews dropped images
-  FilePondPluginImagePreview
-);
+// Prevent default drag behaviors
+;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, preventDefaults, false)   
+  document.body.addEventListener(eventName, preventDefaults, false)
+})
 
-// Select the file input and use create() to turn it into a pond
-FilePond.create(
-	document.querySelector('.test')
-);
+// Highlight drop area when item is dragged over it
+;['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false)
+})
 
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+;['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false)
+})
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false)
+
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+function highlight(e) {
+  dropArea.classList.add('highlight')
+}
+
+function unhighlight(e) {
+  dropArea.classList.remove('active')
+}
+
+function handleDrop(e) {
+  var dt = e.dataTransfer
+  var files = dt.files
+
+  handleFiles(files)
+}
+
+let uploadProgress = []
+let progressBar = document.getElementById('progress-bar')
+
+function initializeProgress(numFiles) {
+  progressBar.value = 0
+  uploadProgress = []
+
+  for(let i = numFiles; i > 0; i--) {
+    uploadProgress.push(0)
   }
+}
 
-  // Get the element with id="defaultOpen" and click on it
+function updateProgress(fileNumber, percent) {
+  uploadProgress[fileNumber] = percent
+  let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+  console.debug('update', fileNumber, percent, total)
+  progressBar.value = total
+}
+
+function handleFiles(files) {
+  files = [...files]
+  initializeProgress(files.length)
+  files.forEach(uploadFile)
+  files.forEach(previewFile)
+  $(".images").hide();
+}
+
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+    let img = document.createElement('img')
+    img.src = reader.result
+    document.getElementById('gallery').appendChild(img)
+  }
+}
+
+function uploadFile(file, i) {
+  var url = 'https://api.cloudinary.com/v1_1/joezimim007/image/upload'
+  var xhr = new XMLHttpRequest()
+  var formData = new FormData()
+  xhr.open('POST', url, true)
+  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+  // Update progress (can be used to show progress indicator)
+  xhr.upload.addEventListener("progress", function(e) {
+    updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+  })
+
+  xhr.addEventListener('readystatechange', function(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      updateProgress(i, 100) // <- Add this
+    }
+    else if (xhr.readyState == 4 && xhr.status != 200) {
+      // Error. Inform the user
+    }
+  })
+
+  formData.append('upload_preset', 'ujpu6gyk')
+  formData.append('file', file)
+  xhr.send(formData)
+}
+  
   document.getElementById("defaultOpen").click();
   $(document).ready(function () {
     let td = '';
-    var now = new Date();
-
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
-    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-
-    $('#date').val(today);
-    $('#date2').val(today);
-    $('#date3').val(today);
-    $('#date4').val(today);
+   
     $("input[type='radio']").change(function () {
       if ($(this).val() == "other") {
         $(".otherAnswer").show();
