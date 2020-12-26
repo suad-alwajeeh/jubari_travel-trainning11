@@ -111,15 +111,14 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($med->Issue_date)->fo
                       <select  name="due_to_supp" required
                         class="form-control select2 select2-hidden-accessible provider" style="width: 100%;" data-select2-id="4"
                         tabindex="0" aria-hidden="true">
-
                         @foreach($suplier as $sup)
 
-                        @if($med->due_to_supp==$sup->sup_id)
+@if($med->due_to_supp==$sup->s_no)
 
 
-<option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" selected>{{$sup->supplier_name}}</option>
 @else
-<option value="{{$sup->sup_id}}" >{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" >{{$sup->supplier_name}}</option>
 
 @endif                        @endforeach
 

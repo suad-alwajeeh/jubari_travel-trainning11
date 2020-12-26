@@ -64,12 +64,8 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table id="datatable" class="table table-hover text-nowrap text-center">
-                
                 <form method="post">
 	@csrf
-	@method('DELETE')
-	<button formaction="/deleteallmed" type="submit" class="btn btn-danger">Delete All Selected</button>
-	<button formaction="/sendallmed" type="submit" class="btn btn-danger">Send All Selected</button>
 
                  <thead>
                   <tr>
@@ -96,8 +92,10 @@
                   
                   @forelse($med as $meds)
                   <tr>
-			<td><input type="checkbox" name="ids[]" class="selectbox" value="{{$meds->med_id }}"></td>
+                  @if($meds->service_status==1)
 
+                  <td><input type="checkbox" name="ids[]" class="selectbox" value="{{$meds->med_id }}"></td>
+@endif
                   <input type="hidden" class="delete_id" value="{{$meds->med_id}}">
                   <td><?php echo $i;?></td>
                     <td>{{$meds->Issue_date }}</td>
@@ -120,25 +118,25 @@
                      @if($meds->service_status==1)
 
                     <a type="button" class="btn sendbtn btncolor text-white" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-                    @endif
-                    <a class="btn btncolor" type="button" href="{{ url('/service/update_med/'.$meds->med_id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                    @if($meds->service_status==1||$meds->service_status==2)
-                 
+                    <a class="btn btncolor" type="button" href="{{ url('/service/update_med/'.$meds->med_id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>               
                     <a type="button" class="btn  deletebtn btncolor text-white" ><i class="fas fa-trash "></i></a>
 @endif
 
                     </td>
                   </tr>
+                  <tfoot>
+<tr>
+@if($meds->service_status==1)
+<button  formaction="/deleteallbus" type="submit" class="btn btn-danger">Delete All Selected</button>
+	<button formaction="/sendallbus" type="submit" class="btn btn-danger">Send All Selected</button>
+  @endif       
+</tr>
+</tbody>      </tfoot>
                   <?php $i++ ?>
 
                   @empty
 <tr> <td colspan="10" >There is No data  Pleas Add Service <td></tr>
-                  @endforelse                  </tbody>
-                  <tfoot>
-                  <tr>
-                  
-                  </tr>
-                  </tfoot>
+                  @endforelse                 
                 </table>
 
               </div>
@@ -147,6 +145,7 @@
             <!-- /.card -->
             
             {{$med->links()}}
+            </form>
 
           </div>
           <!-- /.col -->

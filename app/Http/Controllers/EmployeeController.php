@@ -104,7 +104,7 @@ $emp=new Employee;
       $emp->emp_thired_name=$request->emp_thired_name;
       $emp->emp_last_name=$request->emp_last_name;
       $emp->emp_ssn=$request->emp_ssn;
-      $emp->emp_email=$request->emp_email;
+      $emp->account_number=$request->account_number;
       $emp->emp_mobile=$request->emp_mobile;
       
       $emp->emp_salary=$request->emp_salary;
@@ -178,7 +178,7 @@ public function edit_row(Request $req){
                         $emp::where('emp_id',$req->id)
                         ->update(['emp_first_name'=>$req->emp_first_name,'emp_middel_name'=>$req->emp_medil_name,
                         'is_active'=>$active,'emp_thired_name'=>$req->emp_thired_name,'emp_last_name'=>$req->emp_last_name,
-                        'emp_ssn'=>$req->emp_ssn,'emp_email'=>$req->emp_email,'emp_mobile'=>$req->emp_mobile,
+                        'emp_ssn'=>$req->emp_ssn,'account_number'=>$req->account_number,'emp_mobile'=>$req->emp_mobile,
                         'emp_salary'=>$req->emp_salary,'emp_hirdate'=>$req->emp_hirdate,'dept_id'=>$req->dept_id,
                         'emp_photo'=> $emp_photo,'attchment'=>$attchment,
                         ]);

@@ -94,7 +94,7 @@
 
                         @foreach($suplier as $sup)
 
-                        <option value="{{$sup->sup_id}}">{{$sup->sup_name}}</option>
+                        <option value="{{$sup->s_no}}">{{$sup->supplier_name}}</option>
                         @endforeach
 
                       </select>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-4 col-sm-12 col-xm-12">Currency </label>
-                    <div class="form-group"     >
+                    <div class="form-group curency"     >
 
                       <select  name="cur_id"  class="form-control select2 select2-hidden-accessible curency"
                         style="width: 100%;" data-select2-id="3" tabindex="0" aria-hidden="true">

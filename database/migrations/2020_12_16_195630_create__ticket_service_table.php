@@ -14,6 +14,7 @@ class CreateTicketServiceTable extends Migration
     public function up()
     {
         Schema::create('ticket_services', function (Blueprint $table) {
+            $table->id('ticket_id');
             $table->string('id');
             $table->date('Issue_date');
             $table->string('refernce');
@@ -42,8 +43,6 @@ class CreateTicketServiceTable extends Migration
             $table->boolean('deleted')->default(0);
             $table->boolean('user_status')->default(0);
             $table->integer('user_id');
-            $table->string('created_at')->default(null);
-            $table->string('updated_at')->default(null);
 
             $table->timestamps();
         });

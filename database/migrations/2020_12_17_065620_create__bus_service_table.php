@@ -14,6 +14,7 @@ class CreateBusServiceTable extends Migration
     public function up()
     {
         Schema::create('bus_service', function (Blueprint $table) {
+            $table->id();
             $table->string('bus_id');
             $table->date('Issue_date');
             $table->string('refernce');
@@ -37,9 +38,7 @@ class CreateBusServiceTable extends Migration
             $table->boolean('deleted')->default(0);
             $table->boolean('user_status')->default(0);
             $table->integer('user_id');
-            $table->string('created_at')->default(null);
-            $table->string('updated_at')->default(null);
-
+           
             $table->timestamps();
         });
     }

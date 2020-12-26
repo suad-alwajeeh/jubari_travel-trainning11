@@ -122,15 +122,14 @@ name="Issue_date" value="{{ \Carbon\Carbon::createFromDate($visa->Issue_date)->f
 
                         @foreach($suplier as $sup)
 
-                        @if($visa->due_to_supp==$sup->sup_id)
+@if($visa->due_to_supp==$sup->s_no)
 
 
-<option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" selected>{{$sup->supplier_name}}</option>
 @else
-<option value="{{$sup->sup_id}}" >{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" >{{$sup->supplier_name}}</option>
 
 @endif                        @endforeach
-
                       </select>
                     </div>
                   </div>

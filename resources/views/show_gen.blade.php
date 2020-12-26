@@ -64,12 +64,9 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table id="datatable" class="table table-hover text-nowrap text-center">
-                
+              
                 <form method="post">
 	@csrf
-	@method('DELETE')
-	<button formaction="/deleteallgen" type="submit" class="btn btn-danger">Delete All Selected</button>
-	<button formaction="/sendallgen" type="submit" class="btn btn-danger">Send All Selected</button>
 
                  <thead>
                   <tr>
@@ -96,8 +93,11 @@
 
 @forelse($gen as $gens)
 <tr>
-<td><input type="checkbox" name="ids[]" class="selectbox" value="{{$gens->gen_id }}"></td>
+@if($gens->service_status==1)
 
+<td>
+<input type="checkbox" name="ids[]" class="selectbox" value="{{$gens->gen_id }}"></td>
+@endif
 <input type="hidden" class="delete_id" value="{{$gens->gen_id}}">
 <td><?php echo $i;?></td>
   <td>{{$gens->Issue_date }}</td>
@@ -122,25 +122,26 @@
    @if($gens->service_status==1)
 
   <a type="button" class="btn sendbtn btncolor text-white" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-@endif
   <a class="btn btncolor" type="button" href="{{ url('/service/update_gen/'.$gens->gen_id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-  @if($gens->service_status==1||$gens->service_status==2)
- 
   <a type="button" class="btn  deletebtn btncolor text-white" ><i class="fas fa-trash "></i></a>
 @endif
 
                     </td>
                   </tr>
+                  <tfoot>
+<tr>
+@if($gens->service_status==1)
+<button  formaction="/deleteallgen" type="submit" class="btn btn-danger">Delete All Selected</button>
+	<button formaction="/sendallgen" type="submit" class="btn btn-danger">Send All Selected</button>
+  @endif       
+</tr>
+</tbody>      </tfoot>
                   <?php $i++ ?>
 
                   @empty
 <tr> <td colspan="10" >There is No data  Pleas Add Service <td></tr>
-                  @endforelse                  </tbody>
-                  <tfoot>
-                  <tr>
-                  
-                  </tr>
-                  </tfoot>
+                  @endforelse                 
+                 
                 </table>
 
               </div>
@@ -149,7 +150,7 @@
             <!-- /.card -->
             
             {{$gen->links()}}
-
+</form>
           </div>
           <!-- /.col -->
         </div>

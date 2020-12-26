@@ -134,15 +134,14 @@
                         tabindex="0" aria-hidden="true">
                         @foreach($suplier as $sup)
 
-@if($hotel->due_to_supp==$sup->sup_id)
+@if($hotel->due_to_supp==$sup->s_no)
 
 
-<option value="{{$sup->sup_id}}" selected>{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" selected>{{$sup->supplier_name}}</option>
 @else
-<option value="{{$sup->sup_id}}" >{{$sup->sup_name}}</option>
+<option value="{{$sup->s_no}}" >{{$sup->supplier_name}}</option>
 
 @endif                        @endforeach
-
 
                       </select>
                     </div>

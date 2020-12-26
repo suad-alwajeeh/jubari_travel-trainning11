@@ -124,7 +124,7 @@
 
                         @foreach($suplier as $sup)
 
-                        <option value="{{$sup->sup_id}}">{{$sup->sup_name}}</option>
+                        <option value="{{$sup->s_no}}">{{$sup->supplier_name}}</option>
                         @endforeach
 
                       </select>

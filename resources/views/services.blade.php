@@ -52,7 +52,7 @@
               <div class="form-group row">
                 <div class="offset-sm-4 col-sm-8">
                   <div class="form-check">
-                    <input type="checkbox" id="is_active" class="form-check-input" name="is_acive" id="active">
+                    <input type="checkbox" id="is_active" class="form-check-input" name="is_active" id="active">
                     <label class="form-check-label" for="exampleCheck2">Active</label>
                   </div>
                 </div>

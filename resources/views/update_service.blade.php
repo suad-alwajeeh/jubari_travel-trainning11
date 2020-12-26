@@ -34,7 +34,7 @@
                     <div class="offset-sm-4 col-sm-8">
                         <div class="form-check">
                         @if($item->is_active==1)
-                            <input type="checkbox" checked  class="form-check-input" name="is_acive" id="is_active">
+                            <input type="checkbox" checked  class="form-check-input" name="is_active" id="is_active">
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                         @else
                         <input type="checkbox"   class="form-check-input" name="is_acive" id="is_active">

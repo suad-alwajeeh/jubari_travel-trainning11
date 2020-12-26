@@ -50,7 +50,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_ticket}}</h5>
-                      <a  href="{{url('/service/show_ticket/5') }}">
+                      <a  href="#">
                       <span class="text-dark">Archived</span>
                       </a>
                     </div>
@@ -100,7 +100,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_bus}}</h5>
-  <a  href="{{ url('/service/show_bus/5') }}">
+  <a  href="#">
                       <span class="text-dark">Archived</span>
                       </a>
                     </div>
@@ -149,7 +149,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_hotel}}</h5>
-  <a  href="{{ url('/service/show_hotel/5') }}">
+  <a  href="#">
                       <span class="text-dark">Archived</span>
                       </a>
                     </div>
@@ -200,7 +200,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_visa}}</h5>
-  <a  href="{{ url('/service/show_visa/5') }}">
+  <a  href="#">
                       <span class="text-dark">Archived</span>
                       </a>
                     </div>
@@ -251,7 +251,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_car}}</h5>
-  <a  href="{{ url('/service/show_car/5') }}">
+  <a  href="#">
                       <span class="text-dark">Archived</span>
                       </a>
                     </div>
@@ -299,7 +299,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_med}}</h5>
-  <a  href="{{ url('/service/show_medical/5') }}">
+  <a  href="#">
                       <span class="text-dark">Archived</span></a>
                     </div>
                     <!-- /.description-block -->
@@ -348,7 +348,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">{{$archev_service}}</h5>
-  <a  href="{{ url('/service/show_general/5') }}">
+  <a  href="#">
                       <span class="text-dark ">Archived</span></a>
                     </div>
                     <!-- /.description-block -->

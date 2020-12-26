@@ -14,7 +14,8 @@ class CreateHotelServiceTable extends Migration
     public function up()
     {
         Schema::create('hotel_service', function (Blueprint $table) {
-            $table->id('hotel_id');
+            $table->id();
+            $table->string('hotel_id');
             $table->date('Issue_date');
             $table->string('refernce');
             $table->string('passenger_name');
@@ -38,8 +39,7 @@ class CreateHotelServiceTable extends Migration
             $table->boolean('deleted')->default(0);
             $table->boolean('user_status')->default(0);
             $table->integer('user_id');
-            $table->string('created_at')->default(null);
-            $table->string('updated_at')->default(null);
+            
             $table->timestamps();
         });
     }

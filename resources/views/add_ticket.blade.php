@@ -201,12 +201,12 @@ name="Issue_date" id="date"  />
 
                     <div class="form-group" data-select2-id="44">
                       <select  name="due_to_supp" required
-                      class="form-control select2 select2-hidden-accessible"
+                      class="form-control select2 select2-hidden-accessible provider"
                         style="width: 100%;" data-select2-id="7" tabindex="0" aria-hidden="true">
 
                         @foreach($suplier as $sup)
 
-                        <option value="{{$sup->sup_id}}">{{$sup->sup_name}}</option>
+                        <option value="{{$sup->s_no}}">{{$sup->supplier_name}}</option>
                         @endforeach
 
                       </select>
@@ -217,14 +217,14 @@ name="Issue_date" id="date"  />
                     <div class="form-group" data-select2-id="44">
 
                       <input type="number" style="width:100%;" required name="provider_cost"
-                        class="form-control " />
+                        class="form-control  curency" />
                     </div>
                   </div>
                   <div class="form-group col-md-12 col-sm-12 col-xm-12">
                     <label class="col-md-4 col-sm-12 col-xm-12">Currency </label>
                     <div class="form-group" data-select2-id="8">
 
-                      <select  name="cur_id" required class="form-control select2 select2-hidden-accessible"
+                      <select  name="cur_id" required class="form-control select2 select2-hidden-accessible curency"
                         style="width: 100%;" data-select2-id="9" tabindex="0" aria-hidden="true">
                       </select>
                     </div>

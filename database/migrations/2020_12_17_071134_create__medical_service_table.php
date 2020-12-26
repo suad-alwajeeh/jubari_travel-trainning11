@@ -14,6 +14,7 @@ class CreateMedicalServiceTable extends Migration
     public function up()
     {
         Schema::create('medical_service', function (Blueprint $table) {
+            $table->id();
             $table->string('med_id');
             $table->date('Issue_date');
             $table->string('refernce');
@@ -32,15 +33,13 @@ class CreateMedicalServiceTable extends Migration
             $table->decimal('cost');
             $table->integer('service_id');
             $table->string('passnger_currency');
-            $table->text('attachment');
             $table->text('remark')->default(null);
             $table->integer('service_status')->default(1);
             $table->text('attachment');
             $table->boolean('deleted')->default(0);
             $table->boolean('user_status')->default(0);
             $table->integer('user_id');
-            $table->string('created_at')->default(null);
-            $table->string('updated_at')->default(null);
+            
 
         });
     }

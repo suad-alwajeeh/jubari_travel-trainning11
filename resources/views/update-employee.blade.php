@@ -112,9 +112,9 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-12 col-xm-12">
-                                <label class="col-md-12 col-sm-12 col-xm-12">Email :</label>
+                                <label class="col-md-12 col-sm-12 col-xm-12">Account Number :</label>
                                 <div class="form-group " data-select2-id="44">
-                                    <input type='email' class="form-control" name="emp_email" id="email" value="{{$emp->emp_email}}" />
+                                    <input type='email' class="form-control" name="account_number" id="email" value="{{$emp->account_number}}" />
                                     <small id="helpId8" class="text-muted"></small>
                                 </div>
                             </div>
@@ -152,10 +152,10 @@
                     <div class="offset-sm-4 col-sm-8">
                         <div class="form-check">
                         @if($emp->is_active==1)
-                            <input type="checkbox" checked class="form-check-input" name="is_acive" id="active">
+                            <input type="checkbox" checked class="form-check-input" name="is_active" id="active">
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                        @else
-                       <input type="checkbox"  class="form-check-input" name="is_acive" id="active">
+                       <input type="checkbox"  class="form-check-input" name="is_active" id="active">
                             <label class="form-check-label" for="exampleCheck2">Active</label>
                       @endif</div>
                     </div>
@@ -277,7 +277,7 @@
             return false;
         }
     });
-    form1[10].addEventListener("keyup", function confirmEmail() {
+ /*form1[10].addEventListener("keyup", function confirmEmail() {
         if (form1[10].value.match(mailformat)) {
             form1[10].style.borderColor = "green";
             return true;
@@ -288,7 +288,7 @@
             return false;
         }
     });
-
+*/
 
 
 
