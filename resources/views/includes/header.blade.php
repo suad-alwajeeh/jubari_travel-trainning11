@@ -170,6 +170,7 @@
   function test(){
   
   var user_id= {{ Auth::user()->id }};
+  $_SESSION['id']={{ Auth::user()->id }};
 $.ajax({
 url:'/adds_user_display_u/'+user_id,
 type:'get',

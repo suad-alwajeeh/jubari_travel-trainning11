@@ -17,7 +17,6 @@ class RoleController extends Controller
      */
     public function __construct()
     {
-       // $this->share('adds', $this->index());
     }
     public function index()
     {

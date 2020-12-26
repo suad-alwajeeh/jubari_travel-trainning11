@@ -18,12 +18,13 @@ class CreateHotelServiceTable extends Migration
             $table->date('Issue_date');
             $table->string('refernce');
             $table->string('passenger_name');
-            $table->integer('hotel_status');
-            $table->integer('voucher_number');
-            $table->string('Dep_city');
-            $table->string('arr_city');
-            $table->date('dep_date');
-            $table->string('bus_name');
+            $table->integer('hotel_status')->default(1);
+            $table->string('voucher_number');
+            $table->string('city');
+            $table->string('country');
+            $table->string('hotel_name');
+            $table->date('check_in');
+            $table->date('check_out');
             $table->string('due_to_supp');
             $table->decimal('provider_cost');
             $table->integer('cur_id');
@@ -31,11 +32,14 @@ class CreateHotelServiceTable extends Migration
             $table->decimal('cost');
             $table->integer('service_id');
             $table->string('passnger_currency');
-            $table->text('remark');
-            $table->integer('deleted');
+            $table->text('remark')->default(null);
             $table->integer('service_status');
             $table->text('attachment');
-
+            $table->boolean('deleted')->default(0);
+            $table->boolean('user_status')->default(0);
+            $table->integer('user_id');
+            $table->string('created_at')->default(null);
+            $table->string('updated_at')->default(null);
             $table->timestamps();
         });
     }

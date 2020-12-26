@@ -116,7 +116,7 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
               type:"GET",
-              url: '/employees/employee_delete/',
+              url: '/employees/employee_delete/'+id,
               data: data,
               success: function (response) {
                 console.log(response);
@@ -137,15 +137,11 @@ $(document).ready(function(){
 
 //var table=$('#datatable').DataTable();
 $("#dropselect").change(function () {
-  var id =$('.delete_id').val();
-
-  console.log('jbwjebfjw');
-  console.log(id);
 
                 var id=$('#dropselect').val();
                 console.log(id);
                 $.ajax({
-        url:"{{url('employees')}}",
+        url:"{{url('employees/active')}}",
         data: {id:id},
         success: function (data) {
           console.log('sec');
@@ -159,7 +155,7 @@ $("#dropselect").change(function () {
               //console.log('value[i]');
               //console.log(value[i]);
 myJSON = JSON.parse(data);
-td +='<div class="wrapp wapper"><div class="profile"><img src="{{asset("img/users/'+value[i].emp_photo+'")}}" class="thumbnail"><h3 class="name">'+value[i].emp_first_name+' ' +value[i].emp_middel_name +'  '+value[i].emp_thired_name+' '+value[i].emp_last_name+'</h3><p class="title">'+value[i].name+'</p><p class="description"><i class="fa fa-phone m-2" aria-hidden="true"></i>'+value[i].emp_mobile+'</p><p class="description"><i class="fas fa-envelope m-2"></i>'+value[i].emp_email+'</p></div><div class="social-icons mx-auto text-center"><div class="icon mx-auto text-center"><a href="/"><i class="fa fa-eye" aria-hidden="true"></i></a></div><div class="icon mx-auto text-center"><a href="update"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a> </div><div class="icon mx-auto text-center"><a ><input type="hidden" class="delete_id" value="'+value[i].emp_id+'"><i class="fas fa-trash deletebtn"></i></a></div></div></div>';
+td +='<div class="wrapp wapper"><div class="profile"><img src="img/users/'+value[i].emp_photo+'" class="thumbnail"><h3 class="name">'+value[i].emp_first_name+' ' +value[i].emp_middel_name +'  '+value[i].emp_thired_name+' '+value[i].emp_last_name+'</h3><p class="title">'+value[i].name+'</p><p class="description"><i class="fa fa-phone m-2" aria-hidden="true"></i>'+value[i].emp_mobile+'</p><p class="description"><i class="fas fa-envelope m-2"></i>'+value[i].emp_email+'</p></div><div class="social-icons mx-auto text-center"><div class="icon mx-auto text-center"><a href="/"><i class="fa fa-eye" aria-hidden="true"></i></a></div><div class="icon mx-auto text-center"><a href="/employees/employee-edit/'+value[i].id+'"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a> </div><div class="icon mx-auto text-center"><a ><input type="hidden" class="delete_id" value="'+value[i].emp_id+'"><i class="fas fa-trash deletebtn"></i></a></div></div></div>';
 $('.wrap_change').html(td);
 //</div>
    }

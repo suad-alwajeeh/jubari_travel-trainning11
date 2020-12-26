@@ -1,466 +1,335 @@
 @extends('app_layouts.master')
 @section('main_content')
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'>
-<link rel='stylesheet' href='https://unpkg.com/filepond/dist/filepond.min.css'><link rel="stylesheet" href="./style.css">
-
-<style>
-    p {
-        display: inline;
-        content: '';
-        margin-left: 20px;
-    }
-
-    .profile {
-        line-height: 30px;
-        word-spacing: 5px;
-        margin: auto;
-    }
-</style>
-<!-- Content Wrapper. Contains page content -->
-
-<div class="content-wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('status') }}
+    </div>
+    @elseif(session('failed'))
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('failed') }}
+    </div>
+    @endif
     <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1> Ticket</h1>
-                </div>
-                <div class="col-sm-6">
-
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1> Visa Service</h1>
+          </div>
+          <div class="col-sm-6">
+           
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
     </section>
 
-    <div class="row m-2">
-        @foreach($ticket as $tickets)
+    <!-- Main content -->
+   
+    <!-- /.content -->
+ 
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+        
+          <div class="col-sm-6">
+            
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+   
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+         
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title col-3  d-inline-block">VISA</h3>
+      </div>
+              <!-- /.visad-header -->
+              <div class="card-body table-responsive p-0">
+                <table id="datatable" class="table table-hover text-nowrap text-center">
+                 
+                <form method="post">
+	@csrf
+	@method('DELETE')
+	<button formaction="/deleteallvisa" type="submit" class="btn btn-danger">Delete All Selected</button>
+ <thead>
+                  <tr>
+			<th><input type="checkbox" class="selectall"></th>
+                    <th>ID</th>
+                    <th>Issue Date </th>
+                    <th> Refernce </th>
+                    <th>Passenger Name</th>
+                    <th>Voucher Number </th>
+                    <th>Visa Type</th>
+                    <th>Visa Status </th>
+                    <th>Country</th>
+                    <th>Additional Info </th>
+                    <th>Supplier</th>
+                    <th>Supplier Cost</th>
+                    <th>Supplier Cuurency</th>
+                    <th>Passenger Cost </th>
+                    <th>Passenger Currency </th>
+                    <th>Remark</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody class="row2">
+                  <?php $i=1; ?>
 
-        <div class="wrapp wapper">
+                  @forelse($visa as $visas)
+                  <tr>
+			<td><input type="checkbox" name="ids[]" class="selectbox" value="{{$visas->visa_id }}"></td>
 
-
-            <div class="profile">
-                <input type="hidden" class="delete_id" value="{{$tickets->id}}">
-                <img src="{{asset('img/images/20945753.jpg')}}" class="thumbnail">
-
-                <label>Issue Date :</label>
-                <p class="description">{{$tickets->Issue_date}} </p><br>
-                <label>Refernce :</label>
-                <p class="description">{{$tickets->refernce}}</p><br>
-                <label>Passenger Name :</label>
-                <p class="description">{{$tickets->passenger_name}}</p><br>
-                <label>Airline Code :</label>
-                <p class="description">{{$tickets->ticket}}</p><br>
-                <label>Ticket Number :</label>
-                <p class="description">{{$tickets->ticket_number}}</p><br>
-                <label>Dept City :</label>
-                <p class="description">{{$tickets->Dep_city}}</p><br>
-                <label>Dept Date : </label>
-                <p class="description">{{$tickets->dep_date}}</p><br>
-                <label>Arr City :</label>
-                <p class="description">{{$tickets->arr_city}}</p><br>
-                <label>Supplier :</label>
-                <p class="description">{{$tickets->sup_name}}</p><br>
-                <label>Supplier Cost :</label>
-                <p class="description">{{$tickets->provider_cost}}</p><br>
-                <label>Supplier Cuurency :</label>
-                <p class="description">{{$tickets->cur_name}}</p><br>
-                <label>Passenger Cost :</label>
-                <p class="description">{{$tickets->cost}}</p><br>
-                <label>Passenger Cuurency :</label>
-                <p class="description">{{$tickets->passnger_currency}}</p><br>
-                @if($tickets->ticket_status==1)
-                <label>Ticket Status :</label>
-                <p class="description">OK</p><br>
-                @elseif($tickets->ticket_status==1)
-                <label>Ticket Status :</label>
-                <p class="description">Avoid</p><br>
-                @else
-                <label>Ticket Status :</label>
-                <p class="description">Revent</p><br>
-                @endif
-
-            </div>
-
-            <div class="social-icons mx-auto text-center">
-
-
-                <div class="icon mx-auto text-center">
-                    <input type="hidden" class="delete_id" value="{{$tickets->id}}">
-                    <a class="sendbtn"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-
-                </div>
-                <div class="icon mx-auto text-center">
-                    <input type="hidden" class="delete_id" value="{{$tickets->id}}">
-                    @if ($tickets->attachment=='null')
-                    <a class="" data-toggle="modal" data-target="#add" id="upload"><i class="fa fa-upload"
-                            aria-hidden="true"></i></a>
-                    @else
-                    <a class="right" data-toggle="modal" data-target="#add" ><i class="fa fa-upload"
-                            aria-hidden="true"></i></a>
+                  <input type="hidden" class="delete_id" value="{{$visas->visa_id}}">
+                  <td><?php echo $i;?></td>
+                    <td>{{$visas->Issue_date }}</td>
+                    <td> {{$visas->refernce}} </td>
+                    <td>{{$visas->passenger_name}}</td>
+                    <td>{{$visas->voucher_number }}</td>
+                    <td>{{$visas->voucher_type }}</td>
+                    @if($visas->visa_status==1)
+                    <td>OK</td>
                     @endif
+                    <td>{{$visas->country }}</td>
+                    <td>{{$visas->visa_info}} </td>
+                   
+                   
+                    <td>{{$visas->sup_name}} </td>
+                    <td>{{$visas->provider_cost}} </td>
+                    <td>{{$visas->cur_name}}</td>
+                    <td>{{$visas->cost}}  </td>
+                    <td> {{$visas->passnger_currency}} </td>
+                    <td>{{$visas->remark}} </td>
+                    <td>
+                     @if($visas->service_status==1)
 
-                </div>
+                    <a type="button" class="btn sendbtn btncolor text-white" ><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                    @endif
+                    <a class="btn btncolor" type="button" href="{{ url('/service/update_visa/'.$visas->visa_id) }}"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                    @if($visas->service_status==1||$visas->service_status==2)
+                    
+                    <a type="button" class="btn  deletebtn btncolor text-white" ><i class="fas fa-trash "></i></a>
+ @endif
+                  </td>
+                  </tr>
+                  <?php $i++ ?>
 
-                <div class="icon  mx-auto text-center">
-                    <input type="hidden" class="delete_id" value="{{$tickets->id}}">
+                  @empty
+<tr> <td colspan="10" >There is No data  Pleas Add Service <td></tr>
+                  @endforelse
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  
+                  </tr>
+                  </tfoot>
+                </table>
 
-                    <a><i class="fas fa-trash deletebtn"></i></a>
-
-                </div>
+              </div>
+              <!-- /.visad-body -->
             </div>
+            <!-- /.visad -->
+            
+            {{$visa->links()}}
+
+          </div>
+          <!-- /.col -->
         </div>
-        @endforeach
-    </div>
-</div>
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group col-md-12 col-sm-12 col-xm-12">
-                            <h3 class="col-md-12 col-sm-12 col-xm-12">Attachment </h3>
-                            <div class="gallery"></div>
-                            <div class="form-group" data-select2-id="44">
-                                <div id="drop-area">
-
-                                    <input type="file" name="attachment[]" id="fileElem" multiple
-                                        onchange="handleFiles(this.files)">
-                                    <label class="button" for="fileElem">Select some files</label>
-                                    <progress id="progress-bar" max=100 value=0></progress>
-                                    <div id="gallery" />
-                                </div>
-
-                            </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href=""><button type="button" class="btn btn-secondary   m-3 p-2 float-left"
-                        data-dismiss="modal">Close</button></a>
-                <a id="add2"> <button type="button" class="btn btncolor m-3 p-2 float-right">Save changes</button></a>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+        <!-- /.row -->
+      </div>
+      </div>
+      <!-- /.container-fluid -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script>
-  
-// ************************ Drag and drop ***************** //
-let dropArea = document.getElementById("drop-area")
+<script>
+     $('.selectall').click(function(){
+		$('.selectbox').prop('checked', $(this).prop('checked'));
+		$('.selectall2').prop('checked', $(this).prop('checked'));
+	})
+	
+	$('.selectbox').change(function(){
+		var total = $('.selectbox').length;
+		var number = $('.selectbox:checked').length;
+		if(total == number){
+			$('.selectall').prop('checked', true);
+			$('.selectall2').prop('checked', true);
+		} else{
+			$('.selectall').prop('checked', false);
+			$('.selectall2').prop('checked', false);
+		}
+	})           console.log('inseode scripy');
 
-// Prevent default drag behaviors
-;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, preventDefaults, false)   
-  document.body.addEventListener(eventName, preventDefaults, false)
-})
-
-// Highlight drop area when item is dragged over it
-;['dragenter', 'dragover'].forEach(eventName => {
-  dropArea.addEventListener(eventName, highlight, false)
-})
-
-;['dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, unhighlight, false)
-})
-
-// Handle dropped files
-dropArea.addEventListener('drop', handleDrop, false)
-
-function preventDefaults (e) {
-  e.preventDefault()
-  e.stopPropagation()
-}
-
-function highlight(e) {
-  dropArea.classList.add('highlight')
-}
-
-function unhighlight(e) {
-  dropArea.classList.remove('active')
-}
-
-function handleDrop(e) {
-  var dt = e.dataTransfer
-  var files = dt.files
-
-  handleFiles(files)
-}
-
-let uploadProgress = []
-let progressBar = document.getElementById('progress-bar')
-
-function initializeProgress(numFiles) {
-  progressBar.value = 0
-  uploadProgress = []
-
-  for(let i = numFiles; i > 0; i--) {
-    uploadProgress.push(0)
-  }
-}
-
-function updateProgress(fileNumber, percent) {
-  uploadProgress[fileNumber] = percent
-  let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
-  console.debug('update', fileNumber, percent, total)
-  progressBar.value = total
-}
-
-function handleFiles(files) {
-  files = [...files]
-  initializeProgress(files.length)
-  files.forEach(uploadFile)
-  files.forEach(previewFile)
-}
-
-function previewFile(file) {
-  let reader = new FileReader()
-  reader.readAsDataURL(file)
-  reader.onloadend = function() {
-    let img = document.createElement('img')
-    img.src = reader.result
-    document.getElementById('gallery').appendChild(img)
-  }
-}
-
-function uploadFile(file, i) {
-  var url = 'https://api.cloudinary.com/v1_1/joezimim007/image/upload'
-  var xhr = new XMLHttpRequest()
-  var formData = new FormData()
-  xhr.open('POST', url, true)
-  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-
-  // Update progress (can be used to show progress indicator)
-  xhr.upload.addEventListener("progress", function(e) {
-    updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
-  })
-
-  xhr.addEventListener('readystatechange', function(e) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      updateProgress(i, 100) // <- Add this
-    }
-    else if (xhr.readyState == 4 && xhr.status != 200) {
-      // Error. Inform the user
-    }
-  })
-
-  formData.append('upload_preset', 'ujpu6gyk')
-  formData.append('file', file)
-  xhr.send(formData)
-}
-  
-    $(document).ready(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('.deletebtn').click(function (e) {
-            e.preventDefault();
-            var id = $(this).closest("div").find('.delete_id').val();
-            console.log(id);
-
-            //alert(id);
-            swal({
-                title: "Are you sure?",
-                text: "Are You  Sure to delete this Ticket!",
-                icon: "error",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        var data = {
-                            '_token': $('input[name=_token]').val(),
-                            'id': id,
-                        };
-
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: "GET",
-                            url: '/service/ticket_delete/' + id,
-                            data: data,
-                            success: function (response) {
-                                console.log(response);
-                                swal("Delete Successfully", {
-                                    icon: "success",
-                                }).then((willDelete) => {
-                                    location.reload();
-                                });
-                            }
-                        });
-                    }
-
-
-                });
-        });
-
-        $('.sendbtn').click(function (e) {
-            e.preventDefault();
-            var id = $(this).closest("div").find('.delete_id').val();
-            console.log(id);
-
-            //alert(id);
-            swal({
-                title: "Are you sure?",
-                text: "Do you want send this Ticket!",
-                icon: "success",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        var data = {
-                            '_token': $('input[name=_token]').val(),
-                            'id': id,
-                        };
-
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: "GET",
-                            url: '/service/ticket_send/' + id,
-                            data: data,
-                            success: function (response) {
-                                // cartdata=response;
-                                //console.log('cartdata');
-                                console.log(response[0]);
-
-                                if (response[0] == '<') {
-                                    swal("Send Successfully", {
-                                        icon: "success",
-                                    }).then((willDelete) => {
-                                        location.reload();
-                                    });
-                                }
-                                else {
-                                    swal("upload file before", {
-                                        icon: "error",
-                                    }).then((willDelete) => {
-                                        location.reload();
-                                    });
-
-
-                                }
-                            }
-                        });
-                    }
-
-
-                });
-        });
-        let td = '';
-        console.log('insede redar');
-
-        //var table=$('#datatable').DataTable();
-        $("#dropselect").change(function () {
-
-            console.log('jbwjebfjw');
-            console.log($("#dropselect"));
-
-            var id = $('#dropselect').val();
-            console.log(id);
-            $.ajax({
-                url: "{{url('employees')}}",
-                data: { id: id },
-                success: function (data) {
-                    console.log('sec');
-                    console.log(data);
-                    if (JSON.parse(data) === null)
-                        $('.row2').html('null');
-
-                    else {
-                        $.each(JSON.parse(data), function (key, value) {
-                            for (var i = 0; i < value.length; i++) {
-                                //console.log('value[i]');
-                                //console.log(value[i]);
-                                myJSON = JSON.parse(data);
-                                td += '<tr><td>' + value[i].emp_id + '</td><td>' + value[i].emp_first_name + ' ' + value[i].emp_midel_name + '  ' + value[i].emp_thired_name + ' ' + value[i].emp_last_name + '</td> <td>' + value[i].emp_mobile + '</td> <td>' + value[i].name + '</td> <td>' + value[i].emp_salary + '</td> <td>' + value[i].emp_hirdate + '</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department - edit / j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department - delete /.id') }}"><i class="fas fa-trash "></i ></a ></div ></td ></tr > ';
-                                $('.row2').html(td);
-                            }
-                            td = '';
-
-
-                        });
-                    }
-
-
-                },
-                error: function () {
-                    console.log('err');
-
-
-                }
-
-            });
-        });
-        $("#upload").click(function () {
-           console.log('inside add');
-           var myClass = $(this).attr("class");
-   alert(myClass);
-           //add
-        });
-        $("#add2").click(function () {
-
-            console.log('add');
-
-            $.ajax({
-                url: "{{url('department/insert')}}",
-                data: {},
-                success: function (data) {
-                    console.log('sec');
-                    $('#add').remove();
-                    swal("Data Insert", {
-                        icon: "success",
-                    }).then((willDelete) => {
-                        location.reload();
-                    });
-                },
-                error: function () {
-                    console.log('err');
-                }
-
-            });
-        });
-
+$(document).ready(function(){
+  $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
+
+    $('.deletebtn').click(function (e) {
+      e.preventDefault();
+      var id = $(this).closest("tr").find('.delete_id').val();
+      console.log(id);
+
+      //alert(id);
+      swal({
+        title: "Are you sure?",
+        text: "Are You  Sure to delete this Service!",
+        icon: "error",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            var data = {
+              '_token': $('input[name=_token]').val(),
+              'id': id,
+            };
+
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: "GET",
+              url: '/service/visa_delete/'+ id,
+              data: data,
+              success: function (response) {
+                console.log(response);
+                swal("Delete Successfully", {
+                 icon: "success",
+                }).then((willDelete) => {
+                  location.reload();
+                });
+              }
+            });
+          }
+          
+          
+        });
+    });
+
+    $('.sendbtn').click(function (e) {
+      e.preventDefault();
+      var id = $(this).closest("tr").find('.delete_id').val();
+      console.log(id);
+
+      //alert(id);
+      swal({
+        title: "Are you sure?",
+        text: "Do you want send this Service!",
+        icon: "success",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            var data = {
+              '_token': $('input[name=_token]').val(),
+              'id': id,
+            };
+
+            $.ajax({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: "GET",
+              url: '/service/send_visa/'+ id,
+              data: data,
+              success: function (response) {
+               // visatdata=response;
+                //console.log('visatdata');
+               console.log(response[0]);
+
+               if(response[0]=='<'){
+                  swal("Send Successfully", {
+                 icon: "success",
+                }).then((willDelete) => {
+                  location.reload();
+                });
+                }
+                else{
+                  swal("upload file before", {
+                 icon: "error",
+                }).then((willDelete) => {
+                  location.reload();
+                });
+                            
+                 
+                }
+              }
+            });
+          }
+          
+          
+        });
+    });
+  let  td='';
+  console.log('insede redar');
+
+//var table=$('#datatable').DataTable();
+$("#dropselect").change(function () {
+
+  console.log('jbwjebfjw');
+  console.log($("#dropselect"));
+
+                var id=$('#dropselect').val();
+                console.log(id);
+                $.ajax({
+        url:"{{url('employees')}}",
+        data: {id:id},
+        success: function (data) {
+          console.log('sec');
+          console.log(data);
+          if(JSON.parse(data)===null)
+          $('.row2').html('null');
+
+          else
+         { $.each(JSON.parse(data), function (key, value) {
+            for (var i = 0; i < value.length; i++){
+              //console.log('value[i]');
+              //console.log(value[i]);
+myJSON = JSON.parse(data);
+td +='<tr><td>'+value[i].emp_id+'</td><td>'+value[i].emp_first_name+' ' +value[i].emp_midel_name +'  ' +value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td>'+value[i].emp_mobile+'</td> <td>'+value[i].name+'</td> <td>'+value[i].emp_salary+'</td> <td>'+value[i].emp_hirdate+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btn-success" href="{{ url('department-edit/j') }}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btn-danger" href="{{ url('department-delete/.id') }}"><i class="fas fa-trash "></i></a></div></td></tr>';
+$('.row2').html(td);
+            }
+            td='';
+
+
+});}
+
+
+        },
+        error:function(){
+          console.log('err');
+
+
+        }
+          
+            }); 
+            });
+   
+});
 </script>
 @endsection

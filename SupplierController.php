@@ -207,7 +207,14 @@ class SupplierController extends Controller
     {
         //
     }
-
+    public function show_row()
+    { 
+        $data['suplier']= Suplier::join('sup_currency','sup_currency.sup_id', '=','supliers.sup_id')
+        ->join('currency','currency.cur_id','=','sup_currency.cur_id')
+        ->where('supliers.sup_id',$_GET['id'])->get();
+        return json_encode($data);
+                    }
+    
     /**
      * Show the form for editing the specified resource.
      *

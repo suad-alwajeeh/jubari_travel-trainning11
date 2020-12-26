@@ -241,7 +241,7 @@ console.log($("#dropselect"));
             console.log(value.length);
             if(value.length>0)
 {myJSON = JSON.parse(data);
-td +='<tr><input type="hidden" class="delete_id" value="'+value[i].ser_id+'"><td>'+value[i].ser_id+'</td><td>'+value[i].ser_name+'</td> <td>'+value[i].discrption+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="{{ url("/service/service-edit/'+value[i].ser_id+'")}}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
+td +='<tr><input type="hidden" class="delete_id" value="'+value[i].ser_id+'"><td>'+value[i].ser_id+'</td><td>'+value[i].ser_name+'</td> <td>'+value[i].discrption+'</td><td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="/service/service-edit/'+value[i].ser_id+'"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
 $('.row2').html(td);}
           }
           td='';

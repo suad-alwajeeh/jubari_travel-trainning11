@@ -181,7 +181,40 @@
       }
     });
 
-    $('.deletebtn').click(function (e) {
+   
+let td ='';
+    $("#dropselect").change(function () {
+
+console.log('jbwjebfjw');
+console.log($("#dropselect"));
+
+              var id=$('#dropselect').val();
+              console.log(id);
+              $.ajax({
+      url:"{{url('service_test')}}",
+      data: {id:id},
+      success: function (data) {
+        console.log('sec');
+        //console.log(data);
+         $.each(JSON.parse(data), function (key, value) {
+          for (var i = 0; i < value.length; i++){
+            console.log(value.length);
+            console.log(value.length);
+            if(value.length>0)
+{myJSON = JSON.parse(data);
+td +='<tr><input type="hidden" class="delete_id" value="'+value[i].ser_id+'"><td>'+value[i].ser_id+'</td><td>'+value[i].ser_name+'</td> <td>'+value[i].discrption+'</td><td>'+value[i].emp_first_name+' '+value[i].emp_middel_name+' '+value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td><a type="button" class="btn btncolor" href="/service/service-edit/'+value[i].ser_id+'"><i class="fas fa-pencil-alt "></i></a> <button type="button" class="btn btncolor deletebtn"><i class="fas fa-trash "></i></button></td></tr>';
+$('.row2').html(td);}
+          }
+          td='';
+            
+
+
+});  },
+      error:function(){
+        console.log('err');
+ }    }); 
+          });
+          $('.deletebtn').click(function (e) {
       e.preventDefault();
       var id = $(this).closest("tr").find('.delete_id').val();
       console.log(id);
@@ -206,7 +239,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
               type: "GET",
-              url: 'service_delete/' + id,
+              url: '/service/service_delete/' + id,
               data: data,
               success: function (response) {
                 swal("Delete Successfully", {
@@ -221,38 +254,6 @@
           
         });
     });
-let td ='';
-    $("#dropselect").change(function () {
-
-console.log('jbwjebfjw');
-console.log($("#dropselect"));
-
-              var id=$('#dropselect').val();
-              console.log(id);
-              $.ajax({
-      url:"{{url('service_test')}}",
-      data: {id:id},
-      success: function (data) {
-        console.log('sec');
-        //console.log(data);
-         $.each(JSON.parse(data), function (key, value) {
-          for (var i = 0; i < value.length; i++){
-            console.log(value.length);
-            console.log(value.length);
-            if(value.length>0)
-{myJSON = JSON.parse(data);
-td +='<tr><input type="hidden" class="delete_id" value="'+value[i].ser_id+'"><td>'+value[i].ser_id+'</td><td>'+value[i].ser_name+'</td> <td>'+value[i].discrption+'</td><td>'+value[i].emp_first_name+' '+value[i].emp_middel_name+' '+value[i].emp_thired_name+' '+value[i].emp_last_name+'</td> <td><div class="btn-group btn-group-sm"><a type="button" class="btn btncolor" href="{{ url("/service/service-edit/'+value[i].ser_id+'")}}"><i class="fas fa-pencil-alt "></i></a><a type="button" class="btn btncolor text-white" ><i class="fas fa-trash "></i></a></div></td></tr>';
-$('.row2').html(td);}
-          }
-          td='';
-            
-
-
-});  },
-      error:function(){
-        console.log('err');
- }    }); 
-          });
     $("#add2").click(function () {
               var ser_name=$('#ser_name').val();
               var discrption=$('#discrption').val();

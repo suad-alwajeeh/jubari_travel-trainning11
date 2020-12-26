@@ -15,46 +15,51 @@ class EmployeeController extends Controller
     public function __construct()
     {
     }
+   
     public function index()
     {
-        
- if(isset($_GET['id']) && ($_GET['id']==0 || $_GET['id']==1) )
-       { 
+        $where =['employees.deleted'=>0];
+      $where +=['departments.deleted'=>0];
+      $where +=['departments.is_active'=>1];
+      $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
+      ->where($where,1)->paginate(6);
+            return view('employees',$data);
+       }
+    public function Activate(){
+        if(isset($_GET['id']) && $_GET['id']==0)
+        { 
        
+         $where=['employees.is_active'=>$_GET['id']];
+         $where +=['employees.deleted'=>0];
+         $where +=['departments.deleted'=>0];
+         $where +=['departments.is_active'=>1];
+         $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
+         ->where($where,1)->paginate(6);
+         return json_encode($data);
+     }
+     
+     elseif(isset($_GET['id']) &&  $_GET['id']==1 )
+     { 
+     
         $where=['employees.is_active'=>$_GET['id']];
         $where +=['employees.deleted'=>0];
         $where +=['departments.deleted'=>0];
         $where +=['departments.is_active'=>1];
-        //$where=['departments.is_active'=>1];
-       
         $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-        ->get();
+        ->where($where,1)->paginate(6);
         return json_encode($data);
-    }
-    
-        else if(isset($_GET['id']) && $_GET['id']==2 )
-       { 
-       
-        //$where=['departments.is_active'=>1];
-        $where =['employees.deleted'=>0];
-        $where +=['departments.deleted'=>0];
-        $where +=['departments.is_active'=>1];
-        $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-        ->where($where,1)->get();
-        return json_encode($data);}
-    
-        
-        else{
-            //$where=['departments.is_active'=>1];
-            $where =['employees.deleted'=>0];
-            $where +=['departments.deleted'=>0];
-        $where +=['departments.is_active'=>1];
-            $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
-            ->where($where)->get();
-            return view('employees',$data);
-        }
-
-    
+  }
+  
+     else 
+     { 
+     
+      //$where=['departments.is_active'=>1];
+      $where =['employees.deleted'=>0];
+      $where +=['departments.deleted'=>0];
+      $where +=['departments.is_active'=>1];
+      $data['emps']=Employee::join('departments', 'departments.id', '=', 'employees.dept_id')
+      ->where($where,1)->paginate(6);
+      return json_encode($data);}
     }
     public function insert(){
         $where=['is_active'=>1];
@@ -182,9 +187,9 @@ public function edit_row(Request $req){
                         
                     }
     public function hide_row($id){
-        $affected1= Empolyee::where('emp_id',$id)
+        $affected1= Employee::where('emp_id',$id)
         ->update(['deleted'=>'1']);
-        $data['dept'] = Employeee::where('deleted',0)->paginate(7);
+        $data['dept'] = Employee::where('deleted',0)->paginate(7);
         return redirect('employees')->with('seccess','Seccess Data Delete');
 
         }

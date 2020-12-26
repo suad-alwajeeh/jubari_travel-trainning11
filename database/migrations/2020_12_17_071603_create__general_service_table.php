@@ -13,13 +13,13 @@ class CreateGeneralServiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('general_service', function (Blueprint $table) {
-            $table->id('gen_id');
+        Schema::create('general_services', function (Blueprint $table) {
+            $table->string('gen_id');
             $table->date('Issue_date');
             $table->string('refernce');
             $table->string('passenger_name');
-            $table->integer('offered_status');
-            $table->integer('voucher_number');
+            $table->integer('offered_status')->default(1);
+            $table->string('voucher_number');
             $table->text('gen_info');
             $table->string('Dep_city');
             $table->string('arr_city');
@@ -31,12 +31,15 @@ class CreateGeneralServiceTable extends Migration
             $table->decimal('cost');
             $table->integer('service_id');
             $table->string('passnger_currency');
-            $table->text('remark');
-            $table->integer('deleted');
-            $table->integer('service_status');
-            $table->integer('general_status');
+            $table->integer('general_status')->default(1);
+            $table->text('remark')->default(null);
+            $table->integer('service_status')->default(1);
             $table->text('attachment');
-
+            $table->boolean('deleted')->default(0);
+            $table->boolean('user_status')->default(0);
+            $table->integer('user_id');
+            $table->string('created_at')->default(null);
+            $table->string('updated_at')->default(null);
             $table->timestamps();
         });
     }
@@ -48,6 +51,6 @@ class CreateGeneralServiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general_service');
+        Schema::dropIfExists('general_services');
     }
 }

@@ -79,6 +79,7 @@ Route::post('/editrole','RoleController@edit_row');
 
 //employees
 Route::get('employees', 'EmployeeController@index');
+Route::get('employees/active', 'EmployeeController@Activate');
 Route::get('/employees/insert', 'EmployeeController@insert');
 Route::post('/employees/saved', 'EmployeeController@saved');
 Route::get('/employees/employee_delete/{id}','EmployeeController@hide_row');
@@ -104,6 +105,19 @@ Route::get('/service/editservice/','ServiceController@edit_row');
 Route::get('/service/sales/','ServiceController@show');
 Route::post('/service/add_ticket/','ServiceController@add_ticket');
 Route::get('/service/update_ticket/{id}','ServiceController@update_ticket');
+Route::get('/service/update_bus/{id}','ServiceController@update_bus');
+Route::get('/service/update_car/{id}','ServiceController@update_car');
+Route::get('/service/update_hotel/{id}','ServiceController@update_hotel');
+Route::get('/service/update_visa/{id}','ServiceController@update_visa');
+Route::get('/service/update_med/{id}','ServiceController@update_med');
+Route::get('/service/update_gen/{id}','ServiceController@update_gen');
+Route::post('/service/updateTicket','ServiceController@updateTicket');
+Route::post('/service/updateBus','ServiceController@updateBus');
+Route::post('/service/updateCar','ServiceController@updateCar');
+Route::post('/service/updateHotel','ServiceController@updateHotel');
+Route::post('/service/updateVisa','ServiceController@updateVisa');
+Route::post('/service/updateMed','ServiceController@updateMed');
+Route::post('/service/updateGen','ServiceController@updateGen');
 Route::get('/service/update_ticketAttachment/{id}','ServiceController@ticketAttachment');
 Route::post('/service/add_bus/','ServiceController@add_bus');
 Route::post('/service/add_hotel/','ServiceController@add_hotel');
@@ -151,6 +165,53 @@ Route::get('/service/ticket_med/{id}','ServiceController@send_med');
   Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
   Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
   Route::get('/displaySupplier/{id}', 'SupplierController@filter');
+Route::get('/service/bus_send/{id}','ServiceController@send_bus');
+Route::get('/service/send_visa/{id}','ServiceController@send_visa');
+Route::get('/service/send_car/{id}','ServiceController@send_car');
+Route::get('/service/send_hotel/{id}','ServiceController@send_hotel');
+Route::get('/service/send_gen/{id}','ServiceController@send_gen');
+Route::get('/service/send_med/{id}','ServiceController@send_med');
+//ti send or delete multi  row in table service
+Route::delete('/deleteallticket','ServiceController@deleteAllticket');
+Route::delete('/sendallticket','ServiceController@sendallticket');
+Route::delete('/deleteallhotel','ServiceController@deleteAllhotel');
+Route::delete('/sendallhotel','ServiceController@sendallhotel');
+Route::delete('/deleteallbus','ServiceController@deleteAllbus');
+Route::delete('/sendallbus','ServiceController@sendAllbus');
+Route::delete('/deleteallcar','ServiceController@deleteAllcar');
+Route::delete('/sendallcar','ServiceController@sendallcar');
+Route::delete('/deleteallhotel','ServiceController@deleteallhotel');
+Route::delete('/sendallhotel','ServiceController@sendallhotel');
+Route::delete('/deleteallvisa','ServiceController@deleteallvisa');
+Route::delete('/sendallvisa','ServiceController@sendallvisa');
+Route::delete('/deleteallmed','ServiceController@deleteallmed');
+Route::delete('/sendallmed','ServiceController@sendallmed');
+Route::delete('/deleteallgen','ServiceController@deleteallgen');
+Route::delete('/sendallgen','ServiceController@sendallgen');
+
+//Supplier
+
+
+Route::get('/airline/airline_row','AirlineController@show_row');
+Route::get('/suplier/suplier_row','SuplierController@show_row');
+Route::get('/addSupplier', 'SupplierController@add');
+Route::get('/displaySupplier', 'SupplierController@display');
+Route::get('/editSupplier/{id}', 'SupplierController@display_row');
+Route::get('/deleteSupplier/{id}', 'SupplierController@hide_row');
+Route::post('/add_supplier','SupplierController@save1');
+Route::post('/edit_supplier','SupplierController@edit_row');
+Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
+Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
+Route::get('/displaySupplier/{id}', 'SupplierController@filter');
+
+//
+
+// Sales Manager
+Route::get('/displaySalesManager', 'SalesManagerController@display');
+//
+
+Route::get('/form',function(){
+
   return view('form');
   });
 
