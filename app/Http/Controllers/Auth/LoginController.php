@@ -27,6 +27,17 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+    protected function credentials(Request $request)
+    {
+        return [
+            'email'=>request()->email,
+            'password'=>request()->password,
+            'is_active'=>1,
+            'is_delete'=>0,
+        ];
+    }
+
     protected  function authenticated(Request $req ,$user){
         if($user->hasRole('sale_executive')){
             return redirect('/service');

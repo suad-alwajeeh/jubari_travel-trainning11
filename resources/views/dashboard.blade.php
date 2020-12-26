@@ -574,4 +574,5 @@
     </section>
     <!-- /.content -->
   </div>
+ 
   @endsection

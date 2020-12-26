@@ -6,7 +6,7 @@
   <div class="container p-4">
   <div class="row">
   <div class="col-10">
-  <h1 class="text-center">display advertisements	</h1>
+  <h1 class="text-center">display users	</h1>
   </div>
   <div class="col-2">
   <div class="dropdown">
@@ -14,9 +14,9 @@
       status 
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="/adds_display">all</a>
-      <a class="dropdown-item " href="/adds_display/1"> Active</a>
-      <a class="dropdown-item " href="/adds_display/0">No Active</a>
+      <a class="dropdown-item" href="/user_display">all</a>
+      <a class="dropdown-item " href="/user_display/1"> Active</a>
+      <a class="dropdown-item " href="/user_display/0">No Active</a>
     </div>
   </div>
 </div>

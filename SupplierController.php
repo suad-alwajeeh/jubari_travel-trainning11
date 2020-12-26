@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 namespace App\Http\Controllers;
 use App\Supplier;
 use App\Service;
+use App\Currency;
+use App\Sup_Currency;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -27,15 +29,18 @@ class SupplierController extends Controller
     
 
     public function add(){
-        $services['services']=Service::where('is_active',1)->get();
-        return view('addSupplier')->with($services);
+        $services=Service::where('is_active',1)->get();
+        //$currency='';
+        $currencies=Currency::where('is_active',1)->get();
+        return view('addSupplier',['data1'=>$services,'data2'=>$currencies]);
      //  return view('addSupplier');
     }
 
     public function display(){
        // $affected = Supplier::where('is_active',1)->paginate(7);
         $affected = Supplier::where('is_deleted',0)->paginate(7);
-        return view('displaySupplier',['data'=>$affected]);
+       // $affected1 = Currency::where('is_active',1)->paginate(7);
+        return view('displaySupplier',['data'=>$affected/*, 'data2'=>$affected1*/]);
     }
 
 
@@ -58,8 +63,9 @@ class SupplierController extends Controller
         {
 
           $supplier=new Supplier;
+          $cur=new Sup_Currency;
 
-            $req->validate([
+            /* $req->validate([
                 'supplier_name'=>'required|max:100',
                 'supplier_mobile'=>'required|numeric',
                 'supplier_phone'=>'required|numeric',
@@ -68,13 +74,13 @@ class SupplierController extends Controller
                 'supplier_address'=>'required',
                 'supplier_acc_no'=>'required|numeric',
                 'create_date'=>'required',
-                'supplier_service'=>'required',
+                'supplier_service[]'=>'required',
                 'supplier_currency'=>'required',
                 'is_active'=>'required',
              ] );
             
 
-           /*  $validate=validator::make($req->all(),[
+             $validate=validator::make($req->all(),[
                 'supplier_name'=>'required|max:100|unique:suppliers:supplier_name',
                 'supplier_mobile'=>'required|max:11|numeric',
                 'supplier_phone'=>'required|max:11|numeric',
@@ -100,6 +106,7 @@ class SupplierController extends Controller
                  $supplier->supplier_photo= $photo_name;
 
              }
+             $supplier->s_no=$req->s_no;
           $supplier->supplier_name=$req->supplier_name;
           $supplier->supplier_mobile=$req->supplier_mobile;
           $supplier->supplier_phone=$req->supplier_phone;
@@ -112,16 +119,20 @@ class SupplierController extends Controller
           $supplier->supplier_remark=$req->supplier_remark;
           $supplier->is_active=$req->is_active;
           echo $supplier->save();
+          /*$cur->sup_id=$req->s_no;
+          $cur->cur_id=$req->supplier_currency;
+          echo $cur->save();*/
           $affected = Supplier::where('is_deleted',0)->paginate(7);
          // $services['services']=Service::where('is_active',1)->get();
           return redirect('displaySupplier')->with('Success','New Supplier has been added successfully');
+         
 
 
           
         }
 
         public function edit_row(Request $req){
-           /* $supplier::where('s_no',$req->id)->update(['supplier_name'=>$req->supplier_name,'supplier_mobile'=>$req->supplier_mobile,
+           /*/ $supplier::where('s_no',$req->id)->update(['supplier_name'=>$req->supplier_name,'supplier_mobile'=>$req->supplier_mobile,
             'supplier_phone'=>$req->supplier_phone,'supplier_email'=>$req->supplier_email,'supplier_photo'=>$req->supplier_photo,
             'supplier_address'=>$req->supplier_address, 'supplier_acc_no'=>$req->supplier_acc_no, 'create_date'=>$req->create_date,
             'supplier_remark'=>$req->supplier_remark,
@@ -136,6 +147,7 @@ class SupplierController extends Controller
         ]);
 
             $affected = Supplier::where('is_deleted',0)->paginate(7);
+            
             //return "in edit function ";
             return redirect('displaySupplier')->with('Success','Supplier has been updateded successfully');
             
