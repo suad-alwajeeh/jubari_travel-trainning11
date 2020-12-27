@@ -63,19 +63,88 @@
       <td>{{$item->supplier_mobile}}</td>
       <td>{{$item->supplier_phone}}</td>
       <td>{{$item->supplier_email}}</td>
-      <td>{{$item->supplier_photo}}</td>
+      <td><img src="{{asset('img/suppliers/'.$item->supplier_photo)}}" width=40px; hight=40px;></td>
       
       <td>{{$item->supplier_acc_no}}</td>
         <td>
         <div class="btn-group btn-group-sm">
   <a type="button" class="btn btn-success" href="{{ url('editSupplier/'.$item->s_no) }}"><i class="fas fa-pencil-alt "></i></a>
   <a type="button" class="btn btn-danger" href="{{ url('deleteSupplier/'.$item->s_no) }}"><i class="fas fa-trash "></i></a>
-</div>
+  <a type="button" class="btn btn-secondary" data-id="{{$item->s_no}}" data-toggle="modal" data-target="#supplier-show"><i class="fas fa-eye "></i></a>
+  
         </td>
+        
       </tr>
+     
      @endforeach
     </tbody>
   </table>
+<!--  start add Modal -->
+<div class="modal fade" id="supplier-show"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Show All Supplier details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="form-horizontal" >
+            @csrf
+            <div class="card-body">
+            <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Supplier Name</th>
+        <th>Services</th>
+        <th>Currency</th>
+        <th>Remark</th>
+        <th>Address</th>
+        <th>Is Active</th>
+        <th>Date created</th>
+        
+       
+      </tr>
+    </thead>
+    <tbody>
+    @foreach($data as $item)
+      <tr>
+      <td>{{$item->s_no}}</td>
+      <td>{{$item->supplier_name}}</td>
+      <td>{{$item->supplier_service}}</td>
+      <td>{{$item->supplier_currency}}</td>
+      <td>{{$item->supplier_remark}}</td>
+      <td>{{$item->supplier_address}}</td>
+      <td>{{$item->is_active}}</td>
+      <td>{{$item->create_date}}</td>
+
+
+
+        
+      </tr>
+     
+     @endforeach
+    </tbody>
+  </table>
+ 
+
+            </div>
+            <!-- /.card-body -->
+           
+            <!-- /.card-footer -->
+        </form>     </div>
+      <div class="modal-footer">
+      <a><button type="button" class="btn btn-secondary   m-3 p-2 float-left" data-dismiss="modal">Close</button></a>
+      
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add model-->
+  
+</div>
   {{$data->links()}}
 
   
