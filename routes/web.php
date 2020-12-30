@@ -17,15 +17,19 @@ use Illuminate\Support\Facades\Route;
  ************* */
  /*****************AIRLINE************** */
  Auth::routes();
+Route::group(['middleware' => ['auth','role:admin|sale_manager|sale_executive|accountant']], function() {
+  Route::get('/logout','Auth\LoginController@logout');
+});
+ Route::group(['middleware' => ['auth','role:admin']], function() {
  Route::get('/','dashboard@index');
  Route::get('/remark','dashboard@remark');
- Route::get('/dashboard/addBusRemark','dashboard@addBusRemark');
- Route::get('/dashboard/addTicketRemark','dashboard@addTicketRemark');
- Route::get('/dashboard/addCarRemark','dashboard@addCarRemark');
- Route::get('/dashboard/addHotelRemark','dashboard@addHotelRemark');
- Route::get('/dashboard/addVisaRemark','dashboard@addVisaRemark');
- Route::get('/dashboard/addMedRemark','dashboard@addMedRemark');
- Route::get('/dashboard/addGenRemark','dashboard@addGenRemark');
+Route::get('/dashboard/addBusRemark','dashboard@addBusRemark');
+Route::get('/dashboard/addTicketRemark','dashboard@addTicketRemark');
+Route::get('/dashboard/addCarRemark','dashboard@addCarRemark');
+Route::get('/dashboard/addHotelRemark','dashboard@addHotelRemark');
+Route::get('/dashboard/addVisaRemark','dashboard@addVisaRemark');
+Route::get('/dashboard/addMedRemark','dashboard@addMedRemark');
+Route::get('/dashboard/addGenRemark','dashboard@addGenRemark');
 Route::get('/airline_add', 'AirlineController@add');
 Route::get('/airline_edit/{id}', 'AirlineController@display_row');
 Route::get('/airline_delete/{id}', 'AirlineController@hide_row');
@@ -189,17 +193,26 @@ Route::get('/is_active_supplier/{id}', 'SupplierController@is_active');
 Route::get('/no_active_supplier/{id}', 'SupplierController@is_not_active');
 Route::get('/displaySupplier/{id}', 'SupplierController@filter');
 
+//
 
+// Sales Manager
+Route::get('/displaySalesManager', 'SalesManagerController@display');
+//
 
 Route::get('/form',function(){
 
   return view('form');
   });
 
+ Route::group(['middleware' => ['auth','role:accountant']], function() {
   Route::get('/accountant','accountantController@accountant_view');
   Route::get('/accountant_ticket','accountantController@accountant_ticket');
 
+});
+Route::group(['middleware' => ['auth','role:sale_manager']], function() {
 
+});
+Route::group(['middleware' => ['auth','role:sale_executive']], function() {
   Route::post('/service/add_ticket/','ServiceController@add_ticket');
   Route::get('/service/update_ticket/{id}','ServiceController@update_ticket');
   Route::get('/service/update_bus/{id}','ServiceController@update_bus');
@@ -251,4 +264,6 @@ Route::get('/form',function(){
   Route::get('/service/ticket_hotel/{id}','ServiceController@send_hotel');
   Route::get('/service/ticket_gen/{id}','ServiceController@send_gen');
   Route::get('/service/ticket_med/{id}','ServiceController@send_med');
- 
+  
+});
+ });
