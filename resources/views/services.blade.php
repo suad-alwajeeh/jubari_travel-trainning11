@@ -8,17 +8,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  @if (session('status'))
-  <div class="alert alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    {{ session('status') }}
-  </div>
-  @elseif(session('failed'))
-  <div class="alert alert-danger" role="alert">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    {{ session('failed') }}
-  </div>
-  @endif
+ 
   <!--  start add Modal -->
   <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
