@@ -24,8 +24,9 @@
 $_GLOBALS['admin_link']='
               <li class="nav-item">
                 <a href="/department" class="nav-link">
-                  <i class="fa fa-building-o"></i>
-                  <p>Department</p>
+                <i class="fas fa-building"></i>
+                
+                 <p>Department</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -215,6 +216,12 @@ $_GLOBALS['admin_link']='
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+                <a href="/remark" class="nav-link">
+                <i class="fas fa-sticky-note"></i>
+                  <p> Remark</p>
+                </a>
+              </li>
           ';
 $_GLOBALS['Sales_Executive']='<li class="nav-item">
                 <a href="/service_test" class="nav-link">
@@ -239,6 +246,12 @@ $_GLOBALS['Sales_Executive']='<li class="nav-item">
                 </a>
               </li>
               </ul>
+              </li>
+              <li class="nav-item">
+                <a href="/show_remark" class="nav-link">
+                <i class="fas fa-sticky-note"></i>
+                  <p> Remark</p>
+                </a>
               </li>';
  $_GLOBALS['Sales_Manager']='
 <li class="nav-item">
@@ -264,6 +277,12 @@ $_GLOBALS['Sales_Executive']='<li class="nav-item">
                 </a>
               </li>
               </ul>
+              </li>
+              <li class="nav-item">
+                <a href="/remark" class="nav-link">
+                <i class="fas fa-sticky-note"></i>
+                  <p> Remark</p>
+                </a>
               </li>';  
 $_GLOBALS['Accountant']='
           <li class="nav-item">
@@ -317,6 +336,12 @@ $_GLOBALS['Accountant']='
                 <a href="/service_test" class="nav-link">
                 <i class="fas fa-user-cog nav-icon"></i>
               <p>profile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/remark" class="nav-link">
+                <i class="fas fa-sticky-note"></i>
+                  <p> Remark</p>
                 </a>
               </li>';                      
 @endphp

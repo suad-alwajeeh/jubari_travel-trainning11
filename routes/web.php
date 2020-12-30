@@ -104,7 +104,7 @@ Route::get('department/editdepartment','DepartmentController@edit_row');
 Route::get('/is_active_dept/{id}', 'AddsController@is_active');
 Route::get('/no_active_dept/{id}', 'AddsController@is_not_active');
 
-Route::get('service_test','ServiceController@index');
+Route::get('/service_test','ServiceController@index');
 Route::get('/service/insert', 'ServiceController@insert');
 Route::get('/service/saved', 'ServiceController@saved');
 Route::get('/service/service_delete/{id}','ServiceController@hide_row');
@@ -162,6 +162,8 @@ Route::get('/service/send_car/{id}','CarServiceController@send_car');
 Route::get('/service/send_hotel/{id}','HotelServiceController@send_hotel');
 Route::get('/service/send_gen/{id}','GeneralServiceController@send_gen');
 Route::get('/service/send_med/{id}','MedicalServiceController@send_med');
+//show remark admin
+
 //ti send or delete multi  row in table service
 Route::post('/deleteallticket','TicketServiceController@deleteAllticket');
 Route::post('/sendallticket','TicketServiceController@sendallticket');
@@ -207,7 +209,7 @@ Route::get('/form',function(){
  Route::group(['middleware' => ['auth','role:accountant']], function() {
   Route::get('/accountant','accountantController@accountant_view');
   Route::get('/accountant_ticket','accountantController@accountant_ticket');
-
+  
 });
 Route::group(['middleware' => ['auth','role:sale_manager']], function() {
 
@@ -264,6 +266,9 @@ Route::group(['middleware' => ['auth','role:sale_executive']], function() {
   Route::get('/service/ticket_hotel/{id}','ServiceController@send_hotel');
   Route::get('/service/ticket_gen/{id}','ServiceController@send_gen');
   Route::get('/service/ticket_med/{id}','ServiceController@send_med');
+  //for show remark
+  Route::get('/show_remark','ServiceController@show_remark');
   
 });
+
  });

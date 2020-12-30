@@ -80,6 +80,9 @@
                                                                     <input type="hidden" class="form-control"
                                                                         id="ticket_id" name="id" required
                                                                         placeholder="Department Name ">
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="ticket_number" name="id" required
+                                                                        placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control remark_id"
                                                                         id="ticket_remark_id" name="remark_id" required
                                                                         placeholder="Department Name ">
@@ -138,6 +141,7 @@
                                                 @foreach($ticket as $item)
                                                 <tr>
                                                     <input type="hidden" class="id" value="{{$item->id}}">
+                                                    <input type="hidden" class="ticket_number" value="{{$item->ticket_number}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
@@ -203,6 +207,9 @@
                                                                         placeholder="Remark">
                                                                     <input type="hidden" class="form-control" id="bus_id"
                                                                         name="bus_id">
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="bus_number" name="id" required
+                                                                        placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
                                                                         id="bus_remark_id" name="remark_id" required>
                                                                     <input type="hidden" class="form-control"
@@ -257,6 +264,7 @@
                                             <tbody>
                                                 @foreach($data as $item)
                                                 <tr>
+                                                    <input type="hidden" class="bus_number" value="{{$item->bus_number}}">
                                                     <input type="hidden" class="id" value="{{$item->bus_id}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
@@ -320,9 +328,12 @@
                                                                 <div class="col-sm-8">
                                                                     <input type="text" class="form-control"
                                                                         id="hotel_remark_body" name="remark_body"
-                                                                        required placeholder="Remark ">
+                                                                                                required placeholder="Remark ">
                                                                     <input type="hidden" class="form-control"
                                                                         id="hotel_id" name="bus_id" required
+                                                                        placeholder="Department Name ">
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="hotel_voucher_number" name="bus_id" required
                                                                         placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
                                                                         id="hotel_remark_id" name="remark_id" required
@@ -381,7 +392,9 @@
                                             <tbody>
                                                 @foreach($hotel as $item)
                                                 <tr>
+                                         
                                                     <input type="hidden" class="id" value="{{$item->hotel_id}}">
+                                                    <input type="hidden" class="hotel_voucher_number" value="{{$item->voucher_number}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
@@ -445,7 +458,10 @@
                                                                     <input type="text" class="form-control"
                                                                         id="car_remark_body" name="remark_body" required
                                                                         placeholder="Remark ">
-                                                                    <input type="hidden" class="form-control" id="car_id"
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="car_voucher_number" name="bus_id" required
+                                                                        placeholder="Department Name ">
+                                                                     <input type="hidden" class="form-control" id="car_id"
                                                                         name="bus_id" required
                                                                         placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
@@ -505,7 +521,10 @@
                                             <tbody>
                                                 @foreach($car as $item)
                                                 <tr>
+                           
+                                                                    
                                                     <input type="hidden" class="id" value="{{$item->car_id}}">
+                                                    <input type="hidden" class="car_voucher_number" value="{{$item->voucher_number}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
@@ -572,7 +591,9 @@
                                                                     <input type="hidden" class="form-control" id="visa_id"
                                                                         name="bus_id" required
                                                                         placeholder="Department Name ">
-                                                                    <input type="hidden" class="form-control"
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="visa_voucher_number" name="bus_id" required
+                                                                        placeholder="Department Name "> <input type="hidden" class="form-control"
                                                                         id="visa_remark_id" name="remark_id" required
                                                                         placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
@@ -630,7 +651,8 @@
                                                 @foreach($visa as $item)
                                                 <tr>
                                                     <input type="hidden" class="id" value="{{$item->visa_id}}">
-                                                    <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
+                                                    <input type="hidden" class="visa_voucher_number" value="{{$item->voucher_number}}">
+                                                   <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
                                                     <input type="hidden" class="remark_id" value="{{Auth::user()->id}}">
@@ -696,7 +718,9 @@
                                                                     <input type="hidden" class="form-control" id="med_id"
                                                                         name="bus_id" required
                                                                         placeholder="Department Name ">
-                                                                    <input type="hidden" class="form-control"
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="document_number">     
+                                                                         <input type="hidden" class="form-control"
                                                                         id="med_remark_id" name="remark_id" required
                                                                         placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
@@ -753,7 +777,9 @@
                                             <tbody>
                                                 @foreach($med as $item)
                                                 <tr>
+                                               
                                                     <input type="hidden" class="id" value="{{$item->med_id}}">
+                                                    <input type="hidden" class="document_number" value="{{$item->document_number}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
@@ -817,7 +843,9 @@
                                                                     <input type="text" class="form-control"
                                                                         id="gen_remark_body" name="remark_body" required
                                                                         placeholder="Remark ">
-                                                                    <input type="hidden" class="form-control" id="gen_id"
+                                                                        <input type="hidden" class="form-control"
+                                                                        id="med_voucher_number" name="bus_id" required
+                                                                        placeholder="Department Name ">                      <input type="hidden" class="form-control" id="gen_id"
                                                                         name="" required
                                                                         placeholder="Department Name ">
                                                                     <input type="hidden" class="form-control"
@@ -876,8 +904,9 @@
                                             </thead>
                                             <tbody>
                                                 @foreach($gen as $item)
-                                                <tr>
+                                                <tr> 
                                                     <input type="hidden" class="id" value="{{$item->gen_id}}">
+                                                    <input type="hidden" class="med_voucher_number" value="{{$item->voucher_number}}">
                                                     <input type="hidden" class="emp_id" value="{{$item->emp_id}}">
                                                     <input type="hidden" class="service_id"
                                                         value="{{$item->service_id}}">
@@ -943,6 +972,7 @@
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var bus_number = $(this).closest("tr").find('.bus_number').val();
 
                 console.log('id');
                 console.log(id);
@@ -954,6 +984,7 @@
                 $('#bus_emp_id').val(emp_id);
                 $('#bus_service_id').val(service_id);
                 $('#bus_remark_id').val(remark_id);
+                $('#bus_number').val(bus_number);
                 $('#add2').modal('show');
 
             });
@@ -964,6 +995,7 @@
                 var remark_id = $('#bus_remark_id').val();
                 var remark_body = $('#remark_body').val();
                 var service_id = $('#bus_service_id').val();
+                var bus_number = $('#bus_number').val();
                 // console.log('remark_body');
                 // console.log(remark_body);
                 console.log('service_id');
@@ -974,7 +1006,7 @@
                 console.log(emp_id);
                 $.ajax({
                     url: "{{url('dashboard/addBusRemark')}}",
-                    data: { bus_id: bus_id, emp_id: emp_id, remark_id: remark_id, remark_body: remark_body, service_id: service_id },
+                    data: { bus_id: bus_id, emp_id: emp_id, remark_id: remark_id, remark_body: remark_body, service_id: service_id,bus_number:bus_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();
@@ -998,10 +1030,12 @@
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var ticket_number = $(this).closest("tr").find('.ticket_number').val();
                 $('#ticket_id').val(id);
                 $('#ticket_emp_id').val(emp_id);
                 $('#ticket_service_id').val(service_id);
                 $('#ticket_remark_id').val(remark_id);
+                $('#ticket_number').val(ticket_number);
                 $('#addTicket2').modal('show');
 
             });
@@ -1012,6 +1046,7 @@
                 var ticket_remark_id = $('#ticket_remark_id').val();
                 var ticket_remark_body = $('#ticket_remark_body').val();
                 var ticket_service_id = $('#ticket_service_id').val();
+                var ticket_number = $('#ticket_number').val();
                 console.log('id');
                 console.log(ticket_id);
                 // console.log(ticket_emp_id);
@@ -1019,7 +1054,7 @@
                 // console.log(ticket_remark_body);
                 $.ajax({
                     url: "{{url('dashboard/addTicketRemark')}}",
-                    data: { ticket_id: ticket_id, ticket_emp_id: ticket_emp_id, ticket_remark_id: ticket_remark_id, ticket_remark_body: ticket_remark_body, ticket_service_id: ticket_service_id },
+                    data: { ticket_id: ticket_id, ticket_emp_id: ticket_emp_id, ticket_remark_id: ticket_remark_id, ticket_remark_body: ticket_remark_body, ticket_service_id: ticket_service_id,ticket_number:ticket_number },
                     success: function (data) {
                         console.log('sec');
                         $('#addTicket').remove();
@@ -1043,12 +1078,14 @@
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var hotel_voucher_number = $(this).closest("tr").find('.hotel_voucher_number').val();
 console.log(hotel_id);
                
                 $('#hotel_id').val(hotel_id);
                 $('#hotel_emp_id').val(emp_id);
                 $('#hotel_service_id').val(service_id);
                 $('#hotel_remark_id').val(remark_id);
+                $('#hotel_voucher_number').val(hotel_voucher_number);
                 $('#addHotel2').modal('show');
 
             });
@@ -1059,10 +1096,11 @@ console.log(hotel_id);
                 var hotel_remark_id = $('#hotel_remark_id').val();
                 var hotel_remark_body = $('#hotel_remark_body').val();
                 var hotel_service_id = $('#hotel_service_id').val();
+                var hotel_voucher_number = $('#hotel_voucher_number').val();
 
                 $.ajax({
                     url: "{{url('dashboard/addHotelRemark')}}",
-                    data: { hotel_id: hotel_id, hotel_emp_id: hotel_emp_id, hotel_remark_id: hotel_remark_id, hotel_remark_body: hotel_remark_body, hotel_service_id: hotel_service_id },
+                    data: { hotel_id: hotel_id, hotel_emp_id: hotel_emp_id, hotel_remark_id: hotel_remark_id, hotel_remark_body: hotel_remark_body, hotel_service_id: hotel_service_id,hotel_voucher_number:hotel_voucher_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();
@@ -1086,6 +1124,7 @@ console.log(hotel_id);
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var car_voucher_number = $(this).closest("tr").find('.car_voucher_number').val();
 
                 
 
@@ -1093,6 +1132,7 @@ console.log(hotel_id);
                 $('#car_emp_id').val(emp_id);
                 $('#car_service_id').val(service_id);
                 $('#car_remark_id').val(remark_id);
+                $('#car_voucher_number').val(car_voucher_number);
                 $('#addCar2').modal('show');
 
             });
@@ -1103,10 +1143,11 @@ console.log(hotel_id);
                 var car_remark_id = $('#car_remark_id').val();
                 var car_remark_body = $('#car_remark_body').val();
                 var car_service_id = $('#car_service_id').val();
+                var car_voucher_number = $('#car_voucher_number').val();
 
                 $.ajax({
                     url: "{{url('dashboard/addCarRemark')}}",
-                    data: { car_id: car_id, car_emp_id: car_emp_id, car_remark_id: car_remark_id, car_remark_body: car_remark_body, car_service_id: car_service_id },
+                    data: { car_id: car_id, car_emp_id: car_emp_id, car_remark_id: car_remark_id, car_remark_body: car_remark_body, car_service_id: car_service_id,car_voucher_number:car_voucher_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();
@@ -1131,12 +1172,14 @@ console.log(hotel_id);
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var visa_voucher_number = $(this).closest("tr").find('.visa_voucher_number').val();
 console.log(visa_id);
-               
+
                 $('#visa_id').val(visa_id);
                 $('#visa_emp_id').val(emp_id);
                 $('#visa_service_id').val(service_id);
                 $('#visa_remark_id').val(remark_id);
+                $('#visa_voucher_number').val(visa_voucher_number);
                 $('#addVisa2').modal('show');
 
             });
@@ -1147,10 +1190,11 @@ console.log(visa_id);
                 var visa_remark_id = $('#visa_remark_id').val();
                 var visa_remark_body = $('#visa_remark_body').val();
                 var visa_service_id = $('#visa_service_id').val();
+                var visa_voucher_number = $('#visa_voucher_number').val();
 
                 $.ajax({
                     url: "{{url('dashboard/addVisaRemark')}}",
-                    data: { visa_id: visa_id, visa_emp_id: visa_emp_id, visa_remark_id: visa_remark_id,visa_remark_body: visa_remark_body, visa_service_id: visa_service_id },
+                    data: { visa_id: visa_id, visa_emp_id: visa_emp_id, visa_remark_id: visa_remark_id,visa_remark_body: visa_remark_body, visa_service_id: visa_service_id,visa_voucher_number:visa_voucher_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();
@@ -1174,12 +1218,14 @@ console.log(visa_id);
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var document_number = $(this).closest("tr").find('.document_number').val();
 console.log(med_id);
                
                 $('#med_id').val(med_id);
                 $('#med_emp_id').val(emp_id);
                 $('#med_service_id').val(service_id);
                 $('#med_remark_id').val(remark_id);
+                $('#document_number').val(document_number);
                 $('#addMed2').modal('show');
 
             });
@@ -1190,12 +1236,13 @@ console.log(med_id);
                 var med_remark_id = $('#med_remark_id').val();
                 var med_remark_body = $('#med_remark_body').val();
                 var med_service_id = $('#med_service_id').val();
+                var document_number = $('#document_number').val();
                 console.log('med_id');
                 console.log(med_service_id);
 
                 $.ajax({
                     url: "{{url('dashboard/addMedRemark')}}",
-                    data: { med_id: med_id, med_emp_id: med_emp_id,med_remark_id:med_remark_id, med_remark_body:med_remark_body, med_service_id:med_service_id },
+                    data: { med_id: med_id, med_emp_id: med_emp_id,med_remark_id:med_remark_id, med_remark_body:med_remark_body, med_service_id:med_service_id,document_number:document_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();
@@ -1219,12 +1266,14 @@ console.log(med_id);
                 var emp_id = $(this).closest("tr").find('.emp_id').val();
                 var service_id = $(this).closest("tr").find('.service_id').val();
                 var remark_id = $(this).closest("tr").find('.remark_id').val();
+                var gen_voucher_number = $(this).closest("tr").find('.gen_voucher_number').val();
 console.log(gen_id);
-               
+    
                 $('#gen_id').val(gen_id);
                 $('#gen_emp_id').val(emp_id);
                 $('#gen_service_id').val(service_id);
                 $('#gen_remark_id').val(remark_id);
+                $('#gen_voucher_number').val(gen_voucher_number);
                 $('#addGen2').modal('show');
 
             });
@@ -1235,10 +1284,11 @@ console.log(gen_id);
                 var gen_remark_id = $('#gen_remark_id').val();
                 var gen_remark_body = $('#gen_remark_body').val();
                 var gen_service_id = $('#gen_service_id').val();
+                var gen_voucher_number = $('#gen_voucher_number').val();
 
                 $.ajax({
                     url: "{{url('dashboard/addGenRemark')}}",
-                    data: { gen_id: gen_id, gen_emp_id: gen_emp_id, gen_remark_id: gen_remark_id, gen_remark_body: gen_remark_body, gen_service_id: gen_service_id },
+                    data: { gen_id: gen_id, gen_emp_id: gen_emp_id, gen_remark_id: gen_remark_id, gen_remark_body: gen_remark_body, gen_service_id: gen_service_id,gen_voucher_number:gen_voucher_number },
                     success: function (data) {
                         console.log('sec');
                         $('#add').remove();

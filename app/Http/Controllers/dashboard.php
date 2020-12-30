@@ -126,6 +126,7 @@ print_r($req->remark_id);
       $log->main_servic_id=$req->bus_id;
       $log->service_id=$req->service_id;
       $log->editor_id=$req->emp_id;
+      $log->number=$req->bus_number;
       $log->status=1;
       $log->save();
     
@@ -138,6 +139,8 @@ print_r($req->remark_id);
       $log->main_servic_id=$req->ticket_id;
       $log->service_id=$req->ticket_service_id;
       $log->editor_id=$req->ticket_emp_id;
+      $log->number=$req->ticket_number;
+
       $log->status=1;
       $log->save();
     
@@ -150,6 +153,8 @@ print_r($req->remark_id);
       $log->main_servic_id=$req->car_id;
       $log->service_id=$req->car_service_id;
       $log->editor_id=$req->car_emp_id;
+      $log->number=$req->car_voucher_number;
+
       $log->status=1;
       $log->save();
     
@@ -161,6 +166,8 @@ print_r($req->remark_id);
       $log->main_servic_id=$req->hotel_id;
       $log->service_id=$req->hotel_service_id;
       $log->editor_id=$req->hotel_emp_id;
+      $log->number=$req->hotel_voucher_number;
+
       $log->status=1;
       $log->save();
     
@@ -174,6 +181,7 @@ print_r($req->remark_id);
       $log->service_id=$req->visa_service_id;
       $log->editor_id=$req->visa_emp_id;
       $log->status=1;
+      $log->number=$req->visa_voucher_number;
       $log->save();
     
     }
@@ -186,6 +194,8 @@ print_r($req->remark_id);
       $log->service_id=$req->med_service_id;
       $log->editor_id=$req->med_emp_id;
       $log->status=1;
+      $log->number=$req->document_number;
+
       $log->save();
     
     }
@@ -196,6 +206,8 @@ print_r($req->remark_id);
       $log->main_servic_id=$req->gen_id;
       $log->service_id=$req->gen_service_id;
       $log->editor_id=$req->gen_emp_id;
+      $log->number=$req->gen_voucher_number;
+
       $log->status=1;
       $log->save();
     
